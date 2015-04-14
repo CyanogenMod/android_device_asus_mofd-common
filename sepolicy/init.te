@@ -2,3 +2,6 @@
 allow init port:tcp_socket name_connect;
 allow init self:tcp_socket { write getopt create read connect };
 
+# Mount on and write to /proc/sys/fs/binfmt_misc.
+allow init proc:dir mounton;
+allow init binfmt_miscfs:file w_file_perms;
