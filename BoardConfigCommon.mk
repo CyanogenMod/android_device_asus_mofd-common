@@ -14,9 +14,6 @@
 # limitations under the License.
 #
 
-# Use the non-open-source parts, if they're present
--include vendor/intel/fugu/BoardConfigVendor.mk
-
 TARGET_ARCH := x86
 TARGET_ARCH_VARIANT := x86-atom
 TARGET_CPU_ABI := x86
@@ -25,14 +22,11 @@ TARGET_CPU_ABI_LIST := x86,armeabi-v7a,armeabi
 TARGET_CPU_ABI_LIST_32_BIT := x86,armeabi-v7a,armeabi
 TARGET_CPU_SMP := true
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := x86_64-linux-android-
-
-TARGET_RELEASETOOLS_EXTENSIONS := device/asus/Z00A
-
 TARGET_BOARD_PLATFORM := moorefield
 TARGET_BOOTLOADER_BOARD_NAME := moorefield
 TARGET_USERIMAGES_USE_EXT4 := true
 
-TARGET_SPECIFIC_HEADER_PATH := device/asus/Z00A/include
+TARGET_SPECIFIC_HEADER_PATH := device/asus/mofd-common/include
 
 # Partitions
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
@@ -41,7 +35,6 @@ BOARD_FLASH_BLOCK_SIZE := 2048
 BOARD_BOOTIMAGE_PARTITION_SIZE := 16777216
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 16777216
 BOARD_CACHEIMAGE_PARTITION_SIZE := 268435456
-BOARD_USERDATAIMAGE_PARTITION_SIZE := 59261286400
 
 TARGET_DROIDBOOT_LIBS := libintel_droidboot
 
@@ -54,22 +47,22 @@ TARGET_IGNORE_RO_BOOT_SERIALNO := true
 # Recovery
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 COMMON_GLOBAL_CFLAGS += -DNO_SECURE_DISCARD
-TARGET_RECOVERY_FSTAB := device/asus/Z00A/rootdir/etc/fstab.mofd_v1
+TARGET_RECOVERY_FSTAB := device/asus/mofd-common/rootdir/etc/fstab.mofd_v1
 
 # Bootloader
-TARGET_OTA_ASSERT_DEVICE := Z00A
+TARGET_OTA_ASSERT_DEVICE := Z00A,Z008
 
 # Hardware
-BOARD_HARDWARE_CLASS := device/asus/Z00A/cmhw
+BOARD_HARDWARE_CLASS := device/asus/mofd-common/cmhw
 
 # Use dlmalloc
 MALLOC_IMPL := dlmalloc
 
 # Inline kernel building
-TARGET_KERNEL_CONFIG := fhd_defconfig
 TARGET_KERNEL_SOURCE := kernel/asus/moorefield
 TARGET_KERNEL_ARCH := x86_64
 BOARD_KERNEL_IMAGE_NAME := bzImage
+TARGET_KERNEL_CONFIG := cyanogenmod_zenfone2_defconfig
 
 # Kernel cmdline
 BOARD_KERNEL_CMDLINE := init=/init pci=noearly loglevel=0 vmalloc=256M androidboot.hardware=mofd_v1 watchdog.watchdog_thresh=60 androidboot.spid=xxxx:xxxx:xxxx:xxxx:xxxx:xxxx androidboot.serialno=01234567890123456789 snd_pcm.maximum_substreams=8 ip=50.0.0.2:50.0.0.1::255.255.255.0::usb0:on debug_locks=0 n_gsm.mux_base_conf=\"ttyACM0,0 ttyXMM0,1\"
@@ -104,7 +97,7 @@ WIFI_DRIVER_FW_PATH_STA     := "/system/etc/firmware/fw_bcmdhd.bin"
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/asus/Z00A/bluetooth
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/asus/mofd-common/bluetooth
 
 # IMG graphics
 BOARD_GFX_REV := RGX6400
@@ -112,8 +105,6 @@ ENABLE_IMG_GRAPHICS := true
 ENABLE_MRFL_GRAPHICS := true
 INTEL_HWC_MOOREFIELD := true
 HWUI_IMG_FBO_CACHE_OPTIM := true
-COMMON_GLOBAL_CFLAGS += -DDEFAULT_DRM_FB_WIDTH=1080  \
-		        -DDEFAULT_DRM_FB_HEIGHT=1920
 
 # Audio
 BOARD_USES_ALSA_AUDIO := true
@@ -123,20 +114,20 @@ BOARD_USES_TINY_ALSA_AUDIO := true
 VSYNC_EVENT_PHASE_OFFSET_NS := 7500000
 SF_VSYNC_EVENT_PHASE_OFFSET_NS := 5000000
 
-BOARD_EGL_CFG := device/asus/Z00A/configs/egl.cfg
+BOARD_EGL_CFG := device/asus/mofd-common/configs/egl.cfg
 
 ADDITIONAL_DEFAULT_PROPERTIES += \
     ro.opengles.version = 196608 \
-    ro.hwui.drop_shadow_cache_size = 4.0 \
-    ro.hwui.gradient_cache_size = 0.8 \
-    ro.hwui.layer_cache_size = 32.0 \
-    ro.hwui.path_cache_size = 24.0 \
+    ro.hwui.drop_shadow_cache_size = 6 \
+    ro.hwui.gradient_cache_size = 1 \
+    ro.hwui.layer_cache_size = 48 \
+    ro.hwui.path_cache_size = 32 \
     ro.hwui.text_large_cache_width = 2048 \
     ro.hwui.text_large_cache_height = 1024 \
     ro.hwui.text_small_cache_width = 1024 \
-    ro.hwui.text_small_cache_height = 512 \
+    ro.hwui.text_small_cache_height = 1024 \
     ro.hwui.texture_cache_flushrate = 0.4 \
-    ro.hwui.texture_cache_size = 48.0 \
+    ro.hwui.texture_cache_size = 72 \
 
 MAX_EGL_CACHE_ENTRY_SIZE := 65536
 MAX_EGL_CACHE_SIZE := 1048576
@@ -178,7 +169,7 @@ USE_OPENGL_RENDERER := true
 # bootstub as 2nd bootloader
 TARGET_BOOTLOADER_IS_2ND := true
 
-BOARD_SEPOLICY_DIRS := device/asus/Z00A/sepolicy
+BOARD_SEPOLICY_DIRS := device/asus/mofd-common/sepolicy
 BOARD_SEPOLICY_UNION := \
     bd_prov.te \
     bluetooth.te \
@@ -217,10 +208,7 @@ TARGET_PROVIDES_LIBLIGHT := true
 
 # Radio
 BOARD_RIL_SUPPORTS_MULTIPLE_CLIENTS := true
-BOARD_RIL_CLASS := ../../../device/asus/Z00A/ril
+BOARD_RIL_CLASS := ../../../device/asus/mofd-common/ril
 
 # Use the non-open-source parts, if they're present
--include vendor/asus/Z00A/BoardConfigVendor.mk
-
-# Recipes to generate prebuilts
--include device/intel/common/external/external.mk
+-include vendor/asus/mofd-common/BoardConfigVendor.mk

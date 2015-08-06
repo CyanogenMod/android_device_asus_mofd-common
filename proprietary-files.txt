@@ -1,3 +1,5 @@
+# Configuration files
+
 # Arm blobs
 lib/arm/nb/libEGL.so
 lib/arm/nb/libGLESv1_CM.so
@@ -174,7 +176,6 @@ usr/share/alsa/alsa.conf
 vendor/etc/route_criteria.conf
 
 # Bluetooth
-etc/firmware/BCM4335C0_003.001.009.0105.0563_Asus_ZE551ML.hcd
 vendor/lib/libbt-vendor.so
 
 # Camera
@@ -194,7 +195,6 @@ etc/atomisp/00ov13850.aiqb
 etc/atomisp/00ov5693.aiqb
 etc/atomisp/00ov8830-0-0x2-0.aiqb
 etc/atomisp/00ov8858.aiqb
-etc/atomisp/00t4k37.aiqb
 etc/atomisp/01gc0339.aiqb
 etc/atomisp/01imx132.aiqb
 etc/atomisp/01imx208.aiqb
@@ -209,7 +209,6 @@ etc/camera3_profiles.xml
 etc/camera_profiles.xml
 etc/cms_device_config.xml
 etc/cms_throttle_config.xml
-etc/DataSet/ispDB/ParameterDB.db
 etc/firmware/isp_acc_chromaproc_css21_2401.bin
 etc/firmware/isp_acc_deghosting_v2_css21_2401.bin
 etc/firmware/isp_acc_lumaproc_css21_2401.bin
@@ -220,7 +219,6 @@ etc/firmware/isp_acc_warping_v2_css21_2401.bin
 etc/firmware/isp_acc_warping_v2_em_css21_2401.bin
 etc/firmware/shisp_2401a0_legacy_v21.bin
 etc/firmware/shisp_2401a0_v21.bin
-lib/DataSet/ditSCidGen/msgchk.db
 lib/DataSet/ISP/libxditk_isp.bin
 lib/DataSet/SR/SR_01.bin
 lib/DataSet/SR/SR_02.bin
@@ -228,17 +226,12 @@ lib/DataSet/SR/SR_03.bin
 lib/DataSet/SR/SR_04.bin
 lib/DataSet/SR/SR_05.bin
 lib/DataSet/SR/SR_06.bin
-lib/DIT_AT_BACK_HL.cfg
-lib/DIT_AT_BACK_NORMAL.cfg
 lib/DIT_AT_BACK_PREVIEW.cfg
-lib/DIT_AT_BACK_SR.cfg
 lib/DIT_AT_BACK_VIDEO.cfg
 lib/DIT_AT_FRONT_HL.cfg
 lib/DIT_AT_FRONT_NORMAL.cfg
 lib/DIT_AT_FRONT_PRE.cfg
 lib/DIT_AT_FRONT_VIDEO.cfg
-lib/hw/camera.mofd_v1.so
-lib/hw/m10mo/camera.m10mo.so
 lib/libArcsoft3DNR.so
 lib/libArcsoftFaceEffect.so
 lib/libArcsoftFaceTracking.so
@@ -272,10 +265,7 @@ lib/libmix_imagedecoder.so
 lib/libmix_imageencoder.so
 lib/libsvml.so
 lib/libtbd.so
-lib/libxditk_AT.so
 lib/libxditk_DIT_Manager.so
-lib/libxditk_DIT_Moorefield.so
-lib/libxditk_ISP.so
 lib/libxditk_SR.so
 media/cameraConfig/style.cng
 vendor/firmware/00imx135-0-0x2-0x1.drvb
@@ -341,15 +331,12 @@ bin/logcontrol
 etc/firmware/aac_dec_1495.bin
 etc/firmware/audclass_lib_1495.bin
 etc/firmware/dfw_sst.bin
-etc/firmware/FW_INFO.bin
 etc/firmware/fw_sst_1495.bin
 etc/firmware/geq_lib_1495.bin
-etc/firmware/M10MO_fw.bin
 etc/firmware/mp3_dec_1495.bin
 etc/firmware/msvdx.bin.prod
 etc/firmware/msvdx.bin.verf
 etc/firmware/ov680_fw.bin
-etc/firmware/psh.bin
 etc/firmware/psh.bin.0000.0000.0008.0008.0000.0002
 etc/firmware/psh.bin.0000.0000.0008.0008.0001.0000
 etc/firmware/psh.bin.0000.0000.0008.0008.0001.0001
@@ -405,9 +392,6 @@ lib/libstlport-mfx.so
 # Power HAL
 lib/hw/power.mofd_v1.so
 
-# NFC
-vendor/firmware/bcm2079x-a2_firmware.ncd
-
 # Radio
 lib/libmcdr.so
 lib/libmmgrcli.so
@@ -415,7 +399,6 @@ lib/libmmgr_cnx.so
 lib/libmmgr_utils.so
 lib/libmodemupdate.so
 lib/libtcs.so
-lib/librapid-ril-core.so
 lib/librapid-ril-util.so
 
 # Radio config / firmware
@@ -538,9 +521,7 @@ etc/catalog/V1_DSDA/audiocomms_config/parameter-framework/Structure/Audio/intel/
 etc/catalog/V1_DSDA/audiocomms_config/parameter-framework/Structure/Audio/intel/FbaIir_V1_1.xml
 etc/catalog/V1_DSDA/audiocomms_config/parameter-framework/Structure/Audio/Realtek_RT5647.xml
 etc/catalog/V1_DSDA/audiocomms_config/parameter-framework/ParameterFrameworkConfigurationVibrator.xml
-etc/catalog/V1_DSDA/audiocomms_config/parameter-framework/Settings/Route/RouteConfigurableDomains.xml
 etc/catalog/V1_DSDA/audiocomms_config/parameter-framework/Settings/Vibrator/VibratorConfigurableDomains.xml
-etc/catalog/V1_DSDA/audiocomms_config/parameter-framework/Settings/Audio/AudioConfigurableDomains.xml
 etc/catalog/V1_DSDA/audiocomms_config/init.props
 etc/catalog/V1_DSDA/audiocomms_config/Readme.txt
 etc/catalog/V1_DSDA/audiocomms_config/mamgr/xmm2.xml
@@ -639,9 +620,7 @@ etc/catalog/V1_7260/audiocomms_config/parameter-framework/Structure/Audio/intel/
 etc/catalog/V1_7260/audiocomms_config/parameter-framework/Structure/Audio/intel/FbaIir_V1_1.xml
 etc/catalog/V1_7260/audiocomms_config/parameter-framework/Structure/Audio/Realtek_RT5647.xml
 etc/catalog/V1_7260/audiocomms_config/parameter-framework/ParameterFrameworkConfigurationVibrator.xml
-etc/catalog/V1_7260/audiocomms_config/parameter-framework/Settings/Route/RouteConfigurableDomains.xml
 etc/catalog/V1_7260/audiocomms_config/parameter-framework/Settings/Vibrator/VibratorConfigurableDomains.xml
-etc/catalog/V1_7260/audiocomms_config/parameter-framework/Settings/Audio/AudioConfigurableDomains.xml
 etc/catalog/V1_7260/audiocomms_config/init.props
 etc/catalog/V1_7260/audiocomms_config/Readme.txt
 etc/catalog/V1_7260/audiocomms_config/mamgr/xmm1.xml
@@ -762,12 +741,9 @@ etc/telephony/XMM7260_CONF_6.xml
 etc/telephony/XMM7260_CONF_7.xml
 etc/telephony/XMM7260_CONF_8.xml
 etc/telephony/XMM7260_CONF_9.xml
-vendor/firmware/telephony/hash
 vendor/firmware/telephony/mmgr_upgrade.sh
 vendor/firmware/telephony/sim_detect_726x.tlv
 vendor/firmware/telephony/XMM_2230_REV20_1517.00_V1.1_ASUS_SPI_FLASHLESS.fls
-vendor/firmware/telephony/XMM_7260_REV20_1524.00_V4.0_ASUS7262_HSIC_FLASHLESS.fls
-vendor/firmware/telephony/XMM_7260_SINGLE_REV20_1520.00_V4.0_ASUS7262_HSIC_FLASHLESS.fls
 vendor/firmware/telephony/ze550ml_CN_726x.tlv
 vendor/firmware/telephony/ze550ml_JP_726x.tlv
 vendor/firmware/telephony/ze550ml_TH_726x.tlv
