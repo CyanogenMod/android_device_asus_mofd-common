@@ -20,11 +20,10 @@ function extract() {
                 adb pull /system/$FILE $2/$DEST
             fi
         else
-            cp $SRC/system/$FILE $2/$DEST
-            # if file dot not exist try destination
-            if [ "$?" != "0" ]
-                then
+            if [ -r $SRC/system/$DEST ]; then
                 cp $SRC/system/$DEST $2/$DEST
+            else
+                cp $SRC/system/$FILE $2/$DEST
             fi
         fi
     done
