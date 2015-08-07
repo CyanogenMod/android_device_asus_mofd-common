@@ -119,6 +119,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     bt.hfp.WideBandSpeechEnabled=true
 
+# IMG graphics
+PRODUCT_PACKAGES += \
+    hwcomposer.moorefield
+
 #Video
 PRODUCT_COPY_FILES += \
     device/asus/mofd-common/media/media_profiles.xml:system/etc/media_profiles.xml \
@@ -184,7 +188,9 @@ PRODUCT_PACKAGES += \
 
 # libdrm
 PRODUCT_PACKAGES += \
-    libdrm
+    libdrm \
+    dristat \
+    drmstat
 
 # Wifi
 PRODUCT_PACKAGES += \
