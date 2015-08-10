@@ -160,7 +160,6 @@ PRODUCT_PACKAGES += \
     libmixvbp_h264secure \
     libmixvbp_vc1 \
     libmixvbp_vp8 \
-    libmixvbp \
     libva_videodecoder \
     libva_videoencoder
 

@@ -261,6 +261,7 @@ lib/libifp.so
 lib/libimf.so
 lib/libintlc.so
 lib/libirng.so
+lib/libmixvbp.so
 lib/libmix_imagedecoder.so
 lib/libmix_imageencoder.so
 lib/libsvml.so
