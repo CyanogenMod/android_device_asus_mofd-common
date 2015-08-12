@@ -335,4 +335,7 @@
     -->
      <bool name="config_proximityCheckOnWake">true</bool>
 
+    <!-- Disables Button backlight settings -->
+    <integer name="config_buttonBrightnessSettingDefault">0</integer>
+
 </resources>
