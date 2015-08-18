@@ -1,4 +1,4 @@
-nnon init
+on init
     # Property set by AudioHAL to expose the routing status of VTSV use case to VTSV HAL
     setprop AudioComms.vtsv.routed false
 
