@@ -38,6 +38,14 @@ on property:sys.usb.config=none
     write /sys/class/android_usb/android0/bDeviceClass 0
     setprop sys.usb.state ${sys.usb.config}
 
+# mass_storage only USB configuration
+on property:sys.usb.config=mass_storage
+    stop adbd
+    stop pclinkd
+    write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/bDeviceClass 0
+    setprop sys.usb.state ${sys.usb.config}
+
 # adb only USB configuration
 # This should only be used for debugging
 on property:sys.usb.config=iadb
@@ -50,6 +58,16 @@ on property:sys.usb.config=iadb
     write /sys/class/android_usb/android0/idProduct 0a21
     write /sys/class/android_usb/android0/functions mtp,adb
     write /sys/bus/pci/devices/0000:00:02.3/sdis 1
+    write /sys/class/android_usb/android0/enable 1
+    start adbd
+    setprop sys.usb.state ${sys.usb.config}
+
+# adb + mass_storage USB configuration
+on property:sys.usb.config=adb,mass_storage
+    write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/idVendor 18d1
+    write /sys/class/android_usb/android0/idProduct 4EE7
+    write /sys/class/android_usb/android0/functions ${sys.usb.config}
     write /sys/class/android_usb/android0/enable 1
     start adbd
     setprop sys.usb.state ${sys.usb.config}

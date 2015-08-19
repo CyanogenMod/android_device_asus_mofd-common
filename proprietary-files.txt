@@ -195,6 +195,7 @@ etc/atomisp/00ov13850.aiqb
 etc/atomisp/00ov5693.aiqb
 etc/atomisp/00ov8830-0-0x2-0.aiqb
 etc/atomisp/00ov8858.aiqb
+etc/atomisp/00t4k37.aiqb
 etc/atomisp/01gc0339.aiqb
 etc/atomisp/01imx132.aiqb
 etc/atomisp/01imx208.aiqb
@@ -219,19 +220,10 @@ etc/firmware/isp_acc_warping_v2_css21_2401.bin
 etc/firmware/isp_acc_warping_v2_em_css21_2401.bin
 etc/firmware/shisp_2401a0_legacy_v21.bin
 etc/firmware/shisp_2401a0_v21.bin
-lib/DataSet/ISP/libxditk_isp.bin
-lib/DataSet/SR/SR_01.bin
-lib/DataSet/SR/SR_02.bin
-lib/DataSet/SR/SR_03.bin
-lib/DataSet/SR/SR_04.bin
-lib/DataSet/SR/SR_05.bin
-lib/DataSet/SR/SR_06.bin
-lib/DIT_AT_BACK_PREVIEW.cfg
-lib/DIT_AT_BACK_VIDEO.cfg
-lib/DIT_AT_FRONT_HL.cfg
-lib/DIT_AT_FRONT_NORMAL.cfg
-lib/DIT_AT_FRONT_PRE.cfg
-lib/DIT_AT_FRONT_VIDEO.cfg
+lib/DataSet/ispDB/ParameterDB.db
+lib/DataSet/ispDB/ParameterDB.db
+lib/DataSet/ditSCidGen/msgchk.db
+lib/DITConfig.cfg
 lib/libArcsoft3DNR.so
 lib/libArcsoftFaceEffect.so
 lib/libArcsoftFaceTracking.so
@@ -266,7 +258,9 @@ lib/libmix_imagedecoder.so
 lib/libmix_imageencoder.so
 lib/libsvml.so
 lib/libtbd.so
+lib/libxditk_AT.so
 lib/libxditk_DIT_Manager.so
+lib/libxditk_ISP.so
 lib/libxditk_SR.so
 media/cameraConfig/style.cng
 vendor/firmware/00imx135-0-0x2-0x1.drvb
@@ -394,6 +388,7 @@ lib/libmmgr_cnx.so
 lib/libmmgr_utils.so
 lib/libmodemupdate.so
 lib/libtcs.so
+lib/librapid-ril-core.so
 lib/librapid-ril-util.so
 
 # Radio config / firmware
@@ -736,9 +731,11 @@ etc/telephony/XMM7260_CONF_6.xml
 etc/telephony/XMM7260_CONF_7.xml
 etc/telephony/XMM7260_CONF_8.xml
 etc/telephony/XMM7260_CONF_9.xml
+vendor/firmware/telephony/hash
 vendor/firmware/telephony/mmgr_upgrade.sh
 vendor/firmware/telephony/sim_detect_726x.tlv
-vendor/firmware/telephony/XMM_2230_REV20_1517.00_V1.1_ASUS_SPI_FLASHLESS.fls
+vendor/firmware/telephony/XMM_2230_REV20_1527.00_V1.1_ASUS_SPI_FLASHLESS.fls
+vendor/firmware/telephony/XMM_7260_REV20_1527.01_V4.0_ASUS7262_HSIC_FLASHLESS.fls
 vendor/firmware/telephony/XMM_7260_SINGLE_REV20_1520.00_V4.0_ASUS7262_HSIC_FLASHLESS.fls
 vendor/firmware/telephony/ze550ml_CN_726x.tlv
 vendor/firmware/telephony/ze550ml_JP_726x.tlv

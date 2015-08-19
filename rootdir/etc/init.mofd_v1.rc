@@ -220,8 +220,10 @@ on post-fs
     chmod 0660 /dev/monzax
 
 # For APD
-    mount ext4 /dev/block/by-name/ADF /ADF rw noatime context=u:object_r:demoapp_file:s0
-
+    mount ext4 /dev/block/by-name/ADF /ADF rw
+    mount ext4 /dev/block/by-name/APD /APD rw
+    restorecon_recursive /ADF
+    restorecon_recursive /APD
     chown system system /ADF
     chown system system /APD
     chmod 0775 /ADF
@@ -250,6 +252,9 @@ on post-fs
     restorecon_recursive /config
     restorecon_recursive /logs
 
+# For audio headset ringtone volume index when ringer mode is vibrate
+    setprop ro.audio.vibra.ring.vol.idx 5
+
 # Permissions for Touch Proximity node
     chown system system /proc/asus_touch_proximity_status
 
@@ -272,6 +277,9 @@ on post-fs
     chown system system /sys/bus/i2c/devices/i2c-7/7-0038/ftscovermode
 
     setprop persist.asus.flipcovermode 0
+
+# Permissions for Sdcard Power Node
+	chown system system /proc/asus_sd_power
 
 on property:persist.asus.glove=0
     write /sys/bus/i2c/devices/i2c-7/7-0038/ftsglovemode 0
@@ -382,7 +390,8 @@ on property:sys.boot_completed=1
 
 # ASUS Product Demo
 on property:persist.sys.enableAPD=1
-    mount ext4 /dev/block/by-name/APD /APD rw noatime context=u:object_r:demoapp_file:s0
+    mount ext4 /dev/block/by-name/APD /APD rw
+    restorecon_recursive /APD
     chown system system /APD
     chmod 0775 /APD
 

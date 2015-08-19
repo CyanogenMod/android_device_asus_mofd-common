@@ -11,5 +11,4 @@
 */block/sdc*              	auto    	vfat	None	wait,voldmanaged=USBdisk3:auto
 */block/sde*              	auto    	vfat	None	wait,voldmanaged=USBdisk5:auto
 */block/mmcblk1*          	auto            auto    defaults wait,voldmanaged=sdcard1:auto,noemulatedsd
-/dev/block/zram0          	none    	swap	defaults                                                           	zramsize=104857600
 */block/sdd*              	auto    	vfat	None	wait,voldmanaged=USBdisk4:auto

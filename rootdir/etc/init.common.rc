@@ -90,6 +90,8 @@ on boot
     #enable kernel compaction
     write /proc/sys/vm/compact_memory 1
 
+    setprop persist.sys.enableAPD 0
+
 on fs
     mkdir /factory 0775 system system
     mkdir /config 0775 system system
@@ -122,6 +124,12 @@ on post-fs
     chown system system /sys/devices/system/cpu/cpufreq/interactive/touchboost_freq
     chmod 0220 /sys/devices/system/cpu/cpufreq/interactive/touchboostpulse
     chmod 0220 /sys/devices/system/cpu/cpufreq/interactive/boostpulse
+
+    #set default cpu freq to 1.8 GHz
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 1833000
+    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq 1833000
+    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_max_freq 1833000
+    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_max_freq 1833000
 
 service sdcard /system/bin/sdcard -u 1023 -g 1023 -l /data/media /mnt/shell/emulated
     class late_start
@@ -179,6 +187,9 @@ on post-fs-data
     setprop persist.thermal.display.vibra 1
 
     setprop persist.selective.ota_budget 1800000
+
+    # Set this property for the use of unlock
+    setprop ro.build.servaddr 1
 
     chown system system /sys/class/drm/card0/gt_max_freq_mhz
 
@@ -246,6 +257,16 @@ service logbackup /system/bin/sh /system/etc/packlogs.sh
     oneshot
     disabled
     seclabel u:r:logtoold:s0
+
+service umount_apd /system/bin/umount_apd.sh
+    disabled
+    user root
+    group root
+    oneshot
+
+on property:persist.sys.enableAPD=0
+    start umount_apd
+
 
 # Enable native bridge for target executables
 on property:ro.enable.native.bridge.exec=1
