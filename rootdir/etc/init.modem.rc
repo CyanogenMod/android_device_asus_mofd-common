@@ -196,7 +196,6 @@ service ril-daemon1 /system/bin/rild -c 2
     socket rild-debug2 stream 660 radio system
     user root
     group radio cache inet misc audio
-    disabled
 
 service modem-c_main-sh /system/bin/sh /init.class_main.sh
     class main
