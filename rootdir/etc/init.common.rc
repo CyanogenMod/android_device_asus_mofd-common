@@ -96,7 +96,7 @@ on fs
     mkdir /factory 0775 system system
     mkdir /config 0775 system system
     mkdir /media 0775 media media
-    mount_all /fstab
+    mount_all /fstab.mofd_v1
     chown root system /factory
     chmod 0770 /factory
     mkdir /config/wifi

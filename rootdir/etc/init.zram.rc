@@ -6,4 +6,4 @@ on boot
 
 on post-fs-data
     # Enable swaps described in the fstab
-    swapon_all /fstab.zram
+    swapon_all /fstab.mofd_v1
