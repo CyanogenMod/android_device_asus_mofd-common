@@ -55,9 +55,6 @@ TARGET_OTA_ASSERT_DEVICE := Z00A,Z008
 # Hardware
 BOARD_HARDWARE_CLASS := device/asus/mofd-common/cmhw
 
-# Use dlmalloc
-MALLOC_IMPL := dlmalloc
-
 # Inline kernel building
 TARGET_KERNEL_SOURCE := kernel/asus/moorefield
 TARGET_KERNEL_ARCH := x86_64
