@@ -141,8 +141,6 @@ lib/arm/libz.so
 lib/arm/linker
 
 # Audio
-etc/asound.conf
-etc/route_criteria.conf
 etc/tuning/audio/layout_probes.xml
 etc/tuning/audio/layout_topology.xml
 etc/tuning/audio/layout_types.xml

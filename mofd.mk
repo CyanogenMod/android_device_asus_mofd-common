@@ -87,9 +87,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.telephony.default_network=9 \
     ro.telephony.ril_class=Zenfone2RIL
 
-# specific management of audio_policy.conf
+# Audio
 PRODUCT_COPY_FILES += \
-    device/asus/mofd-common/configs/audio_policy.conf:system/etc/audio_policy.conf
+    device/asus/mofd-common/audio/asound.conf:system/etc/asound.conf \
+    device/asus/mofd-common/audio/audio_policy.conf:system/etc/audio_policy.conf \
+    device/asus/mofd-common/audio/route_criteria.conf:system/etc/route_criteria.conf
 
 # Add props used in stock
 PRODUCT_PROPERTY_OVERRIDES +=  \
