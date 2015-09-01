@@ -91,6 +91,7 @@ ADDITIONAL_DEFAULT_PROPERTIES += ro.dalvik.vm.native.bridge=libhoudini.so
 
 # Keyhandler
 PRODUCT_PACKAGES += \
+    CMActions \
     com.cyanogenmod.keyhandler
 
 # Key layout files
