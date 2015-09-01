@@ -333,7 +333,9 @@
          turn the screen on
          NOTE ! - Enable for devices that have a fast response proximity sensor
     -->
-     <bool name="config_proximityCheckOnWake">true</bool>
+    <bool name="config_proximityCheckOnWake">true</bool>
+    <integer name="config_proximityCheckTimeout">100</integer>
+    <bool name="config_proximityCheckOnWakeEnabledByDefault">true</bool>
 
     <!-- Disables Button backlight settings -->
     <integer name="config_buttonBrightnessSettingDefault">0</integer>
