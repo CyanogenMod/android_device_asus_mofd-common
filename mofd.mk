@@ -113,8 +113,7 @@ PRODUCT_PROPERTY_OVERRIDES += persist.sys.isUsbOtgEnabled=1
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += persist.sys.usb.config=mtp
 
 PRODUCT_COPY_FILES += \
-    device/asus/mofd-common/bluetooth/bt_vendor.conf:system/etc/bluetooth/bt_vendor.conf \
-    device/asus/mofd-common/wifi/bcmdhd.cal:system/etc/wifi/bcmdhd.cal 
+    device/asus/mofd-common/bluetooth/bt_vendor.conf:system/etc/bluetooth/bt_vendor.conf
 
 PRODUCT_PROPERTY_OVERRIDES += \
     bt.hfp.WideBandSpeechEnabled=true
@@ -197,8 +196,7 @@ PRODUCT_PACKAGES += \
     lib_driver_cmd_bcmdhd \
     hostapd \
     dhcpcd.conf \
-    wpa_supplicant \
-    bcmdhd.cal
+    wpa_supplicant
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \

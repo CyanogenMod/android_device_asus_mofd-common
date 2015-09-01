@@ -754,5 +754,7 @@ lib/libnetd_client.so
 lib/libsensorhub.so
 
 # WiFi
+etc/wifi/bcmdhd.cal
+etc/wifi/bcmdhd_zx551ml.cal
 etc/firmware/fw_bcmdhd_apsta.bin
 etc/firmware/fw_bcmdhd.bin
