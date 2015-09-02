@@ -196,7 +196,8 @@ PRODUCT_PACKAGES += \
     lib_driver_cmd_bcmdhd \
     hostapd \
     dhcpcd.conf \
-    wpa_supplicant
+    wpa_supplicant \
+    wpa_supplicant.conf
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
