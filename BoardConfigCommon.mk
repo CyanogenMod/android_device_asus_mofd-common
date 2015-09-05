@@ -156,7 +156,7 @@ ADDITIONAL_DEFAULT_PROPERTIES += \
 COMMON_GLOBAL_CFLAGS += -DGFX_BUF_EXT
 
 # Disable IMG RS GPU driver
-OVERRIDE_RS_DRIVER := libPVRRS.so
+# OVERRIDE_RS_DRIVER := libPVRRS.so
 
 # enable ARM codegen for x86 with Houdini
 BUILD_ARM_FOR_X86 := true
