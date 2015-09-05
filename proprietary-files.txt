@@ -752,6 +752,7 @@ lib/hw/sensors.mofd_v1.so
 lib/libcontextarbitor.so
 lib/libnetd_client.so
 lib/libsensorhub.so
+lib/libvirtualsensors.so
 
 # WiFi
 etc/wifi/bcmdhd.cal
