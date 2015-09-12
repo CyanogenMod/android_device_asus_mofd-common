@@ -733,8 +733,8 @@ etc/telephony/XMM7260_CONF_9.xml
 vendor/firmware/telephony/hash
 vendor/firmware/telephony/mmgr_upgrade.sh
 vendor/firmware/telephony/sim_detect_726x.tlv
-vendor/firmware/telephony/XMM_2230_REV20_1527.00_V1.1_ASUS_SPI_FLASHLESS.fls
-vendor/firmware/telephony/XMM_7260_REV20_1527.01_V4.0_ASUS7262_HSIC_FLASHLESS.fls
+vendor/firmware/telephony/XMM_2230_REV20_1535.00_V1.1_ASUS_SPI_FLASHLESS.fls
+vendor/firmware/telephony/XMM_7260_REV20_1535.00_V4.0_ASUS7262_HSIC_FLASHLESS.fls
 vendor/firmware/telephony/XMM_7260_SINGLE_REV20_1520.00_V4.0_ASUS7262_HSIC_FLASHLESS.fls
 vendor/firmware/telephony/ze550ml_CN_726x.tlv
 vendor/firmware/telephony/ze550ml_JP_726x.tlv
