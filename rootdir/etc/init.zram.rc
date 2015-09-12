@@ -1,9 +1,13 @@
-on boot
+service config-zram /system/bin/sh /system/etc/init.zram.sh
+    class late_start
+    oneshot
+
+on property:ro.config.zram=true
     # Read one page at a time for swap (default is 8)
     write /proc/sys/vm/page-cluster 0
     # Avoid evicting pages and use zram disk
     write /proc/sys/vm/swappiness 100
 
-on post-fs-data
+on property:ro.config.zram=true
     # Enable swaps described in the fstab
     swapon_all /fstab.mofd_v1
