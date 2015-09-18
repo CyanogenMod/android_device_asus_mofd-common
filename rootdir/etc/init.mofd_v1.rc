@@ -281,26 +281,29 @@ on post-fs
 # Permissions for Sdcard Power Node
 	chown system system /proc/asus_sd_power
 
-on property:persist.asus.glove=0
-    write /sys/bus/i2c/devices/i2c-7/7-0038/ftsglovemode 0
-
-on property:persist.asus.glove=1
-    write /sys/bus/i2c/devices/i2c-7/7-0038/ftsglovemode 1
-
-on property:persist.asus.dclick=0
-    write /sys/bus/i2c/devices/i2c-7/7-0038/ftsdclickmode 0
-
-on property:persist.asus.dclick=1
-    write /sys/bus/i2c/devices/i2c-7/7-0038/ftsdclickmode 1
-
-on property:persist.asus.gesture.type=*
-    write /sys/bus/i2c/devices/i2c-7/7-0038/ftsgesturemode ${persist.asus.gesture.type}
-
-on property:persist.asus.flipcovermode=0
-    write /sys/bus/i2c/devices/i2c-7/7-0038/ftscovermode 0
-
-on property:persist.asus.flipcovermode=1
-    write /sys/bus/i2c/devices/i2c-7/7-0038/ftscovermode 1
+# Any changes we want to make here should be made via cmhw, not via
+# persistent properties...
+#
+#on property:persist.asus.glove=0
+#    write /sys/bus/i2c/devices/i2c-7/7-0038/ftsglovemode 0
+#
+#on property:persist.asus.glove=1
+#    write /sys/bus/i2c/devices/i2c-7/7-0038/ftsglovemode 1
+#
+#on property:persist.asus.dclick=0
+#    write /sys/bus/i2c/devices/i2c-7/7-0038/ftsdclickmode 0
+#
+#on property:persist.asus.dclick=1
+#    write /sys/bus/i2c/devices/i2c-7/7-0038/ftsdclickmode 1
+#
+#on property:persist.asus.gesture.type=*
+#    write /sys/bus/i2c/devices/i2c-7/7-0038/ftsgesturemode ${persist.asus.gesture.type}
+#
+#on property:persist.asus.flipcovermode=0
+#    write /sys/bus/i2c/devices/i2c-7/7-0038/ftscovermode 0
+#
+#on property:persist.asus.flipcovermode=1
+#    write /sys/bus/i2c/devices/i2c-7/7-0038/ftscovermode 1
 
 service sl_si_service /system/bin/sl_si_service d=1
     user system
