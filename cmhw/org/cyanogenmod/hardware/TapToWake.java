@@ -21,12 +21,16 @@ import org.cyanogenmod.hardware.util.FileUtils;
 
 public class TapToWake {
 
-    private static final String CONTROL_PATH = "/sys/bus/i2c/devices/i2c-7/7-0038/ftsdclickmode";
+    private static final String DCLICK_PATH = "/sys/bus/i2c/devices/i2c-7/7-0038/ftsdclickmode";
+    private static final String GESTURES_PATH = "/sys/bus/i2c/devices/i2c-7/7-0038/ftsgesturemode";
+    private static final String GESTURES_ON = "1111111";
+    private static final String GESTURES_OFF = "0111111";
     private static boolean sEnabled = true;
 
     public static boolean isSupported() {
-        File f = new File(CONTROL_PATH);
-        return f.exists();
+        File f1 = new File(DCLICK_PATH);
+        File f2 = new File(GESTURES_PATH);
+        return f1.exists() && f2.exists();
     }
 
     public static boolean isEnabled()  {
@@ -35,6 +39,7 @@ public class TapToWake {
 
     public static boolean setEnabled(boolean state)  {
         sEnabled = state;
-        return FileUtils.writeLine(CONTROL_PATH, (state ? "1" : "0"));
+        return FileUtils.writeLine(DCLICK_PATH, state ? "1" : "0") &&
+               FileUtils.writeLine(GESTURES_PATH, state ? GESTURES_ON : GESTURES_OFF);
     }
-} 
+}
