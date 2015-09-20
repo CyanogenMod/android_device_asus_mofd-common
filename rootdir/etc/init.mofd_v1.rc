@@ -382,6 +382,9 @@ service rfid_monzaxd /system/bin/rfid_monzaxd
     group system
 
 on property:sys.boot_completed=1
+    # Set the I/O scheduler
+    setprop sys.io.scheduler bfq
+
     # Enable interactive governor
     write /sys/devices/system/cpu/cpu1/online 1
     write /sys/devices/system/cpu/cpu2/online 1
