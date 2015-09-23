@@ -16,7 +16,6 @@
 
 TARGET_ARCH := x86
 TARGET_ARCH_VARIANT := silvermont
-TARGET_GCC_VERSION_EXP := 4.9
 TARGET_CPU_ABI := x86
 TARGET_CPU_ABI2 := armeabi-v7a
 TARGET_CPU_ABI_LIST := x86,armeabi-v7a,armeabi
