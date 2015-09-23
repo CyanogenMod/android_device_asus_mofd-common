@@ -16,6 +16,7 @@
 
 TARGET_ARCH := x86
 TARGET_ARCH_VARIANT := silvermont
+TARGET_GCC_VERSION_EXP := 4.9
 TARGET_CPU_ABI := x86
 TARGET_CPU_ABI2 := armeabi-v7a
 TARGET_CPU_ABI_LIST := x86,armeabi-v7a,armeabi
@@ -69,6 +70,9 @@ endif
 
 # Hardware
 BOARD_HARDWARE_CLASS := device/asus/mofd-common/cmhw
+
+# Healthd
+BOARD_HAL_STATIC_LIBRARIES += libhealthd.mofd_v1
 
 # Houdini: enable ARM codegen for x86
 BUILD_ARM_FOR_X86 := true
