@@ -24,6 +24,10 @@ $(call inherit-product-if-exists, frameworks/native/build/phone-xxhdpi-2048-hwui
 DEVICE_PACKAGE_OVERLAYS := \
     device/asus/mofd-common/overlay
 
+# Asus properties
+ADDITIONAL_DEFAULT_PROPERTIES += \
+    ro.build.asus.sku=WW
+
 # Audio
 PRODUCT_PACKAGES += \
     libtinycompress \
