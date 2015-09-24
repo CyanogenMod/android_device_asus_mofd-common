@@ -3,6 +3,7 @@ import /init.firmware.rc
 import /init.intel.feature.asf.rc
 import /init.intel.features.rc
 import /init.ksm.rc
+import /init.power.mofd_v1.rc
 import /init.readahead.rc
 import /init.zram.rc
 

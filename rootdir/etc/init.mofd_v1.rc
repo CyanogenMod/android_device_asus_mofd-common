@@ -381,19 +381,6 @@ service rfid_monzaxd /system/bin/rfid_monzaxd
     user system
     group system
 
-on property:sys.boot_completed=1
-    # Set the I/O scheduler
-    setprop sys.io.scheduler bfq
-
-    # Enable interactive governor
-    write /sys/devices/system/cpu/cpu1/online 1
-    write /sys/devices/system/cpu/cpu2/online 1
-    write /sys/devices/system/cpu/cpu3/online 1
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor interactive
-    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor interactive
-    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor interactive
-    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor interactive
-
 # ASUS Product Demo
 on property:persist.sys.enableAPD=1
     mount ext4 /dev/block/by-name/APD /APD rw
