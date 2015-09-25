@@ -19,7 +19,6 @@
 
 static int mapBatteryStatusString(const char *status)
 {
-ALOGI("crpalmer: map status %s\n", status);
     if (strcmp(status, "Quick charging") == 0)
         return android::BATTERY_STATUS_CHARGING;
     if (strcmp(status, "Not Quick charging") == 0)
@@ -29,7 +28,6 @@ ALOGI("crpalmer: map status %s\n", status);
 
 static int mapChargeTypeString(const char *charge_type)
 {
-ALOGI("crpalmer: map charge type %s\n", charge_type);
     if (strcmp(charge_type, "Quick charging") == 0)
         return android::BATTERY_CHARGE_TYPE_FAST_CHARGING;
     else
