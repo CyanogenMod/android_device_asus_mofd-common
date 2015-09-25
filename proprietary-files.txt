@@ -377,9 +377,6 @@ lib/libsepdrm_cc54.so
 lib/libsephdcp2x.so
 lib/libstlport-mfx.so
 
-# Power HAL
-lib/hw/power.mofd_v1.so
-
 # Radio
 lib/libmcdr.so
 lib/libmmgrcli.so
