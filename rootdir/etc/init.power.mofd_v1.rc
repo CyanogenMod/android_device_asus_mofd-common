@@ -2,6 +2,15 @@ on property:sys.boot_completed=1
     # Set the I/O scheduler
     setprop sys.io.scheduler bfq
 
+    # Power profile independent configuration of the interactive governor
+    write /sys/devices/system/cpu/cpufreq/interactive/go_hispeed_load 50
+    write /sys/devices/system/cpu/cpufreq/interactive/min_sample_time 40000
+    write /sys/devices/system/cpu/cpufreq/interactive/target_loads "85 1500000:90 1800000:70"
+    write /sys/devices/system/cpu/cpufreq/interactive/timer_rate 30000
+    write /sys/devices/system/cpu/cpufreq/interactive/timer_slack 30000
+    write /sys/devices/system/cpu/cpufreq/interactive/touchboostpulse_duration 20000
+
+
 # ---------------------------------------------------------
 #
 # CM Performance Profiles
@@ -18,15 +27,23 @@ on property:sys.perf.profile.cpufreq=*
 
 on property:sys.perf.profile.device=slow,Z008
     setprop sys.perf.profile.cpufreq 1250000
+    write /sys/devices/system/cpu/cpufreq/interactive/hispeed_freq 500000
+    write /sys/devices/system/cpu/cpufreq/interactive/touchboost_freq 500000
 
 on property:sys.perf.profile.device=slow,Z00A
     setprop sys.perf.profile.cpufreq 1500000
+    write /sys/devices/system/cpu/cpufreq/interactive/hispeed_freq 500000
+    write /sys/devices/system/cpu/cpufreq/interactive/touchboost_freq 500000
 
 on property:sys.perf.profile.device=full,Z008
     setprop sys.perf.profile.cpufreq 1833000
+    write /sys/devices/system/cpu/cpufreq/interactive/hispeed_freq 1083000
+    write /sys/devices/system/cpu/cpufreq/interactive/touchboost_freq 1500000
 
 on property:sys.perf.profile.device=full,Z00A
     setprop sys.perf.profile.cpufreq 2333000
+    write /sys/devices/system/cpu/cpufreq/interactive/hispeed_freq 1083000
+    write /sys/devices/system/cpu/cpufreq/interactive/touchboost_freq 1833000
 
 # Powersave
 on property:sys.perf.profile=0
