@@ -9,42 +9,10 @@ on property:sys.boot_completed=1
 #
 # ---------------------------------------------------------
 
-# Helper rules
-
-on property:sys.perf.profile.cpufreq=*
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq ${sys.perf.profile.cpufreq}
-    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq ${sys.perf.profile.cpufreq}
-    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_max_freq ${sys.perf.profile.cpufreq}
-    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_max_freq ${sys.perf.profile.cpufreq}
-
-on property:sys.perf.profile.device=slow,Z008
-    setprop sys.perf.profile.cpufreq 1250000
-    write /sys/devices/system/cpu/cpufreq/interactive/hispeed_freq 500000
-    write /sys/devices/system/cpu/cpufreq/interactive/touchboost_freq 500000
-
-on property:sys.perf.profile.device=slow,Z00A
-    setprop sys.perf.profile.cpufreq 1500000
-    write /sys/devices/system/cpu/cpufreq/interactive/hispeed_freq 500000
-    write /sys/devices/system/cpu/cpufreq/interactive/touchboost_freq 500000
-
-on property:sys.perf.profile.device=full,Z008
-    setprop sys.perf.profile.cpufreq 1833000
-    write /sys/devices/system/cpu/cpufreq/interactive/hispeed_freq 1083000
-    write /sys/devices/system/cpu/cpufreq/interactive/touchboost_freq 1500000
-
-on property:sys.perf.profile.device=full,Z00A
-    setprop sys.perf.profile.cpufreq 2333000
-    write /sys/devices/system/cpu/cpufreq/interactive/hispeed_freq 1083000
-    write /sys/devices/system/cpu/cpufreq/interactive/touchboost_freq 1833000
-
+# Note: the on property will be triggered asynchronously so only place
+# configuration in here which can be applied later (e.g. don't depend on
+# a core being online)
 on property:sys.perf.profile.governor=interactive
-    write /sys/devices/system/cpu/cpu1/online 1
-    write /sys/devices/system/cpu/cpu2/online 1
-    write /sys/devices/system/cpu/cpu3/online 1
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor ${sys.perf.profile.governor}
-    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor ${sys.perf.profile.governor}
-    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor ${sys.perf.profile.governor}
-    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor ${sys.perf.profile.governor}
     write /sys/devices/system/cpu/cpufreq/interactive/go_hispeed_load 50
     write /sys/devices/system/cpu/cpufreq/interactive/min_sample_time 40000
     write /sys/devices/system/cpu/cpufreq/interactive/target_loads "85 1500000:90 1800000:70"
@@ -52,31 +20,51 @@ on property:sys.perf.profile.governor=interactive
     write /sys/devices/system/cpu/cpufreq/interactive/timer_slack 30000
     write /sys/devices/system/cpu/cpufreq/interactive/touchboostpulse_duration 20000
 
-on property:sys.perf.profile.governor=performance
+# Powersave
+on property:sys.perf.profile=0
     write /sys/devices/system/cpu/cpu1/online 1
     write /sys/devices/system/cpu/cpu2/online 1
     write /sys/devices/system/cpu/cpu3/online 1
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor ${sys.perf.profile.governor}
-    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor ${sys.perf.profile.governor}
-    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor ${sys.perf.profile.governor}
-    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor ${sys.perf.profile.governor}
-
-# Powersave
-on property:sys.perf.profile=0
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor interactive
+    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor interactive
+    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor interactive
+    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor interactive
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq ${ro.sys.perf.device.powersave}
+    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq ${ro.sys.perf.device.powersave}
+    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_max_freq ${ro.sys.perf.device.powersave}
+    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_max_freq ${ro.sys.perf.device.powersave}
+    write /sys/devices/system/cpu/cpufreq/interactive/hispeed_freq 500000
+    write /sys/devices/system/cpu/cpufreq/interactive/touchboost_freq 500000
     setprop sys.perf.profile.governor interactive
-    setprop sys.perf.profile.device slow,${ro.cm.device}
     write /sys/devices/platform/dfrgx/devfreq/dfrgx/governor powersave
     write /sys/devices/system/cpu/cpu2/online 0
     write /sys/devices/system/cpu/cpu3/online 0
 
 # Balanced
 on property:sys.perf.profile=1
+    write /sys/devices/system/cpu/cpu1/online 1
+    write /sys/devices/system/cpu/cpu2/online 1
+    write /sys/devices/system/cpu/cpu3/online 1
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor interactive
+    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor interactive
+    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor interactive
+    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor interactive
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq ${ro.sys.perf.device.full}
+    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq ${ro.sys.perf.device.full}
+    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_max_freq ${ro.sys.perf.device.full}
+    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_max_freq ${ro.sys.perf.device.full}
+    write /sys/devices/system/cpu/cpufreq/interactive/hispeed_freq 1083000
+    write /sys/devices/system/cpu/cpufreq/interactive/touchboost_freq ${ro.sys.perf.device.touchboost}
     setprop sys.perf.profile.governor interactive
-    setprop sys.perf.profile.device full,${ro.cm.device}
     write /sys/devices/platform/dfrgx/devfreq/dfrgx/governor simple_ondemand
 
 # High performance
 on property:sys.perf.profile=2
-    setprop sys.perf.profile.governor performance
-    setprop sys.perf.profile.device full,${ro.cm.device}
+    write /sys/devices/system/cpu/cpu1/online 1
+    write /sys/devices/system/cpu/cpu2/online 1
+    write /sys/devices/system/cpu/cpu3/online 1
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor performance
+    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor performance
+    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor performance
+    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor performance
     write /sys/devices/platform/dfrgx/devfreq/dfrgx/governor performance
