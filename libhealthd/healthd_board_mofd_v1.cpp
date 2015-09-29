@@ -26,19 +26,19 @@ static int mapBatteryStatusString(const char *status)
     return HEALTHD_MAP_CONTINUE_SEARCH;
 }
 
-static int mapChargeTypeString(const char *charge_type)
+static int mapChargeRateString(const char *charge_rate)
 {
-    if (strcmp(charge_type, "Quick charging") == 0)
-        return android::BATTERY_CHARGE_TYPE_FAST_CHARGING;
+    if (strcmp(charge_rate, "Quick charging") == 0)
+        return android::BATTERY_CHARGE_RATE_FAST_CHARGING;
     else
-        return android::BATTERY_CHARGE_TYPE_UNKNOWN;
+        return android::BATTERY_CHARGE_RATE_UNKNOWN;
 }
 
 void healthd_board_init(struct healthd_config *config)
 {
-    config->batteryChargeTypePath  = "/sys/class/power_supply/battery/status";
+    config->batteryChargeRatePath  = "/sys/class/power_supply/battery/status";
     config->mapBatteryStatusString = mapBatteryStatusString;
-    config->mapChargeTypeString    = mapChargeTypeString;
+    config->mapChargeRateString    = mapChargeRateString;
 }
 
 
