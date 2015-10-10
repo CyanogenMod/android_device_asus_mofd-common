@@ -14,7 +14,6 @@
 # limitations under the License.
 #
 
-
 # call dalvik heap config
 $(call inherit-product-if-exists, frameworks/native/build/phone-xxhdpi-2048-dalvik-heap.mk)
 
