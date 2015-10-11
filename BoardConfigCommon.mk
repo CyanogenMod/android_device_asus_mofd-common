@@ -178,30 +178,6 @@ BUILD_WITH_CHAABI_SUPPORT := true
 
 # SELinux
 BOARD_SEPOLICY_DIRS := device/asus/mofd-common/sepolicy
-BOARD_SEPOLICY_UNION := \
-    bd_prov.te \
-    bluetooth.te \
-    dhcp.te \
-    dumpstate.te \
-    file.te \
-    gpsd.te \
-    init.te \
-    init_shell.te \
-    mediaserver.te \
-    netd.te \
-    property.te \
-    pvrsrvctl.te \
-    sensorhubd.te \
-    surfaceflinger.te \
-    system_app.te \
-    system_server.te \
-    wpa.te \
-    shell.te \
-    sepfs.te \
-    file_contexts \
-    genfs_contexts \
-    property_contexts \
-    service_contexts
 
 # Wifi
 BOARD_WLAN_DEVICE           := bcmdhd
