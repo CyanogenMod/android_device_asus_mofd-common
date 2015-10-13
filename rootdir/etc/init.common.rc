@@ -24,38 +24,9 @@ on init
 
     mkdir /storage/emulated 0555 root root
 
-    mkdir /mnt/shell/emulated 0700 shell shell
-
-    mkdir /mnt/media_rw/sdcard1  0700 media_rw media_rw
-    mkdir /mnt/media_rw/USBdisk1 0700 media_rw media_rw
-    mkdir /mnt/media_rw/USBdisk2 0700 media_rw media_rw
-    mkdir /mnt/media_rw/USBdisk3 0700 media_rw media_rw
-    mkdir /mnt/media_rw/USBdisk4 0700 media_rw media_rw
-    mkdir /mnt/media_rw/USBdisk5 0700 media_rw media_rw
-
-    export EXTERNAL_STORAGE /storage/emulated/legacy
-    export EMULATED_STORAGE_SOURCE /mnt/shell/emulated
-    export EMULATED_STORAGE_TARGET /storage/emulated
-    # Disable SECONDARY_STORAGE in common
-    # Shall enable it in product
-    export SECONDARY_STORAGE /storage/sdcard1
-    symlink /storage /Removable
-
     # Support legacy paths
-    symlink /storage/emulated/legacy /sdcard
-    symlink /storage/emulated/legacy /mnt/sdcard
-    symlink /storage/emulated/legacy /storage/sdcard0
-    symlink /mnt/shell/emulated/0 /storage/emulated/legacy
-
-    # Support external SD card
-    mkdir /storage/sdcard1 0700 root root
-
-    # Support USB Disk
-    mkdir /storage/USBdisk1 0700 root root
-    mkdir /storage/USBdisk2 0700 root root
-    mkdir /storage/USBdisk3 0700 root root
-    mkdir /storage/USBdisk4 0700 root root
-    mkdir /storage/USBdisk5 0700 root root
+    symlink /sdcard /mnt/sdcard
+    symlink /sdcard /storage/sdcard0
 
 on boot
 #    chown system system /dev/pvr_sync
@@ -125,31 +96,6 @@ on post-fs
     chown system system /sys/devices/system/cpu/cpufreq/interactive/touchboost_freq
     chmod 0220 /sys/devices/system/cpu/cpufreq/interactive/touchboostpulse
     chmod 0220 /sys/devices/system/cpu/cpufreq/interactive/boostpulse
-
-service sdcard /system/bin/sdcard -u 1023 -g 1023 -l /data/media /mnt/shell/emulated
-    class late_start
-
-service fuse_sdcard1 /system/bin/sdcard -u 1023 -g 1023 -w 1023 /mnt/media_rw/sdcard1 /storage/sdcard1
-    class late_start
-    disabled
-
-service fuse_USBdisk1 /system/bin/sdcard -u 1023 -g 1023 -w 1023 -d /mnt/media_rw/USBdisk1 /storage/USBdisk1
-    class late_start
-    disabled
-service fuse_USBdisk2 /system/bin/sdcard -u 1023 -g 1023 -w 1023 -d /mnt/media_rw/USBdisk2 /storage/USBdisk2
-    class late_start
-    disabled
-service fuse_USBdisk3 /system/bin/sdcard -u 1023 -g 1023 -w 1023 -d /mnt/media_rw/USBdisk3 /storage/USBdisk3
-    class late_start
-    disabled
-
-service fuse_USBdisk4 /system/bin/sdcard -u 1023 -g 1023 -w 1023 -d /mnt/media_rw/USBdisk4 /storage/USBdisk4
-    class late_start
-    disabled
-
-service fuse_USBdisk5 /system/bin/sdcard -u 1023 -g 1023 -w 1023 -d /mnt/media_rw/USBdisk5 /storage/USBdisk5
-    class late_start
-    disabled
 
 on post-fs-data
     mkdir /data/system/ 0770 system system

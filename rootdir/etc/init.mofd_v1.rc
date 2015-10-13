@@ -143,10 +143,7 @@ on boot
    chown media media /sys/kernel/debug/sst/lpe_stack
 
 on post-fs-data
-    # we will remap this as /mnt/sdcard with the sdcard fuse tool
-    mkdir /data/media 0770 media_rw media_rw
     chown media_rw media_rw /data/media
-    setprop ro.crypto.fuse_sdcard true
 
     mkdir /data/misc/firmware 0770 system system
 
@@ -333,9 +330,6 @@ service customize /system/bin/customize_service
 	user root
 	oneshot
 #---------------------ward_du 2014/11/07 FAC----------------------
-
-service sdcard /system/bin/sdcard -u 1023 -g 1023 -l /data/media /mnt/shell/emulated
-    class main
 
 # Root command service
 service app_runcmd /system/bin/app_runcmd.sh
