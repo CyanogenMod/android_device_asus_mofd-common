@@ -1,5 +1,9 @@
 # Configuration files
 
+# M Bringup
+
+lib/libstlport.so
+
 # Arm blobs
 lib/arm/nb/libEGL.so
 lib/arm/nb/libGLESv1_CM.so
