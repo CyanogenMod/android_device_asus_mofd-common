@@ -27,7 +27,9 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.hardware.TorchManager;
+import android.hardware.camera2.CameraManager;
+import android.hardware.camera2.CameraCharacteristics;
+import android.hardware.camera2.CameraAccessException;
 import android.media.session.MediaSessionLegacyHelper;
 import android.net.Uri;
 import android.os.Handler;
@@ -85,7 +87,9 @@ public class KeyHandler implements DeviceKeyHandler {
     private KeyguardManager mKeyguardManager;
     private EventHandler mEventHandler;
     private SensorManager mSensorManager;
-    private TorchManager mTorchManager;
+    private CameraManager mCameraManager;
+    private String mRearCameraId;
+    private boolean mTorchEnabled;
     private Sensor mProximitySensor;
     WakeLock mProximityWakeLock;
     WakeLock mGestureWakeLock;
@@ -111,18 +115,47 @@ public class KeyHandler implements DeviceKeyHandler {
             mProximityWakeLock = mPowerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,
                     "ProximityWakeLock");
         }
+
+        mCameraManager = (CameraManager) mContext.getSystemService(Context.CAMERA_SERVICE);
+        mCameraManager.registerTorchCallback(new MyTorchCallback(), mEventHandler);
+
+        // Get first rear camera id
+        try {
+            for (final String cameraId : mCameraManager.getCameraIdList()) {
+                CameraCharacteristics characteristics =
+                        mCameraManager.getCameraCharacteristics(cameraId);
+                int cOrientation = characteristics.get(CameraCharacteristics.LENS_FACING);
+                if (cOrientation == CameraCharacteristics.LENS_FACING_BACK) {
+                    mRearCameraId = cameraId;
+                    break;
+                }
+            }
+        } catch (CameraAccessException e) {
+            // Ignore
+        }
+    }
+
+    private class MyTorchCallback extends CameraManager.TorchCallback {
+        @Override
+        public void onTorchModeChanged(String cameraId, boolean enabled) {
+            if (!cameraId.equals(mRearCameraId))
+                return;
+            mTorchEnabled = enabled;
+        }
+
+        @Override
+        public void onTorchModeUnavailable(String cameraId) {
+            if (!cameraId.equals(mRearCameraId))
+                return;
+            mTorchEnabled = false;
+        }
+
     }
 
     private void ensureKeyguardManager() {
         if (mKeyguardManager == null) {
             mKeyguardManager =
                     (KeyguardManager) mContext.getSystemService(Context.KEYGUARD_SERVICE);
-        }
-    }
-
-    private void ensureTorchManager() {
-        if (mTorchManager == null) {
-            mTorchManager = (TorchManager) mContext.getSystemService(Context.TORCH_SERVICE);
         }
     }
 
@@ -143,7 +176,7 @@ public class KeyHandler implements DeviceKeyHandler {
                             UserHandle.CURRENT);
                     action = MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA;
                 }
-                mPowerManager.wakeUp(SystemClock.uptimeMillis());
+                mPowerManager.wakeUp(SystemClock.uptimeMillis(), "wakeup-gesture");
                 Intent c_intent = new Intent(action, null);
                 startActivitySafely(c_intent);
                 break;
@@ -154,7 +187,7 @@ public class KeyHandler implements DeviceKeyHandler {
                     mContext.sendBroadcastAsUser(new Intent(ACTION_DISMISS_KEYGUARD),
                             UserHandle.CURRENT);
                 }
-                mPowerManager.wakeUp(SystemClock.uptimeMillis());
+                mPowerManager.wakeUp(SystemClock.uptimeMillis(), "wakeup-gesture");
                 Intent e_intent = new Intent(Intent.ACTION_MAIN, null);
                 e_intent.addCategory(Intent.CATEGORY_APP_EMAIL);
                 startActivitySafely(e_intent);
@@ -166,7 +199,7 @@ public class KeyHandler implements DeviceKeyHandler {
                     mContext.sendBroadcastAsUser(new Intent(ACTION_DISMISS_KEYGUARD),
                             UserHandle.CURRENT);
                 }
-                mPowerManager.wakeUp(SystemClock.uptimeMillis());
+                mPowerManager.wakeUp(SystemClock.uptimeMillis(), "wakeup-gesture");
                 String defaultApplication = Settings.Secure.getString(mContext.getContentResolver(),
                     SMS_DEFAULT_APPLICATION);
                 PackageManager pm = mContext.getPackageManager();
@@ -182,7 +215,7 @@ public class KeyHandler implements DeviceKeyHandler {
                     mContext.sendBroadcastAsUser(new Intent(ACTION_DISMISS_KEYGUARD),
                             UserHandle.CURRENT);
                 }
-                mPowerManager.wakeUp(SystemClock.uptimeMillis());
+                mPowerManager.wakeUp(SystemClock.uptimeMillis(), "wakeup-gesture");
                 Intent v_intent = new Intent(Intent.ACTION_DIAL, null);
                 startActivitySafely(v_intent);
                 break;
@@ -193,14 +226,20 @@ public class KeyHandler implements DeviceKeyHandler {
                     mContext.sendBroadcastAsUser(new Intent(ACTION_DISMISS_KEYGUARD),
                             UserHandle.CURRENT);
                 }
-                mPowerManager.wakeUp(SystemClock.uptimeMillis());
+                mPowerManager.wakeUp(SystemClock.uptimeMillis(), "wakeup-gesture");
                 Intent w_intent = new Intent(Intent.ACTION_WEB_SEARCH, null);
                 startActivitySafely(w_intent);
                 break;
             case KEY_GESTURE_Z:
-                ensureTorchManager();
-                mGestureWakeLock.acquire(GESTURE_WAKELOCK_DURATION);
-                mTorchManager.toggleTorch();
+                if (mRearCameraId != null) {
+                    mGestureWakeLock.acquire(GESTURE_WAKELOCK_DURATION);
+                    try {
+                        mCameraManager.setTorchMode(mRearCameraId, !mTorchEnabled);
+                        mTorchEnabled = !mTorchEnabled;
+                    } catch (CameraAccessException e) {
+                        // Ignore
+                    }
+                }
                 break;
             }
         }
@@ -210,7 +249,7 @@ public class KeyHandler implements DeviceKeyHandler {
         boolean isKeySupported = ArrayUtils.contains(sSupportedGestures, event.getScanCode());
         if (isKeySupported && !mEventHandler.hasMessages(GESTURE_REQUEST)) {
             if (event.getScanCode() == KEY_GESTURE_DOUBLECLICK && !mPowerManager.isScreenOn()) {
-                mPowerManager.wakeUpWithProximityCheck(SystemClock.uptimeMillis());
+                mPowerManager.wakeUpWithProximityCheck(SystemClock.uptimeMillis(), "wakeup-gesture-proximity");
                 return true;
             }
             Message msg = getMessageForKeyEvent(event);
