@@ -179,7 +179,7 @@ BUILD_WITH_SECURITY_FRAMEWORK := chaabi_token
 BUILD_WITH_CHAABI_SUPPORT := true
 
 # SELinux
-BOARD_SEPOLICY_DIRS := device/asus/mofd-common/sepolicy
+# BOARD_SEPOLICY_DIRS := device/asus/mofd-common/sepolicy
 
 # Wifi
 BOARD_WLAN_DEVICE           := bcmdhd
