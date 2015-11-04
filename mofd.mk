@@ -54,6 +54,10 @@ PRODUCT_PACKAGES += \
 
 ADDITIONAL_DEFAULT_PROPERTIES += ro.sys.powerctl.no.shutdown=1
 
+# Compatibility
+PRODUCT_PACKAGES += \
+    libshim_icu53
+
 # Dalvik
 PRODUCT_PROPERTY_OVERRIDES +=  \
     ro.dalvik.vm.isa.arm=x86 \
