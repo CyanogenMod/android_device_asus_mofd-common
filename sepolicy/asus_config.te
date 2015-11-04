@@ -1,4 +1,4 @@
-type asus_config, domain;
+type asus_config, domain, domain_deprecated;
 type asus_config_exec, exec_type, file_type;
 
 init_daemon_domain(asus_config)

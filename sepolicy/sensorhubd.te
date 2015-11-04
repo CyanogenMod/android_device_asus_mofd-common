@@ -1,5 +1,5 @@
 #============= sensorhubd ==============
-type sensorhubd, domain;
+type sensorhubd, domain, domain_deprecated;
 type sensorhubd_exec, exec_type, file_type;
 init_daemon_domain(sensorhubd)
 
