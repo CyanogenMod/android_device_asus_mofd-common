@@ -47,6 +47,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     bt.hfp.WideBandSpeechEnabled=true
 
+# Camera
+PRODUCT_PACKAGES += \
+    libshim_camera
+
 # Charger
 PRODUCT_PACKAGES += \
     charger \
@@ -67,6 +71,9 @@ PRODUCT_COPY_FILES += \
     device/asus/mofd-common/powervr.ini:system/etc/powervr.ini
 
 # GPS
+PRODUCT_PACKAGES += \
+    libshim_gpsd
+
 PRODUCT_COPY_FILES += \
     device/asus/mofd-common/configs/gps.conf:system/etc/gps.conf \
     device/asus/mofd-common/configs/gps.xml:system/etc/gps.xml
@@ -164,6 +171,9 @@ PRODUCT_PACKAGES += \
     power.mofd_v1
 
 # Radio
+PRODUCT_PACKAGES += \
+    libshim_mmgr
+
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.ril.status.polling.enable=0 \
     rild.libpath=/system/lib/librapid-ril-core.so \
@@ -202,6 +212,10 @@ PRODUCT_PACKAGES += \
     rfkill_bt.sh \
     thermald \
     ueventd.mofd_v1.rc
+
+# Sensors
+pRODUCT_PACKAGES += \
+    libshim_sensors
 
 # Thermal itux
 ENABLE_ITUXD := true
