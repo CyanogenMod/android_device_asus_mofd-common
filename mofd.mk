@@ -49,7 +49,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Camera
 PRODUCT_PACKAGES += \
-    libcam
+    libshim_camera
 
 # Charger
 PRODUCT_PACKAGES += \
