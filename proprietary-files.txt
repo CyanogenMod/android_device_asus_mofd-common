@@ -173,9 +173,6 @@ lib/soundfx/liblpepreprocessing.so
 usr/share/alsa/alsa.conf
 vendor/etc/route_criteria.conf
 
-# Bluetooth
-vendor/lib/libbt-vendor.so
-
 # Camera
 etc/atomisp/00gc2235.aiqb
 etc/atomisp/00imx134.aiqb

@@ -43,7 +43,9 @@ TARGET_USES_64_BIT_BINDER := true
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
+BOARD_HAVE_BLUETOOTH_BCM := true
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/asus/mofd-common/bluetooth
+BOARD_BLUEDROID_VENDOR_CONF := device/asus/mofd-common/bluetooth/vnd_mofd.txt
 
 # Bootloader
 TARGET_OTA_ASSERT_DEVICE := Z00A,Z008
