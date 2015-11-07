@@ -437,4 +437,5 @@ service_redefine keystore /system/bin/keystore /data/misc/keystore
     class main
     user keystore
     group keystore drmrpc system
+    disabled
 
