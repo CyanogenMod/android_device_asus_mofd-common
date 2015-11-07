@@ -208,13 +208,6 @@ ENABLE_ITUXD := true
 PRODUCT_PACKAGES += \
     ituxd
 
-# USB
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.sys.isUsbOtgEnabled=1
-
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    persist.sys.usb.config=mtp
-
 # IMG graphics
 PRODUCT_PACKAGES += \
     hwcomposer.moorefield
