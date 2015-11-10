@@ -166,7 +166,6 @@ TARGET_POWERHAL_VARIANT := mofd_v1
 
 # Radio
 BOARD_RIL_SUPPORTS_MULTIPLE_CLIENTS := true
-BOARD_RIL_CLASS := ../../../device/asus/mofd-common/ril
 
 # Recovery
 BOARD_CANT_BUILD_RECOVERY_FROM_BOOT_PATCH := true

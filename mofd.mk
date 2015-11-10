@@ -1,4 +1,4 @@
- #
+#
 # Copyright 2013 The Android Open-Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -177,8 +177,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.ril.status.polling.enable=0 \
     rild.libpath=/system/lib/librapid-ril-core.so \
-    ro.telephony.default_network=9 \
-    ro.telephony.ril_class=Zenfone2RIL
+    ro.telephony.default_network=9
 
 # Ramdisk
 PRODUCT_PACKAGES += \
