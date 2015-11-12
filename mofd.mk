@@ -214,7 +214,7 @@ PRODUCT_PACKAGES += \
     ueventd.mofd_v1.rc
 
 # Sensors
-pRODUCT_PACKAGES += \
+PRODUCT_PACKAGES += \
     libshim_sensors
 
 # Thermal itux
