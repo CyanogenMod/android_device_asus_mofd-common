@@ -14,10 +14,12 @@
  * limitations under the License.
  */
 
+#define LOG_TAG "crp"
 #include <system/window.h>
 #include <ui/PixelFormat.h>
 #include <ui/Rect.h>
 #include <gui/SurfaceControl.h>
+#include <cutils/log.h>
 
 namespace android {
 
@@ -31,6 +33,7 @@ extern "C" {
 
     status_t _ZN7android19GraphicBufferMapper4lockEPK13native_handleiRKNS_4RectEPPv(
             buffer_handle_t handle, int usage, const android::Rect& bounds, void** vaddr) {
+        ALOGE("crpalmer: %s\n", __func__);
         return _ZN7android19GraphicBufferMapper4lockEPK13native_handlejRKNS_4RectEPPv(
                 handle, (uint32_t)usage, bounds, vaddr);
     }
@@ -43,6 +46,7 @@ extern "C" {
     status_t _ZN7android22GraphicBufferAllocator5allocEjjiiPPK13native_handlePi(
             uint32_t width, uint32_t height, PixelFormat format, int usage,
             buffer_handle_t* handle, uint32_t* stride) {
+        ALOGE("crpalmer: %s\n", __func__);
         return _ZN7android22GraphicBufferAllocator5allocEjjijPPK13native_handlePj(
                 width, height, format, (uint32_t)usage, handle, stride);
     }
