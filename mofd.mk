@@ -29,6 +29,7 @@ ADDITIONAL_DEFAULT_PROPERTIES += \
 
 # Audio
 PRODUCT_PACKAGES += \
+    libshim_audio \
     libtinycompress \
     libtinyalsa \
     audio.a2dp.default \

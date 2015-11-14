@@ -1,5 +1,16 @@
 LOCAL_PATH := $(call my-dir)
 
+# Audio
+
+include $(CLEAR_VARS)
+
+LOCAL_SRC_FILES := icu53.c
+LOCAL_SHARED_LIBRARIES := libicuuc libicui18n
+LOCAL_MODULE := libshim_audio
+LOCAL_MODULE_TAGS := optional
+
+include $(BUILD_SHARED_LIBRARY)
+
 # Camera
 
 include $(CLEAR_VARS)
