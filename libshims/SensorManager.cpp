@@ -29,14 +29,22 @@
 #include <gui/ISensorServer.h>
 #include <gui/ISensorEventConnection.h>
 #include <gui/Sensor.h>
-#include <gui/SensorManager.h>
+#include "SensorManager.h"
 #include <gui/SensorEventQueue.h>
+
+
+void _ZN7android13SensorManagerD1Ev(void *sensorMgr)
+{
+    ALOGE("New constructor called when we are using old shim code");
+    abort();
+}
 
 // ----------------------------------------------------------------------------
 namespace android {
 // ----------------------------------------------------------------------------
 
 ANDROID_SINGLETON_STATIC_INSTANCE(SensorManager)
+static String16 gSensorsName = String16("sensors.shim");
 
 SensorManager::SensorManager()
     : mSensorList(0)
@@ -89,9 +97,9 @@ status_t SensorManager::assertStateLocked() const {
         };
 
         mDeathObserver = new DeathObserver(*const_cast<SensorManager *>(this));
-        mSensorServer->asBinder()->linkToDeath(mDeathObserver);
+        mSensorServer->asBinder(mSensorServer)->linkToDeath(mDeathObserver);
 
-        mSensors = mSensorServer->getSensorList();
+        mSensors = mSensorServer->getSensorList(gSensorsName);
         size_t count = mSensors.size();
         mSensorList = (Sensor const**)malloc(count * sizeof(Sensor*));
         for (size_t i=0 ; i<count ; i++) {
@@ -147,8 +155,9 @@ sp<SensorEventQueue> SensorManager::createEventQueue()
 
     Mutex::Autolock _l(mLock);
     while (assertStateLocked() == NO_ERROR) {
+        String8 packageName = String8("");
         sp<ISensorEventConnection> connection =
-                mSensorServer->createSensorEventConnection();
+                mSensorServer->createSensorEventConnection(packageName, 0, gSensorsName);
         if (connection == NULL) {
             // SensorService just died.
             ALOGE("createEventQueue: connection is NULL. SensorService died.");
