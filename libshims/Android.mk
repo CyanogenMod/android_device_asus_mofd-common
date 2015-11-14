@@ -17,7 +17,7 @@ include $(CLEAR_VARS)
 
 LOCAL_SRC_FILES := \
     graphic-buffer.cpp \
-    sensor-manager.c \
+    SensorManager.cpp \
     surface-control.cpp
 
 LOCAL_SHARED_LIBRARIES := liblog libcutils libui libgui libbinder libutils
@@ -33,7 +33,7 @@ include $(CLEAR_VARS)
 LOCAL_SRC_FILES := \
     crypto_malloc.c \
     icu53.c \
-    sensor-manager.c
+    SensorManager.cpp
 
 LOCAL_SHARED_LIBRARIES := liblog libcutils libui libgui libbinder libutils libicuuc libicui18n
 LOCAL_MODULE := libshim_gpsd
