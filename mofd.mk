@@ -90,8 +90,8 @@ PRODUCT_PROPERTY_OVERRIDES +=  \
 ADDITIONAL_DEFAULT_PROPERTIES += ro.dalvik.vm.native.bridge=libhoudini.so
 
 # Keyhandler
-# PRODUCT_PACKAGES += \
-#    com.cyanogenmod.keyhandler
+PRODUCT_PACKAGES += \
+    com.cyanogenmod.keyhandler
 
 # Key layout files
 PRODUCT_COPY_FILES += \
