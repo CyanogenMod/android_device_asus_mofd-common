@@ -183,6 +183,9 @@ BUILD_WITH_CHAABI_SUPPORT := true
 # SELinux
 # BOARD_SEPOLICY_DIRS := device/asus/mofd-common/sepolicy
 
+# Tap-to-Wake
+TARGET_TAP_TO_WAKE_NODE := "/sys/devices/pci0000:00/0000:00:09.2/i2c-7/7-0038/ftsdclickmode"
+
 # Wifi
 BOARD_WLAN_DEVICE           := bcmdhd
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
