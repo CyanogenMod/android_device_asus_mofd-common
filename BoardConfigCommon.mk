@@ -47,7 +47,9 @@ BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/asus/mofd-common/bluetooth
 # Bootloader
 TARGET_OTA_ASSERT_DEVICE := Z00A,Z008
 # bootstub as 2nd bootloader
+TARGET_NO_BOOTLOADER := true
 TARGET_BOOTLOADER_IS_2ND := true
+
 
 # Camera
 INTEL_USE_CAMERA_UVC := true
