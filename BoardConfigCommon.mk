@@ -156,7 +156,6 @@ BOARD_CACHEIMAGE_PARTITION_SIZE := 268435456
 TARGET_POWERHAL_VARIANT := mofd_v1
 
 # Radio
-BOARD_RIL_SUPPORTS_MULTIPLE_CLIENTS := true
 BOARD_RIL_CLASS := ../../../device/asus/mofd-common/ril
 
 # Recovery
