@@ -182,8 +182,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.ril.status.polling.enable=0 \
     rild.libpath=/system/lib/librapid-ril-core.so \
     ro.telephony.default_network=9 \
-    ro.telephony.ril_class=Zenfone2RIL
+    ro.telephony.ril_class=Zenfone2RIL \
+    ro.telephony.ril.config=simactivation
 
+ADDITIONAL_DEFAULT_PROPERTIES += \
+    ro.telephony.ril.config=simactivation
 # Ramdisk
 PRODUCT_PACKAGES += \
     config_init.sh \
