@@ -5,7 +5,7 @@ service init_factorylog /system/bin/sh /system/etc/init_factorylogtool.sh
 
 service init_logdate /system/bin/logcontrol logdumps date
     disabled
-    seclable u:r:logtoold:s0
+    seclabel u:r:logtoold:s0
     oneshot
 
 
@@ -32,38 +32,38 @@ on property:persist.asuslog.fac.init=1
 
 service logMain /system/bin/logcontrol logdumps main
     class main
-    seclable u:r:logtoold:s0
+    seclabel u:r:logtoold:s0
     disabled
 
 service logProcrank /system/bin/logcontrol logdumps procrank
     class main
-    seclable u:r:logtoold:s0
+    seclabel u:r:logtoold:s0
     disabled
     oneshot 
 
 service logKernel /system/bin/logcontrol logdumps kernel
     class main
-    seclable u:r:logtoold:s0
+    seclabel u:r:logtoold:s0
     disabled
 
 service logRadio /system/bin/logcontrol logdumps radio
     class main
-    seclable u:r:logtoold:s0
+    seclabel u:r:logtoold:s0
     disabled
 
 service logEvent /system/bin/logcontrol logdumps event
     class main
-    seclable u:r:logtoold:s0
+    seclabel u:r:logtoold:s0
     disabled
 
 service logCombine /system/bin/logcontrol logdumps combine
     class main
-    seclable u:r:logtoold:s0
+    seclabel u:r:logtoold:s0
     disabled
 
 service logTcpdump /system/bin/logcontrol logdumps tcpdump
     class main
-    seclable u:r:logtoold:s0
+    seclabel u:r:logtoold:s0
     disabled
 
 on property:persist.asuslog.main.enable=1
@@ -106,24 +106,24 @@ on property:persist.asuslog.tcpdump.enable=0
 #fdc_mts
 service fdcmts /system/bin/fdcmts
     class main
-    seclable u:r:logtoold:s0
+    seclabel u:r:logtoold:s0
     disabled
 
 #fdc_mts2
 service fdcmts2 /system/bin/fdcmts -m 2
     class main
-    seclable u:r:logtoold:s0
+    seclabel u:r:logtoold:s0
     disabled
 
 service fdcmdm1 /system/bin/logcontrol fdcmdm slot1
     class main
-    seclable u:r:logtoold:s0
+    seclabel u:r:logtoold:s0
     socket fdcmdm1 stream 0660 system system
     disabled
 
 service fdcmdm2 /system/bin/logcontrol fdcmdm slot2
     class main
-    seclable u:r:logtoold:s0
+    seclabel u:r:logtoold:s0
     socket fdcmdm2 stream 0660 system system
     disabled
 
@@ -173,7 +173,7 @@ service toolcommand /system/bin/toolcommand
     class main
     user root
     group root
-   seclable u:r:fdctool:s0
+   seclabel u:r:fdctool:s0
    disabled
    oneshot
 
@@ -198,7 +198,7 @@ on property:persist.asuslog.tool.enable=0
 service logcommand /system/bin/logcommand
     class main
     disabled
-    seclable u:r:logtoold:s0
+    seclabel u:r:logtoold:s0
     oneshot
 
 

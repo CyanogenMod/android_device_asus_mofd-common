@@ -24,13 +24,13 @@ service bd_prov /system/bin/bd_prov
     seclabel u:r:bluetooth:s0
 
 service bdt /system/bin/bdt s
-    disable
+    disabled
     oneshot
 	
 service BrcmService /system/bin/BrcmService.sh
-    disable
+    disabled
     oneshot
 		
 service BrcmChmod /system/bin/BrcmChmod.sh
-    disable
+    disabled
     oneshot  

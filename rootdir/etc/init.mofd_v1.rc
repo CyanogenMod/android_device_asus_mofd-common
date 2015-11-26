@@ -355,12 +355,6 @@ on property:service.mmgr.smp=1
 on property:service.mmgr.smp=0
     write /proc/irq/36/smp_affinity 1
 
-service surfaceflinger /system/bin/surfaceflinger
-    class main
-    user system
-    group graphics
-    onrestart restart zygote
-
 service_redefine drm /system/bin/drmserver
     class main
     user drm
