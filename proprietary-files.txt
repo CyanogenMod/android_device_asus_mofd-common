@@ -5,7 +5,6 @@
 lib/libstlport.so
 
 # Arm blobs
-lib/arm/nb/libandroidfw.so
 lib/arm/nb/libandroid_runtime.so
 lib/arm/nb/libandroid.so
 lib/arm/nb/libart.so
@@ -32,6 +31,7 @@ lib/arm/nb/libm.so
 lib/arm/nb/libnativehelper.so
 lib/arm/nb/libOpenMAXAL.so
 lib/arm/nb/libOpenSLES.so
+lib/arm/nb/libpcre.so
 lib/arm/nb/libpixelflinger.so
 lib/arm/nb/libskia.so
 lib/arm/nb/libsqlite.so
@@ -47,12 +47,15 @@ lib/arm/libandroid.so
 lib/arm/libart.so
 lib/arm/libaudioflinger.so
 lib/arm/libaudioresampler.so
+lib/arm/libaudiospdif.so
 lib/arm/libaudioutils.so
 lib/arm/libbacktrace_libc++.so
 lib/arm/libbacktrace.so
+lib/arm/libbase.so
 lib/arm/libbcc.so
 lib/arm/libbcinfo.so
 lib/arm/libbinder.so
+lib/arm/libblas.so
 lib/arm/libcamera_client.so
 lib/arm/libcamera_metadata.so
 lib/arm/libcommon_time_client.so
@@ -68,6 +71,7 @@ lib/arm/libEGL.so
 lib/arm/libemoji.so
 lib/arm/libETC1.so
 lib/arm/libexpat.so
+lib/arm/libFFTEm.so
 lib/arm/libfilterfw.so
 lib/arm/libfilterpack_imageproc.so
 lib/arm/libft2.so
@@ -76,6 +80,7 @@ lib/arm/libgccdemangle.so
 lib/arm/libGLES_trace.so
 lib/arm/libGLESv1_CM.so
 lib/arm/libGLESv2.so
+lib/arm/libGLESv3.so
 lib/arm/libgui.so
 lib/arm/libhardware_legacy.so
 lib/arm/libhardware.so
@@ -92,6 +97,7 @@ lib/arm/libLLVM.so
 lib/arm/liblog.so
 lib/arm/libmediandk.so
 lib/arm/libmedia.so
+lib/arm/libmediautils.so
 lib/arm/libmemtrack.so
 lib/arm/libminikin.so
 lib/arm/libm.so
@@ -101,21 +107,28 @@ lib/arm/libnbaio.so
 lib/arm/libnetd_client.so
 lib/arm/libnetutils.so
 lib/arm/libnfc_ndef.so
+lib/arm/libnl.so
 lib/arm/libOpenMAXAL.so
 lib/arm/libOpenSLES.so
 lib/arm/libopus.so
+lib/arm/libpcre.so
 lib/arm/libpdfium.so
 lib/arm/libpixelflinger.so
 lib/arm/libpng.so
 lib/arm/libpowermanager.so
 lib/arm/libprocessgroup.so
+lib/arm/libprotobuf-cpp-lite.so
+lib/arm/libradio_metadata.so
+lib/arm/libradio.so
 lib/arm/libRScpp.so
 lib/arm/libRSCpuRef.so
 lib/arm/libRSDriver.so
 lib/arm/libRS.so
 lib/arm/libselinux.so
+lib/arm/libserviceutility.so
 lib/arm/libsigchain.so
 lib/arm/libskia.so
+lib/arm/libsonic.so
 lib/arm/libsonivox.so
 lib/arm/libsoundtrigger.so
 lib/arm/libspeexresampler.so
@@ -129,7 +142,6 @@ lib/arm/libstagefright_omx.so
 lib/arm/libstagefright.so
 lib/arm/libstagefright_yuv.so
 lib/arm/libstdc++.so
-lib/arm/libstlport.so
 lib/arm/libsurfaceflinger.so
 lib/arm/libsync.so
 lib/arm/libsysutils.so
