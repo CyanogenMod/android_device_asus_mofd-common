@@ -38,7 +38,7 @@ LOCAL_SRC_FILES := \
     icu53.c
 
 LOCAL_SHARED_LIBRARIES := liblog libcutils libgui libbinder libutils libicuuc libicui18n
-LOCAL_MODULE := libshim_gpsd
+LOCAL_MODULE := libshim_gps
 LOCAL_MODULE_CLASS := SHARED_LIBRARIES
 
 include $(BUILD_SHARED_LIBRARY)
