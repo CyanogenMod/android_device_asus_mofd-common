@@ -284,9 +284,6 @@ $(call inherit-product-if-exists, vendor/asus/mofd-common/mofd-common-vendor.mk)
 PRODUCT_PACKAGES += \
     libstlport
 
-# Add WiFi Firmware
-$(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/firmware/bcm4339/device-bcm.mk)
-
 # specific management of sep_policy.conf
 PRODUCT_COPY_FILES += \
     device/asus/mofd-common/sep_policy.conf:system/etc/security/sep_policy.conf
