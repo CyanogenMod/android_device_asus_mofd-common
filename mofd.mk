@@ -280,6 +280,10 @@ PRODUCT_PACKAGES += \
 
 $(call inherit-product-if-exists, vendor/asus/mofd-common/mofd-common-vendor.mk)
 
+# stlport required for our LP blobs
+PRODUCT_PACKAGES += \
+    libstlport
+
 # Add WiFi Firmware
 $(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/firmware/bcm4339/device-bcm.mk)
 

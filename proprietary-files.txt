@@ -1,9 +1,5 @@
 # Configuration files
 
-# M Bringup
-
-lib/libstlport.so
-
 # Arm blobs
 lib/arm/nb/libandroid_runtime.so
 lib/arm/nb/libandroid.so
