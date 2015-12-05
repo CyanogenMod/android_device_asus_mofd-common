@@ -185,7 +185,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.ril.status.polling.enable=0 \
     rild.libpath=/system/lib/librapid-ril-core.so \
-    ro.telephony.default_network=9 \
+    ro.telephony.default_network=9,2 \
     ro.ril.telephony.mqanelements=5
 
 # Ramdisk
