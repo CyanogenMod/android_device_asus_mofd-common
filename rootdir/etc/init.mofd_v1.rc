@@ -66,42 +66,8 @@ on boot
     chown system system /sys/fps_throttle/notify
     chown system system /sys/fps_throttle/handshake
 
-#   Offload specific properties
-
-    setprop audio.offload.disable 0
-    setprop audio.offload.min.duration.secs 20
-    setprop offload.compress.device 1
-    setprop audio.device.name rt5647audio
-#   audio.offload.capabilities
-#   A 32 bit value.  To be set in HEX
-#   |---------|--------|--------|------------|
-#   |Byte 3   |Byte 2  |Byte 1  |   Byte 0   |
-#   |Reserved |Reserved|Reserved|capabilities|
-#   |---------|--------|--------|------------|
-#   First byte (Byte 0) from the right represents capabilities
-#   Bit position  8th,7th,6th,5th,4th     3rd          2nd      1st
-#   Indication    Reserved for future  Multichannel   Effects   Video
-#   Second, Third and Fourth byte reserved for future use
-#   Set the HEX value by ORing the bits for each format/feature
-#   Example usage: To enable Multichannel offload, value to be set is 4
-    setprop audio.offload.capabilities 1
-
-# set scalability to 1 to enable it in system.
-    setprop audio.offload.scalability 1
-    setprop offload.mixer.volume.ctl.name "media0_in volume 0 volume"
-    setprop offload.mixer.mute.ctl.name "media0_in volume 0 mute"
-    setprop offload.mixer.rp.ctl.name "media0_in volume 0 rampduration"
-
-#   Set the vtsv device and card
-    setprop audio.vtsv.card rt5647audio
-    setprop audio.vtsv.device 5
-    setprop audio.vtsv.dsp_log 0
-
-#   Set the aware card
-    setprop audio.aware.card rt5647audio
-
-# Enable/Disable deep buffer property for mofd_v1
-   setprop lpa.deepbuffer.enable 1
+#   Disable audio offloading
+    setprop audio.offload.disable 1
 
     chown system system /sys/class/pci_bus/0000:00/device/0000:00:16.1/control
     chown system system /sys/class/pci_bus/0000:00/device/0000:00:16.1/data
