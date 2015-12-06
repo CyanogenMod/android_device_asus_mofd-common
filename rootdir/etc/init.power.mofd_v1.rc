@@ -1,48 +1,6 @@
 on property:sys.boot_completed=1
     # Set the I/O scheduler
     setprop sys.io.scheduler bfq
-
-
-# ---------------------------------------------------------
-#
-# CM Performance Profiles
-#
-# ---------------------------------------------------------
-
-# Note: the on property will be triggered asynchronously so only place
-# configuration in here which can be applied later (e.g. don't depend on
-# a core being online)
-on property:sys.perf.profile.governor=interactive
-    write /sys/devices/system/cpu/cpufreq/interactive/above_hispeed_delay 0
-    write /sys/devices/system/cpu/cpufreq/interactive/go_hispeed_load 50
-    write /sys/devices/system/cpu/cpufreq/interactive/min_sample_time 40000
-    write /sys/devices/system/cpu/cpufreq/interactive/target_loads "85 1500000:90 1800000:70"
-    write /sys/devices/system/cpu/cpufreq/interactive/timer_rate 30000
-    write /sys/devices/system/cpu/cpufreq/interactive/timer_slack 30000
-    write /sys/devices/system/cpu/cpufreq/interactive/touchboostpulse_duration 20000
-
-# Powersave
-on property:sys.perf.profile=0
-    write /sys/devices/system/cpu/cpu1/online 1
-    write /sys/devices/system/cpu/cpu2/online 1
-    write /sys/devices/system/cpu/cpu3/online 1
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor interactive
-    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor interactive
-    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor interactive
-    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor interactive
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq ${ro.sys.perf.device.powersave}
-    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq ${ro.sys.perf.device.powersave}
-    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_max_freq ${ro.sys.perf.device.powersave}
-    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_max_freq ${ro.sys.perf.device.powersave}
-    write /sys/devices/system/cpu/cpufreq/interactive/hispeed_freq 500000
-    write /sys/devices/system/cpu/cpufreq/interactive/touchboost_freq 500000
-    setprop sys.perf.profile.governor interactive
-    write /sys/devices/platform/dfrgx/devfreq/dfrgx/governor powersave
-    write /sys/devices/system/cpu/cpu2/online 0
-    write /sys/devices/system/cpu/cpu3/online 0
-
-# Balanced
-on property:sys.perf.profile=1
     write /sys/devices/system/cpu/cpu1/online 1
     write /sys/devices/system/cpu/cpu2/online 1
     write /sys/devices/system/cpu/cpu3/online 1
@@ -58,14 +16,3 @@ on property:sys.perf.profile=1
     write /sys/devices/system/cpu/cpufreq/interactive/touchboost_freq ${ro.sys.perf.device.touchboost}
     setprop sys.perf.profile.governor interactive
     write /sys/devices/platform/dfrgx/devfreq/dfrgx/governor simple_ondemand
-
-# High performance
-on property:sys.perf.profile=2
-    write /sys/devices/system/cpu/cpu1/online 1
-    write /sys/devices/system/cpu/cpu2/online 1
-    write /sys/devices/system/cpu/cpu3/online 1
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor performance
-    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor performance
-    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor performance
-    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor performance
-    write /sys/devices/platform/dfrgx/devfreq/dfrgx/governor performance
