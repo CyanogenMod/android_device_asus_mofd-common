@@ -8,11 +8,8 @@
 /dev/block/by-name/boot         /boot           emmc    defaults                                    recoveryonly
 /dev/block/by-name/recovery     /recovery       emmc    defaults                                    recoveryonly
 
-*/block/sda*              	auto    	vfat	None	wait,voldmanaged=USBdisk1:auto
-*/block/sdb*              	auto    	vfat	None	wait,voldmanaged=USBdisk2:auto
-*/block/sdc*              	auto    	vfat	None	wait,voldmanaged=USBdisk3:auto
-*/block/sde*              	auto    	vfat	None	wait,voldmanaged=USBdisk5:auto
-*/block/mmcblk1*          	auto            auto    defaults wait,voldmanaged=sdcard1:auto,noemulatedsd
-*/block/sdd*              	auto    	vfat	None	wait,voldmanaged=USBdisk4:auto
+*/block/sda*              	auto    	auto	defaults	voldmanaged=usb:auto
+
+*/block/mmcblk1*          	auto        auto    defaults    voldmanaged=sdcard1:auto,encryptable=userdata
 
 /dev/block/zram0                none            swap    defaults                                                                zramsize=419430400
