@@ -2,14 +2,6 @@ on init
     # Property set by AudioHAL to expose the routing status of VTSV use case to VTSV HAL
     setprop AudioComms.vtsv.routed false
 
-service acmed /system/bin/acmed --tinyalsa --card rt5647audio --device 4 --android-cmd-socket acme_cmd --lipsync-android-socket acme_lipsync
-    class main
-    user system
-    group audio inet
-    ioprio rt 4
-    socket acme_cmd stream 660 system inet
-    socket acme_lipsync stream 660 system inet
-
 on post-fs
     # Defer loading modules that may require firmware till fs is ready
 

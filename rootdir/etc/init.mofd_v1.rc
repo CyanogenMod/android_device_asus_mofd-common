@@ -11,12 +11,6 @@ import init.modem.rc
 import init.config_init.rc
 import init.logtool.rc
 
-#+++++++++++++++++++++lynn 2014/10/27 FAC++++++++++++++++++++++
-#note:ship IMG no init.fac.ze550ml.rc file.
-import init.fac.flag.rc
-import init.fac.fm.rc
-#---------------------lynn 2014/10/27 FAC----------------------
-
 on early-init
 # Set boot_min_cap for boot to Android.
     setprop ro.boot.min.cap 0
@@ -44,9 +38,6 @@ on init
     chmod 0644 /system/framework/framework.jar
     chmod 0644 /system/framework/apache-xml.jar
     chmod 0644 /system/framework/ext.jar
-
-    mkdir /ADF 0775 system system
-    mkdir /APD 0775 system system
 
     mkdir /factory
     mkdir /config
@@ -184,16 +175,6 @@ on post-fs
     chown system system /dev/monzax
     chmod 0660 /dev/monzax
 
-# For APD
-    mount ext4 /dev/block/by-name/ADF /ADF rw
-    mount ext4 /dev/block/by-name/APD /APD rw
-    restorecon_recursive /ADF
-    restorecon_recursive /APD
-    chown system system /ADF
-    chown system system /APD
-    chmod 0775 /ADF
-    chmod 0775 /APD
-
 # Permissions for LED
     chown system system /sys/class/leds/intel_keypad_led/brightness
 
@@ -213,7 +194,7 @@ on post-fs
 # Permissions for BCU sysfs interface and make generic path to access by apps
     chown system system /sys/devices/platform/bcove_bcu/camflash_ctrl
     symlink /sys/devices/platform/bcove_bcu /dev/bcu
-    restorecon_recursive_force /factory
+    restorecon_recursive /factory
     restorecon_recursive /config
     restorecon_recursive /logs
 
@@ -226,49 +207,19 @@ on post-fs
 # Permissions for Touch Glove Mode
     chown system system /sys/bus/i2c/devices/i2c-7/7-0038/ftsglovemode
 
-    setprop persist.asus.glove 0
-
 # Permissions for Touch dclick Mode
     chown system radio /sys/bus/i2c/devices/i2c-7/7-0038/ftsdclickmode
     chmod 0664 /sys/bus/i2c/devices/i2c-7/7-0038/ftsdclickmode
-    setprop persist.asus.dclick 0
 
 # Permissions for Touch Gesture Mode
     chown system system /sys/bus/i2c/devices/i2c-7/7-0038/ftsgesturemode
 
-    setprop persist.asus.gesture.type 0
-
 # Permissions for Touch Cover Mode
     chown system system /sys/bus/i2c/devices/i2c-7/7-0038/ftscovermode
-
-    setprop persist.asus.flipcovermode 0
 
 # Permissions for Sdcard Power Node
 	chown system system /proc/asus_sd_power
 
-# Any changes we want to make here should be made via cmhw, not via
-# persistent properties...
-#
-#on property:persist.asus.glove=0
-#    write /sys/bus/i2c/devices/i2c-7/7-0038/ftsglovemode 0
-#
-#on property:persist.asus.glove=1
-#    write /sys/bus/i2c/devices/i2c-7/7-0038/ftsglovemode 1
-#
-#on property:persist.asus.dclick=0
-#    write /sys/bus/i2c/devices/i2c-7/7-0038/ftsdclickmode 0
-#
-#on property:persist.asus.dclick=1
-#    write /sys/bus/i2c/devices/i2c-7/7-0038/ftsdclickmode 1
-#
-#on property:persist.asus.gesture.type=*
-#    write /sys/bus/i2c/devices/i2c-7/7-0038/ftsgesturemode ${persist.asus.gesture.type}
-#
-#on property:persist.asus.flipcovermode=0
-#    write /sys/bus/i2c/devices/i2c-7/7-0038/ftscovermode 0
-#
-#on property:persist.asus.flipcovermode=1
-#    write /sys/bus/i2c/devices/i2c-7/7-0038/ftscovermode 1
 
 service sl_si_service /system/bin/sl_si_service d=1
     user system
@@ -331,18 +282,6 @@ service sensorhubd /system/bin/sensorhubd
     user system
     group system
     socket sensorhubd stream 660 system system
-
-service rfid_monzaxd /system/bin/rfid_monzaxd
-    class main
-    user system
-    group system
-
-# ASUS Product Demo
-on property:persist.sys.enableAPD=1
-    mount ext4 /dev/block/by-name/APD /APD rw
-    restorecon_recursive /APD
-    chown system system /APD
-    chmod 0775 /APD
 
 on charger
     mount ext4 /dev/block/by-name/system /system ro noatime barrier=1,data=ordered
