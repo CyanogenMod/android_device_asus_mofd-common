@@ -61,7 +61,7 @@ PRODUCT_PACKAGES += \
 ADDITIONAL_DEFAULT_PROPERTIES += ro.sys.powerctl.no.shutdown=1
 
 # Dalvik
-PRODUCT_PROPERTY_OVERRIDES +=  \
+PRODUCT_PROPERTY_OVERRIDES += \
     ro.dalvik.vm.isa.arm=x86 \
     dalvik.vm.implicit_checks=none
 
@@ -84,8 +84,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.spid.gps.tty=ttyMFD2
 
 # Houdini (arm native bridge)
-PRODUCT_PROPERTY_OVERRIDES +=  \
-    ro.enable.native.bridge.exec=1 \
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.enable.native.bridge.exec=1
 
 ADDITIONAL_DEFAULT_PROPERTIES += ro.dalvik.vm.native.bridge=libhoudini.so
 
@@ -113,7 +113,7 @@ PRODUCT_PACKAGES += \
     lights.mofd_v1
 
 # Media
-PRODUCT_PROPERTY_OVERRIDES +=  \
+PRODUCT_PROPERTY_OVERRIDES += \
     drm.service.enabled=true \
     ro.com.widevine.cachesize=16777216 \
     media.stagefright.cache-params=10240/20480/15 \
