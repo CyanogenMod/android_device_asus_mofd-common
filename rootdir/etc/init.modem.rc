@@ -158,17 +158,16 @@ on post-fs-data
 
 # adding Telephony
 service mmgr /system/bin/mmgr -i 1
-    class main
+    class late_start
     socket mmgr stream 660 system radio
     user system
     group radio cache inet misc system usb
 
 service mmgr2 /system/bin/mmgr -i 2
-    class main
+    class late_start
     socket mmgr2 stream 660 system radio
     user system
     group radio cache inet misc system usb
-    disabled
 
 # adding nvm manager
 service nvmmanager /system/bin/nvm_server
@@ -185,13 +184,20 @@ service nvmmanager2 /system/bin/nvm_server -i 2
     socket nvm-ctl2 stream 660 system radio
     user system
     group radio cache inet misc system
-    disabled
     # TODO: Label these properly
     #seclabel u:r:nvm_server:s0
 
+service_redefine ril-daemon /system/bin/rild
+    class late_start
+    socket rild stream 660 root radio
+    socket sap_uim_socket1 stream 660 bluetooth bluetooth
+    socket rild-debug stream 660 radio system
+    user root
+    group radio cache inet misc audio log qcom_diag
+
 # adding 2nd vendor ril instance in case of multi sim
 service ril-daemon1 /system/bin/rild -c 2
-    class main
+    class late_start
     socket rild2 stream 660 root radio
     socket rild-debug2 stream 660 radio system
     user root
@@ -201,13 +207,10 @@ service modem-c_main-sh /system/bin/sh /init.class_main.sh
     class main
     user root
     oneshot
+    disabled
 
 on property:vold.decrypt=trigger_restart_framework
     start modem-c_main-sh
-
-on property:persist.radio.multisim.config=dsda
-    start mmgr2
-    start nvmmanager2
 
 on property:persist.disable_NVM_Server=1
     stop nvmmanager
