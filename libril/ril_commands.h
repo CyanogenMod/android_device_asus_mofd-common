@@ -144,3 +144,9 @@
     {RIL_REQUEST_SET_DC_RT_INFO_RATE, dispatchInts, responseVoid},
     {RIL_REQUEST_SET_DATA_PROFILE, dispatchDataProfile, responseVoid},
     {RIL_REQUEST_SHUTDOWN, dispatchVoid, responseVoid},
+    /* Stock has:
+    { 130, dispatchInts, responseVoid },
+    { 131, dispatchInts, responseVoid },
+    { 132, dispatchVoid, responseVoid },
+    { 133, dispatchVoid, responseVoid },
+    */
