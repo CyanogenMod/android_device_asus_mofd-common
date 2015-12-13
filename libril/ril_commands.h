@@ -37,7 +37,7 @@
     {RIL_REQUEST_VOICE_REGISTRATION_STATE, dispatchVoid, responseStrings},
     {RIL_REQUEST_DATA_REGISTRATION_STATE, dispatchVoid, responseStrings},
     {RIL_REQUEST_OPERATOR, dispatchVoid, responseStrings},
-    {RIL_REQUEST_RADIO_POWER, dispatchInts, responseVoid},
+    {RIL_REQUEST_RADIO_POWER, dispatchRadioPower, responseVoid},
     {RIL_REQUEST_DTMF, dispatchString, responseVoid},
     {RIL_REQUEST_SEND_SMS, dispatchStrings, responseSMS},
     {RIL_REQUEST_SEND_SMS_EXPECT_MORE, dispatchStrings, responseSMS},
