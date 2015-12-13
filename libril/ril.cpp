@@ -271,6 +271,7 @@ static void dispatchUiccSubscripton(Parcel &p, RequestInfo *pRI);
 static void dispatchSimAuthentication(Parcel &p, RequestInfo *pRI);
 static void dispatchDataProfile(Parcel &p, RequestInfo *pRI);
 static void dispatchRadioCapability(Parcel &p, RequestInfo *pRI);
+static void dispatchRadioPower(Parcel &p, RequestInfo *pRI);
 static int responseInts(Parcel &p, void *response, size_t responselen);
 static int responseFailCause(Parcel &p, void *response, size_t responselen);
 static int responseStrings(Parcel &p, void *response, size_t responselen);
@@ -2037,6 +2038,32 @@ static void dispatchRadioCapability(Parcel &p, RequestInfo *pRI){
 invalid:
     invalidCommandBlock(pRI);
     return;
+}
+
+static void dispatchRadioPower(Parcel &p, RequestInfo *pRI) {
+    int status;
+    int count;
+    int is_on;
+
+    status = p.readInt32 (&count);
+
+    if (status != NO_ERROR || count == 0) {
+        RLOGE("dispatchRadioPower: Invalid length");
+        return;
+    }
+
+    if (p.readInt32(&is_on) != NO_ERROR) {
+        RLOGE("dispatchRadioPower: Could not read is_on");
+        return;
+    }
+
+    RLOGI("dispatchRadioPower: Issuing local RADIO_POWER {%d}", is_on);
+    issueLocalRequest(RIL_REQUEST_RADIO_POWER, &is_on, sizeof(int), pRI->socket_id);
+    if (is_on) {
+        sleep(2);
+        RLOGI("dispatchRadioPower: Enabling NETWORK_SELECTION_AUTOMATIC");
+        issueLocalRequest(RIL_REQUEST_SET_NETWORK_SELECTION_AUTOMATIC, NULL, 0, pRI->socket_id);
+    }
 }
 
 static int
