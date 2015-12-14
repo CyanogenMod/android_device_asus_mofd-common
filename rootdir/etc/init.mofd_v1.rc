@@ -48,6 +48,13 @@ on init
     #  Mount the sep filesystem
     mount sepfs sepfs /sys/fs/sepfs
 
+    # Configure the proper cpusets
+    write /dev/cpuset/system-background/cpus 0-3
+    write /dev/cpuset/background/cpus 0-3
+    write /dev/cpuset/foreground/boost/cpus 0-3
+    write /dev/cpuset/foreground/cpus 0-3
+    write /dev/cpuset/cpus 0-3
+
 on boot
 #  Permissions for Thermal Management
     chown system system /sys/class/power_supply/bq24192_charger/device/charge_current_limit
