@@ -1,1 +1,3 @@
+type bluetooth_exec, exec_type, file_type;
+
 allow bluetooth bluetooth_control:chr_file { rw_file_perms };

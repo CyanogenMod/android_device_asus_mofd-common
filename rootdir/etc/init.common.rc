@@ -135,9 +135,6 @@ on post-fs-data
 
 on property:sys.boot_completed=1
     start bcu_cpufreqrel
-    start info_setting
-    start enable_adb
-    start VerifyVouchers
 
 on charger
     #set properties in COS
@@ -224,20 +221,3 @@ on property:sys.shutdown.requested=1recovery
 
 on property:sys.shutdown.requested=1bootloader
     write /sys/devices/virtual/misc/watchdog/reboot_ongoing 1
-
-#Enable ADB for factory test
-service enable_adb /system/bin/sh /system/bin/adbon.sh
-    class main
-    oneshot
-    disabled
-
-service info_setting /system/bin/info_setting
-    class core
-    oneshot
-    disabled
-
-service VerifyVouchers /system/bin/VerifyVouchers
-    class core
-    user root
-    oneshot
-    disabled

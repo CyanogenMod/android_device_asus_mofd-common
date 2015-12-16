@@ -1,14 +1,20 @@
+# Bluetooth
 type bluetooth_control, dev_type;
+type bluetooth_config_file, file_type, data_file_type;
+type bluetooth_device, dev_type;
 
-type sysfs_thermal_writable, fs_type, sysfs_type;
+# Display
+type sysfs_touchscreen, fs_type, sysfs_type;
 
-type config_file, file_type, data_file_type;
-type bt_device, dev_type;
-
-type sysfs_coretemp, fs_type, sysfs_type;
-
-# sensorhubd
+# Sensorhubd
 type sensorhubd_socket, file_type;
 type i2c_device, dev_type;
 type sysfs_hwmon_control, sysfs_type;
 type sysfs_gpio_value, sysfs_type;
+
+# Thermal
+type sysfs_coretemp, fs_type, sysfs_type;
+type sysfs_thermal_writable, fs_type, sysfs_type;
+
+# WiFi
+type wifi_config_file, file_type, data_file_type;
