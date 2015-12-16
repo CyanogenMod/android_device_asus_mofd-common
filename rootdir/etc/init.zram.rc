@@ -1,4 +1,4 @@
-service config-zram /system/bin/sh /system/etc/init.zram.sh
+service config-zram /system/bin/init.zram.sh
     class late_start
     oneshot
 
