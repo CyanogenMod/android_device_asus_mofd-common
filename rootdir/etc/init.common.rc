@@ -183,6 +183,8 @@ service pvrsrvctl /system/vendor/bin/pvrsrvctl --no-module --start
 service charger_app /charger
     class charger
     user root
+    seclabel u:r:healthd:s0
+
 # For log uploader by qinghua_liu@asus.com
 service logbackup /system/bin/sh /system/etc/packlogs.sh
     class late_start

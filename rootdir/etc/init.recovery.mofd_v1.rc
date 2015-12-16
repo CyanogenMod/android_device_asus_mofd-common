@@ -33,14 +33,17 @@ on property:sys.usb.config=adb
 
 service intel_prop /sbin/intel_prop
     oneshot
+    seclabel u:r:asus_config_exec:s0
 
 # copied from common/init.watchdogd.rc
 service watchdogd /sbin/watchdogd 60 20
     oneshot
+    seclabel u:r:watchdogd:s0
 
 service thermald /sbin/thermald ROS
     class core
     user root
+    seclabel u:r:healthd:s0
 
 # Reset the watchdog counter once boot is completed
 on property:init.svc.recovery=running
