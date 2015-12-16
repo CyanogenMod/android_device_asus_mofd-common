@@ -1,6 +1,12 @@
-#============= gpsd ==============
-allow gpsd property_socket:sock_file rw_file_perms;
-allow gpsd init:unix_stream_socket connectto;
-use_keystore(gpsd)
+allow gpsd radio_device:chr_file rw_file_perms;
+unix_socket_connect(gpsd, property, init);
+unix_socket_connect(gpsd, rild, rild);
+allow gpsd rild_socket:sock_file rw_file_perms;
+# Do I still need binder_use with the binder_call?
 binder_use(gpsd)
+# Do I need this either?
+binder_call(gpsd, system_server)
+# Use sockets provided by system_server via binder or local socket.
+allow appdomain system_server:unix_stream_socket { read write setopt getattr getopt shutdown };
+
 wakelock_use(gpsd)
