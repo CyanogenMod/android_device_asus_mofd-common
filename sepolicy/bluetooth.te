@@ -1,1 +1,4 @@
+type bluetooth_exec, exec_type, file_type;
+domain_auto_trans(init, bluetooth_exec, bluetooth)
+
 allow bluetooth bluetooth_control:chr_file { rw_file_perms };

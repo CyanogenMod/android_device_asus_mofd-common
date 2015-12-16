@@ -5,3 +5,4 @@ on fs
 service config_init /system/bin/sh /config_init.sh
     disabled
     oneshot
+    seclabel u:r:asus_config:s0

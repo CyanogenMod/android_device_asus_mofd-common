@@ -1,1 +1,8 @@
 persist.hdmi.				u:object_r:hdmi_prop:s0
+persist.sys.mmgr1.                      u:object_r:radio_prop:s0
+persist.sys.mmgr2.                      u:object_r:radio_prop:s0
+AudioComms.                             u:object_r:audio_prop:s0
+media.camera.                           u:object_r:camera_prop:s0
+service.amtl1.cfg                       u:object_r:radio_prop:s0
+service.amtl2.cfg                       u:object_r:radio_prop:s0
+sys.usb.modemevt                        u:object_r:radio_prop:s0

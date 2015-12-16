@@ -327,6 +327,7 @@ bin/nvm_server
 bin/sensorhubd
 bin/mmgr
 bin/logcontrol
+bin/intel_prop
 
 # Firmware
 # *** THIS iS A DUMP OF ALL FILES IN /system/etc/firmware
