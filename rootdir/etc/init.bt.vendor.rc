@@ -12,7 +12,8 @@ on post-fs
 on early-boot
     chmod 0644 /config/bt/bd_addr.conf
 
-service rfkill_bt /system/bin/sh /rfkill_bt.sh
+service rfkill_bt /system/bin/rfkill_bt.sh
     class core
     user root
     oneshot
+    seclabel u:r:bluetooth:s0

@@ -1,5 +1,13 @@
-# TODO: investigate cause of this
-allow mediaserver graphics_device:dir search;
-allow mediaserver tty_device:chr_file { getattr ioctl open read write };
-binder_use(mediaserver)
+allow mediaserver media_efs_file:file r_file_perms;
+allow mediaserver media_rw_data_file:dir rw_dir_perms;
+allow mediaserver media_rw_data_file:file { create_file_perms rw_file_perms };
+allow mediaserver radio_device:chr_file rw_file_perms;
+
+# This is evil but we cannot constrain it anymore than
+# "any system_file" because the domain rules in external/sepolicy.
+allow mediaserver system_file:file execmod;
+
+set_prop(mediaserver, camera_prop)
+
+unix_socket_connect(mediaserver, rild, rild)
 wakelock_use(mediaserver)
