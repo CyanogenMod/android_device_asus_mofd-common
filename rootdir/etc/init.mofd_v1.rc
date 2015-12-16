@@ -235,6 +235,7 @@ service sl_si_service /system/bin/sl_si_service d=1
     user system
     group system
     socket silentlake stream 666 system system
+    seclabel u:r:silentlake:s0
     disabled
     oneshot
 
@@ -332,10 +333,6 @@ service dhcpcd_eth0 /system/bin/dhcpcd -ABDKL -f/system/etc/dhcpcd/dhcpcd.conf
 service iprenew_eth0 /system/bin/dhcpcd -n
     class main
     disabled
-    oneshot
-
-service cdrom /system/bin/sh /system/etc/init.cdrom.sh
-    class main
     oneshot
 
 # From init.rc in stock, these redefine service definitions

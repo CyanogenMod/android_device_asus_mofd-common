@@ -6,3 +6,5 @@ allow init self:tcp_socket { write getopt create read connect };
 allow init proc:dir mounton;
 allow init binfmt_miscfs:file w_file_perms;
 allow init tmpfs:lnk_file create_file_perms;
+# Scary things happening in the ril blobs here...
+allow init radio_cache_file:file rw_file_perms;
