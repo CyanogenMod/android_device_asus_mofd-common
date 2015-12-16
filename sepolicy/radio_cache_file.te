@@ -1,0 +1,1 @@
+allow radio_cache_file labeledfs:filesystem associate;

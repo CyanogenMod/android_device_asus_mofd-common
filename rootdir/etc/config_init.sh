@@ -1,3 +1,4 @@
+#!/system/bin/sh
 # software configuration related boot actions
 #please sync to RF BAND
 FULL_BAND=8
