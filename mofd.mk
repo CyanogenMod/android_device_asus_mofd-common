@@ -277,6 +277,9 @@ PRODUCT_PACKAGES += \
     wpa_supplicant \
     wpa_supplicant.conf
 
+PRODUCT_COPY_FILES += \
+    device/asus/mofd-common/configs/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf
+
 $(call inherit-product-if-exists, vendor/asus/mofd-common/mofd-common-vendor.mk)
 
 # stlport required for our LP blobs
