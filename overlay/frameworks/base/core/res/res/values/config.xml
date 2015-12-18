@@ -360,4 +360,13 @@
          PDP_FAIL_REGULAR_DEACTIVATION/0x24 -->
     <bool name="config_restart_radio_on_pdp_fail_regular_deactivation">true</bool>
 
+    <!-- Doze -->
+    <string name="config_dozeComponent">com.android.systemui/com.android.systemui.doze.DozeService</string>
+    <integer name="config_screenBrightnessDoze">10</integer>
+    <!--bool name="config_dozeAfterScreenOff">true</bool-->
+
+    <!-- we want these but they cause issues with screen statte at times, kenel may need adapting to utilize -->
+    <bool name="config_powerDecoupleInteractiveModeFromDisplay">true</bool>
+    <!--bool name="config_powerDecoupleAutoSuspendModeFromDisplay">true</bool-->
+
 </resources>
