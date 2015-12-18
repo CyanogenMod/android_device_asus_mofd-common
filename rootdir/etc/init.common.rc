@@ -86,6 +86,7 @@ on post-fs
     chown system system /sys/devices/system/cpu/cpufreq/interactive/timer_rate
     chown system system /sys/devices/system/cpu/cpufreq/interactive/go_hispeed_load
     chown system system /sys/devices/system/cpu/cpufreq/interactive/boostpulse
+    chown system system /sys/devices/system/cpu/cpufreq/interactive/hispeed_freq
     chown system system /sys/devices/system/cpu/cpufreq/interactive/touchboostpulse
     chown system system /sys/devices/system/cpu/cpufreq/interactive/touchboostpulse_duration
     chown system system /sys/devices/system/cpu/cpufreq/interactive/touchboost_freq
