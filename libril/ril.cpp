@@ -2452,7 +2452,13 @@ static int responseDataCallListV6(Parcel &p, void *response, size_t responselen)
     startResponse;
     int i;
     for (i = 0; i < num; i++) {
-        p.writeInt32((int)p_cur[i].status);
+        // p_cur[i].status appears to be a short that was memcpy'ed into the bytes
+        // of an int.  Undo that by turning it into a short and then the proper
+        // type promotion back to an int.
+        short short_status = p_cur[i].status;
+        int status = short_status;
+
+        p.writeInt32(status);
         p.writeInt32(p_cur[i].suggestedRetryTime);
         p.writeInt32(p_cur[i].cid);
         p.writeInt32(p_cur[i].active);
@@ -2462,7 +2468,7 @@ static int responseDataCallListV6(Parcel &p, void *response, size_t responselen)
         writeStringToParcel(p, p_cur[i].dnses);
         writeStringToParcel(p, p_cur[i].gateways);
         appendPrintBuf("%s[status=%d,retry=%d,cid=%d,%s,%s,%s,%s,%s,%s],", printBuf,
-            p_cur[i].status,
+            status,
             p_cur[i].suggestedRetryTime,
             p_cur[i].cid,
             (p_cur[i].active==0)?"down":"up",
