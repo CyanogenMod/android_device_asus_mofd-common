@@ -2452,7 +2452,10 @@ static int responseDataCallListV6(Parcel &p, void *response, size_t responselen)
     startResponse;
     int i;
     for (i = 0; i < num; i++) {
-        p.writeInt32((int)p_cur[i].status);
+        short short_status = p_cur[i].status;
+        int status = short_status;
+
+        p.writeInt32(status);
         p.writeInt32(p_cur[i].suggestedRetryTime);
         p.writeInt32(p_cur[i].cid);
         p.writeInt32(p_cur[i].active);
