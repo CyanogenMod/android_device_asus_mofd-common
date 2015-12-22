@@ -2429,6 +2429,10 @@ static int responseDataCallListV4(Parcel &p, void *response, size_t responselen)
     return 0;
 }
 
+static int is_valid_addr(const char *addr) {
+    return addr != NULL && strcmp(addr, "0.0.0.0") != 0 && strcmp(addr, "::") != 0;
+}
+
 static int responseDataCallListV6(Parcel &p, void *response, size_t responselen)
 {
     if (response == NULL && responselen != 0) {
@@ -2458,6 +2462,9 @@ static int responseDataCallListV6(Parcel &p, void *response, size_t responselen)
         short short_status = p_cur[i].status;
         int status = short_status;
 
+        if (status == 0 && ! is_valid_addr(p_cur[i].dnses)) {
+            status = PDP_FAIL_ACTIVATION_REJECT_UNSPECIFIED;
+        }
         p.writeInt32(status);
         p.writeInt32(p_cur[i].suggestedRetryTime);
         p.writeInt32(p_cur[i].cid);
