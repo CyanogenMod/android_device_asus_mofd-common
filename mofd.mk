@@ -225,6 +225,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libshim_sensors
 
+PRODUCT_COPY_FILES += \
+    device/asus/mofd-common/configs/sensor_hal_config_default.xml:system/etc/sensor_hal_config_default.xml
+
 # Thermal itux
 ENABLE_ITUXD := true
 PRODUCT_PACKAGES += \
