@@ -2443,6 +2443,10 @@ static int responseDataCallListV4(Parcel &p, void *response, size_t responselen)
     return 0;
 }
 
+static int is_valid_addr(const char *addr) {
+    return addr != NULL && strcmp(addr, "0.0.0.0") != 0 && strcmp(addr, "::") != 0;
+}
+
 static int responseDataCallListV6(Parcel &p, void *response, size_t responselen)
 {
     if (response == NULL && responselen != 0) {
@@ -2471,6 +2475,22 @@ static int responseDataCallListV6(Parcel &p, void *response, size_t responselen)
         // type promotion back to an int.
         short short_status = p_cur[i].status;
         int status = short_status;
+        #define MAX_DNS_FAILURES 3
+        static int n_dns_failures = 0;
+
+        if (status == 0 && ! is_valid_addr(p_cur[i].dnses)) {
+            n_dns_failures++;
+            RLOGD("responseDataCallListV6: DNS servers missing, n_dns_failures=%d", n_dns_failures);
+            if (n_dns_failures >= MAX_DNS_FAILURES) {
+                RLOGW("responseDataCallListV6: Too many DNS failures, trigger modem restart");
+                status = PDP_FAIL_REGULAR_DEACTIVATION;
+                n_dns_failures = 0;
+            } else {
+                status = PDP_FAIL_ACTIVATION_REJECT_UNSPECIFIED;
+            }
+        } else if (status == 0) {
+            n_dns_failures = 0;
+        }
 
         p.writeInt32(status);
         p.writeInt32(p_cur[i].suggestedRetryTime);
