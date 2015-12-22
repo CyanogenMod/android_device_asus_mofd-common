@@ -753,7 +753,6 @@ vendor/firmware/telephony/zx550ml_TW_726x.tlv
 vendor/firmware/telephony/zx550ml_WW_726x.tlv
 
 # Sensors
-etc/sensor_hal_config_default.xml
 lib/hw/sensors.mofd_v1.so
 lib/libcontextarbitor.so
 lib/libsensorhub.so
