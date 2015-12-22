@@ -107,6 +107,9 @@ BOARD_USES_VIDEO := true
 # enabled to carry out all drawing operations performed on a View's canvas with GPU for 2D rendering pipeline.
 USE_OPENGL_RENDERER := true
 
+# Disable an optimization that causes rendering issues for us
+TARGET_REQUIRES_SYNCHRONOUS_SETSURFACE := true
+
 # Init
 TARGET_IGNORE_RO_BOOT_SERIALNO := true
 
