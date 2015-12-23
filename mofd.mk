@@ -23,6 +23,10 @@ $(call inherit-product-if-exists, frameworks/native/build/phone-xxhdpi-2048-hwui
 DEVICE_PACKAGE_OVERLAYS := \
     device/asus/mofd-common/overlay
 
+# Art
+PRODUCT_PROPERTY_OVERRIDES += \
+    dalvik.vm.dex2oat-swap=false
+
 # Asus properties
 ADDITIONAL_DEFAULT_PROPERTIES += \
     ro.build.asus.sku=WW
