@@ -282,6 +282,7 @@ static int responseSMS(Parcel &p, void *response, size_t responselen);
 static int responseSIM_IO(Parcel &p, void *response, size_t responselen);
 static int responseCallForwards(Parcel &p, void *response, size_t responselen);
 static int responseDataCallList(Parcel &p, void *response, size_t responselen);
+static int responseRadioPower(Parcel &p, void *response, size_t responselen);
 static int responseSetupDataCall(Parcel &p, void *response, size_t responselen);
 static int responseRaw(Parcel &p, void *response, size_t responselen);
 static int responseSsn(Parcel &p, void *response, size_t responselen);
@@ -2040,11 +2041,15 @@ invalid:
     return;
 }
 
+static bool radio_is_on = false;
+
 static void dispatchRadioPower(Parcel &p, RequestInfo *pRI) {
     int status;
     int count;
     int is_on;
+    size_t parcelOffset;
 
+    parcelOffset = p.dataPosition();
     status = p.readInt32 (&count);
 
     if (status != NO_ERROR || count == 0) {
@@ -2057,13 +2062,10 @@ static void dispatchRadioPower(Parcel &p, RequestInfo *pRI) {
         return;
     }
 
-    RLOGI("dispatchRadioPower: Issuing local RADIO_POWER {%d}", is_on);
-    issueLocalRequest(RIL_REQUEST_RADIO_POWER, &is_on, sizeof(int), pRI->socket_id);
-    if (is_on) {
-        sleep(2);
-        RLOGI("dispatchRadioPower: Enabling NETWORK_SELECTION_AUTOMATIC");
-        issueLocalRequest(RIL_REQUEST_SET_NETWORK_SELECTION_AUTOMATIC, NULL, 0, pRI->socket_id);
-    }
+    radio_is_on = is_on;
+    p.setDataPosition(parcelOffset);
+
+    dispatchInts(p, pRI);
 }
 
 static int
@@ -2291,6 +2293,18 @@ static int responseVoid(Parcel &p, void *response, size_t responselen) {
     startResponse;
     removeLastChar;
     return 0;
+}
+
+static int responseRadioPower(Parcel &p, void *response, size_t responselen) {
+    if (radio_is_on) {
+        RLOGI("dispatchRadioPower: Enabling NETWORK_SELECTION_AUTOMATIC");
+#if SIM_COUNT >= 2
+#error "This code only works for single SIM"
+#else
+        issueLocalRequest(RIL_REQUEST_SET_NETWORK_SELECTION_AUTOMATIC, NULL, 0, RIL_SOCKET_1);
+#endif
+    }
+    return responseVoid(p, response, responselen);
 }
 
 static int responseCallList(Parcel &p, void *response, size_t responselen) {
@@ -4436,6 +4450,12 @@ checkAndDequeueRequestInfo(struct RequestInfo *pRI) {
     return ret;
 }
 
+static bool shouldCallResponseFunction(RequestInfo *pRI, void *response) {
+    if (pRI->pCI->requestNumber == RIL_REQUEST_RADIO_POWER) {
+        return true;
+    }
+    return response != NULL;
+}
 
 extern "C" void
 RIL_onRequestComplete(RIL_Token t, RIL_Errno e, void *response, size_t responselen) {
@@ -4492,7 +4512,7 @@ RIL_onRequestComplete(RIL_Token t, RIL_Errno e, void *response, size_t responsel
 
         p.writeInt32 (e);
 
-        if (response != NULL) {
+        if (shouldCallResponseFunction(pRI, response)) {
             // there is a response payload, no matter success or not.
             ret = pRI->pCI->responseFunction(p, response, responselen);
 
