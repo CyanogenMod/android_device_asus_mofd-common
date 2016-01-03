@@ -42,7 +42,7 @@ struct local_power_module {
 static int64_t last_touchboost;
 static char hispeed_freq[BUF_SIZE];
 
-static int sysfs_read(char *path, char buf[BUF_SIZE]) {
+static int sysfs_read(const char *path, char buf[BUF_SIZE]) {
     int len;
     int fd = open(path, O_RDONLY);
 
@@ -62,6 +62,12 @@ static int sysfs_read(char *path, char buf[BUF_SIZE]) {
 
     close(fd);
     return len;
+}
+
+static void sysfs_read_or_empty(const char *path, char buf[BUF_SIZE]) {
+    if (sysfs_read(path, buf) < 0) {
+         buf[0] = '\0';
+    }
 }
 
 static void sysfs_write(const char *path, const char *const s) {
@@ -84,15 +90,17 @@ static void sysfs_write(const char *path, const char *const s) {
     close(fd);
 }
 
+static void sysfs_write_unless_empty(const char *path, const char *const s) {
+    if (*s) {
+        sysfs_write(path, s);
+    }
+}
+
 void power_set_interactive(struct power_module *, int on) {
     if (on) {
-        if (hispeed_freq[0]) {
-             sysfs_write(HISPEED_FREQ_PATH, hispeed_freq);
-        }
+        sysfs_write_unless_empty(HISPEED_FREQ_PATH, hispeed_freq);
     } else {
-        if (sysfs_read(HISPEED_FREQ_PATH, hispeed_freq) < 0) {
-             hispeed_freq[0] = '\0';
-        }
+        sysfs_read_or_empty(HISPEED_FREQ_PATH, hispeed_freq);
         sysfs_write(HISPEED_FREQ_PATH, HISPEED_FREQ_OFF);
     }
 }
@@ -135,7 +143,7 @@ static struct hw_module_methods_t power_module_methods = {
     .open = NULL,
 };
 
-void set_feature(struct power_module *module, feature_t feature, int state)
+void set_feature(struct power_module *module __unused, feature_t feature, int state)
 {
     char tmp_str[BUF_SIZE];
 #ifdef TAP_TO_WAKE_NODE
@@ -148,7 +156,7 @@ void set_feature(struct power_module *module, feature_t feature, int state)
 
 struct local_power_module HAL_MODULE_INFO_SYM = {
     base: {
-        common: {
+       common: {
             tag: HARDWARE_MODULE_TAG,
             module_api_version: POWER_MODULE_API_VERSION_0_3,
             hal_api_version: HARDWARE_HAL_API_VERSION,
@@ -156,10 +164,13 @@ struct local_power_module HAL_MODULE_INFO_SYM = {
             name: "Mofd_v1 Power HAL",
             author: "The CyanogenMod Project",
             methods: &power_module_methods,
+            dso: 0,
+            reserved: {0},
         },
-       init: power_init,
-       setInteractive: power_set_interactive,
-       powerHint: power_hint,
-       setFeature: set_feature,
+        init: power_init,
+        setInteractive: power_set_interactive,
+        powerHint: power_hint,
+        setFeature: set_feature,
+        getFeature: 0,
     },
 };
