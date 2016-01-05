@@ -116,6 +116,7 @@ TARGET_IGNORE_RO_BOOT_SERIALNO := true
 # Inline kernel building
 TARGET_KERNEL_SOURCE := kernel/asus/moorefield
 TARGET_KERNEL_ARCH := x86_64
+TARGET_KERNEL_DEFCONFIG_ARCH := x86
 BOARD_KERNEL_IMAGE_NAME := bzImage
 TARGET_KERNEL_CONFIG := cyanogenmod_zenfone2_defconfig
 
