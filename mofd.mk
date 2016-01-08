@@ -56,7 +56,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PACKAGES += \
     bspcapability \
     camera.mofd_v1 \
-    libshim_camera
+    libshim_camera \
+    Snap
 
 # Charger
 PRODUCT_PACKAGES += \
