@@ -245,6 +245,9 @@ lib/libarcsoft_panorama_burstcapture.so
 lib/libarcsoft_sensorndk.so
 lib/libArcsoftStabilizer.so
 lib/libasfparser.so
+lib/libcamera_defocus.so
+lib/libcamera_pano.so
+lib/libcameraap.so
 lib/libcilkrts.so
 lib/libia_aiq.so
 lib/libia_cmc_parser.so
