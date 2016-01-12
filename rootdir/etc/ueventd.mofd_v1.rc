@@ -12,6 +12,7 @@
 /dev/ttyXMM0              0660   root       radio
 /dev/ttyIFX0              0660   root       radio
 /dev/ttyIFX1              0660   root       radio
+/dev/mdm_apcdmp0          0660   system     radio
 
 # Audience device to audio group
 /dev/audience_es305                     0770   audio      audio

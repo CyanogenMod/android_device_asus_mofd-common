@@ -200,6 +200,9 @@ on post-fs
 #For Quick Charge control
     chown system system /proc/smb1357_qc_disable
 
+#For Disable Charging control
+	chown system system /proc/smb1357_disable_chrg
+
 # Permissions for BCU sysfs interface and make generic path to access by apps
     chown system system /sys/devices/platform/bcove_bcu/camflash_ctrl
     symlink /sys/devices/platform/bcove_bcu /dev/bcu
