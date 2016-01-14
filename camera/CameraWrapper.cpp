@@ -298,6 +298,8 @@ char * camera_fixup_setparams(struct camera_device * device, const char * settin
     params.dump();
 #endif
 
+    params.set(android::CameraParameters::KEY_SUPPORTED_VIDEO_SIZES, "1920x1080,1280x960,1280x720,720x576,720x480,640x480,352x288,320x240,176x144");
+
     android::String8 strParams = params.flatten();
 
     if (fixed_set_params[id])
@@ -336,6 +338,8 @@ static char *camera_fixup_getparams(int id, const char *settings)
     ALOGI("%s: original parameters for camera %d:", __FUNCTION__, id);
     params.dump();
 #endif
+
+    params.set(android::CameraParameters::KEY_SUPPORTED_VIDEO_SIZES, "1920x1080,1280x960,1280x720,720x576,720x480,640x480,352x288,320x240,176x144");
 
     android::String8 strParams = params.flatten();
     char *ret = strdup(strParams.string());
