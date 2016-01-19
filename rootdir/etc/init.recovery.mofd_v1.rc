@@ -18,17 +18,24 @@ on init
 on boot
     setprop sys.usb.config adb
     trigger firmware_mounts_complete
+    start customize
 
 on firmware_mounts_complete
     rm /dev/.booting
 
 on property:sys.usb.config=adb
     write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/iSerial ${ro.serialno}
     write /sys/class/android_usb/android0/idVendor 8087
     write /sys/class/android_usb/android0/idProduct 0a5d
     write /sys/class/android_usb/android0/iProduct "Android-Phone"
     write /sys/class/android_usb/android0/functions $sys.usb.config
     write /sys/class/android_usb/android0/enable 1
+
+service customize /sbin/customize_service
+    class core
+    user root
+    oneshot
 
 service intel_prop /sbin/intel_prop
     oneshot
