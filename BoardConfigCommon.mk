@@ -112,6 +112,8 @@ TARGET_REQUIRES_SYNCHRONOUS_SETSURFACE := true
 
 # Init
 TARGET_IGNORE_RO_BOOT_SERIALNO := true
+TARGET_INIT_VENDOR_LIB := libinit_mofd
+TARGET_LIBINIT_DEFINES_FILE := device/asus/mofd-common/init/init_mofd.cpp
 
 # Inline kernel building
 TARGET_KERNEL_SOURCE := kernel/asus/moorefield
@@ -169,7 +171,7 @@ BOARD_CANT_BUILD_RECOVERY_FROM_BOOT_PATCH := true
 TARGET_RECOVERY_PIXEL_FORMAT := "BGRA_8888"
 COMMON_GLOBAL_CFLAGS += -DNO_SECURE_DISCARD
 TARGET_RECOVERY_FSTAB := device/asus/mofd-common/rootdir/etc/fstab.mofd_v1
-TARGET_RECOVERY_DEVICE_MODULES := librecovery_updater_mofd
+TARGET_RECOVERY_DEVICE_MODULES := libinit_mofd librecovery_updater_mofd
 
 # Security
 BUILD_WITH_SECURITY_FRAMEWORK := chaabi_token
