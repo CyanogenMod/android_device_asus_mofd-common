@@ -111,7 +111,6 @@ USE_OPENGL_RENDERER := true
 TARGET_REQUIRES_SYNCHRONOUS_SETSURFACE := true
 
 # Init
-TARGET_IGNORE_RO_BOOT_SERIALNO := true
 TARGET_INIT_VENDOR_LIB := libinit_mofd
 TARGET_LIBINIT_DEFINES_FILE := device/asus/mofd-common/init/init_mofd.cpp
 
