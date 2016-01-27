@@ -180,10 +180,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libisv_omx_core
 
-# PowerHAL
-PRODUCT_PACKAGES += \
-    power.mofd_v1
-
 # Radio
 PRODUCT_PACKAGES += \
     libshim_mmgr \
