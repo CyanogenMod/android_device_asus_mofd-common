@@ -3,6 +3,9 @@
 ########################################################
 
 on post-fs
+    chmod 0660 /sys/class/rfkill/rfkill2/state
+    chown bluetooth net_bt_stack /sys/class/rfkill/rfkill2/state
+    chown bluetooth net_bt_stack /sys/class/rfkill/rfkill2/type
     mkdir /config/bt
     chown system bluetooth /config/bt
     chmod 0770 /config/bt
@@ -11,8 +14,3 @@ on post-fs
 
 on early-boot
     chmod 0644 /config/bt/bd_addr.conf
-
-service rfkill_bt /system/bin/sh /rfkill_bt.sh
-    class core
-    user root
-    oneshot

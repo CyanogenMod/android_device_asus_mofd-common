@@ -223,7 +223,6 @@ PRODUCT_PACKAGES += \
     init.zram.rc \
     intel_prop \
     intel_prop.cfg \
-    rfkill_bt.sh \
     thermald \
     ueventd.mofd_v1.rc
 
