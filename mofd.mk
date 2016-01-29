@@ -221,7 +221,6 @@ PRODUCT_PACKAGES += \
     init.wifi.rc \
     init.wifi.vendor.rc \
     init.zram.rc \
-    init.zram.sh \
     intel_prop \
     intel_prop.cfg \
     rfkill_bt.sh \
