@@ -124,10 +124,13 @@ public class KeyHandler implements DeviceKeyHandler {
                     "ProximityWakeLock");
         }
 
-        mVibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
+                mVibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
         if (mVibrator == null || !mVibrator.hasVibrator()) {
             mVibrator = null;
         }
+        
+        mCameraManager = (CameraManager) mContext.getSystemService(Context.CAMERA_SERVICE);
+        mCameraManager.registerTorchCallback(new MyTorchCallback(), mEventHandler);
 
     }
 
@@ -137,7 +140,7 @@ public class KeyHandler implements DeviceKeyHandler {
             if (!cameraId.equals(mRearCameraId))
                 return;
             mTorchEnabled = enabled;
-        }
+    }
 
         @Override
         public void onTorchModeUnavailable(String cameraId) {
@@ -147,29 +150,29 @@ public class KeyHandler implements DeviceKeyHandler {
         }
     }
 
+    private String getRearCameraId() {
+        if (mRearCameraId == null) {
+            try {
+                for (final String cameraId : mCameraManager.getCameraIdList()) {
+                    CameraCharacteristics characteristics =
+                            mCameraManager.getCameraCharacteristics(cameraId);
+                    int cOrientation = characteristics.get(CameraCharacteristics.LENS_FACING);
+                    if (cOrientation == CameraCharacteristics.LENS_FACING_BACK) {
+                        mRearCameraId = cameraId;
+                        break;
+                    }
+                }
+            } catch (CameraAccessException e) {
+                // Ignore
+            }
+        }
+        return mRearCameraId;
+    }
+
     private void ensureKeyguardManager() {
         if (mKeyguardManager == null) {
             mKeyguardManager =
                     (KeyguardManager) mContext.getSystemService(Context.KEYGUARD_SERVICE);
-        }
-    }
-
-    private void updateCameraService() {
-        mCameraManager = (CameraManager) mContext.getSystemService(Context.CAMERA_SERVICE);
-        mCameraManager.registerTorchCallback(new MyTorchCallback(), mEventHandler);
-        // Get first rear camera id
-        try {
-            for (final String cameraId : mCameraManager.getCameraIdList()) {
-                CameraCharacteristics characteristics =
-                        mCameraManager.getCameraCharacteristics(cameraId);
-                int cOrientation = characteristics.get(CameraCharacteristics.LENS_FACING);
-                if (cOrientation == CameraCharacteristics.LENS_FACING_BACK) {
-                    mRearCameraId = cameraId;
-                    break;
-                }
-            }
-        } catch (CameraAccessException e) {
-            // Ignore
         }
     }
 
@@ -251,13 +254,11 @@ public class KeyHandler implements DeviceKeyHandler {
                 break;
             case KEY_GESTURE_Z:
 
-                if (mRearCameraId == null) {
-                    updateCameraService();
-                }
-                if (mRearCameraId != null) {
+                String rearCameraId = getRearCameraId();
+                if (rearCameraId != null) {
                     mGestureWakeLock.acquire(GESTURE_WAKELOCK_DURATION);
                     try {
-                        mCameraManager.setTorchMode(mRearCameraId, !mTorchEnabled);
+                        mCameraManager.setTorchMode(rearCameraId, !mTorchEnabled);
                         mTorchEnabled = !mTorchEnabled;
                     } catch (CameraAccessException e) {
                         // Ignore
