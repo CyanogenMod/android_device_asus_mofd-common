@@ -93,11 +93,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 ADDITIONAL_DEFAULT_PROPERTIES += ro.dalvik.vm.native.bridge=libhoudini.so
 
-# Keyhandler
-PRODUCT_PACKAGES += \
-    CMActions \
-    com.cyanogenmod.keyhandler
-
 # Key layout files
 PRODUCT_COPY_FILES += \
     device/asus/mofd-common/keylayout/ASUS_TransKeyboard.kl:system/usr/keylayout/ASUS_TransKeyboard.kl \
