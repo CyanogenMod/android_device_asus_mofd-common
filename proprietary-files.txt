@@ -374,6 +374,7 @@ lib/libhoudini.so
 lib/hw/lights.mofd_v1.so:lib/hw/lights.vendor.mofd_v1.so
 
 # Media
+bin/intel_prop
 lib/libdx_cc7.so
 lib/libgabi++-mfx.so
 lib/libmdp_omx_core.so
