@@ -203,7 +203,7 @@ service ril-daemon1 /system/bin/rild -c 2
     user root
     group radio cache inet misc audio
 
-service modem-c_main-sh /system/bin/sh /init.class_main.sh
+service modem-c_main-sh /system/bin/init.class_main.sh
     class main
     user root
     oneshot
