@@ -164,7 +164,7 @@ on charger
 
     trigger firmware_mounts_complete
 
-service thermald /sbin/thermald
+service thermald /system/bin/thermald
     class core
     oneshot
     disabled
