@@ -266,7 +266,6 @@ lib/libifp.so
 lib/libimf.so
 lib/libintlc.so
 lib/libirng.so
-lib/libmixvbp.so
 lib/libmix_imagedecoder.so
 lib/libmix_imageencoder.so
 lib/libsvml.so
@@ -761,6 +760,9 @@ lib/hw/sensors.mofd_v1.so
 lib/libcontextarbitor.so
 lib/libsensorhub.so
 lib/libvirtualsensors.so
+
+# Thermal
+bin/thermald
 
 # WiFi
 etc/wifi/bcmdhd.cal
