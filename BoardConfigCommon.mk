@@ -171,6 +171,7 @@ TARGET_RECOVERY_PIXEL_FORMAT := "BGRA_8888"
 COMMON_GLOBAL_CFLAGS += -DNO_SECURE_DISCARD
 TARGET_RECOVERY_FSTAB := device/asus/mofd-common/rootdir/etc/fstab.mofd_v1
 TARGET_RECOVERY_DEVICE_MODULES := libinit_mofd librecovery_updater_mofd
+TARGET_RECOVERY_DEVICE_DIRS += device/asus/mofd-common
 
 # Security
 BUILD_WITH_SECURITY_FRAMEWORK := chaabi_token
