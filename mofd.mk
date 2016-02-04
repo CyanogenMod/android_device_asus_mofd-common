@@ -296,6 +296,12 @@ $(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/firmware/bcm4339
 # specific management of sep_policy.conf
 PRODUCT_COPY_FILES += \
     device/asus/mofd-common/sep_policy.conf:system/etc/security/sep_policy.conf
+    
+# tcmiface for tcm support
+ PRODUCT_PACKAGES += tcmiface
+ 
+ PRODUCT_BOOT_JARS += \
+     tcmiface
 
 # hardware optimizations
 #PRODUCT_PROPERTY_OVERRIDES += \
