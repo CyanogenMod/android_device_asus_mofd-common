@@ -141,9 +141,6 @@ on post-fs-data
 
 on property:sys.boot_completed=1
     start bcu_cpufreqrel
-    start info_setting
-    start enable_adb
-    start VerifyVouchers
 
 on charger
     #set properties in COS
@@ -167,7 +164,7 @@ on charger
 
     trigger firmware_mounts_complete
 
-service thermald /sbin/thermald
+service thermald /system/bin/thermald
     class core
     oneshot
     disabled
@@ -186,6 +183,8 @@ service pvrsrvctl /system/vendor/bin/pvrsrvctl --no-module --start
 service charger_app /charger
     class charger
     user root
+    seclabel u:r:healthd:s0
+
 # For log uploader by qinghua_liu@asus.com
 service logbackup /system/bin/sh /system/etc/packlogs.sh
     class late_start
@@ -230,20 +229,3 @@ on property:sys.shutdown.requested=1recovery
 
 on property:sys.shutdown.requested=1bootloader
     write /sys/devices/virtual/misc/watchdog/reboot_ongoing 1
-
-#Enable ADB for factory test
-service enable_adb /system/bin/sh /system/bin/adbon.sh
-    class main
-    oneshot
-    disabled
-
-service info_setting /system/bin/info_setting
-    class core
-    oneshot
-    disabled
-
-service VerifyVouchers /system/bin/VerifyVouchers
-    class core
-    user root
-    oneshot
-    disabled

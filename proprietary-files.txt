@@ -152,7 +152,21 @@ lib/arm/libwilhelm.so
 lib/arm/libz.so
 lib/arm/linker
 
+# Asus tools
+bin/bcu_cpufreqrel
+bin/fg_conf
+bin/sl_si_service
+bin/customize_service
+bin/logcontrol
+
 # Audio
+etc/firmware/aac_dec_1495.bin
+etc/firmware/audclass_lib_1495.bin
+etc/firmware/dfw_sst.bin
+etc/firmware/fw_sst_1495.bin
+etc/firmware/geq_lib_1495.bin
+etc/firmware/mp3_dec_1495.bin
+etc/firmware/vtsv_lib_1495.bin
 etc/tuning/audio/layout_probes.xml
 etc/tuning/audio/layout_topology.xml
 etc/tuning/audio/layout_types.xml
@@ -186,6 +200,7 @@ usr/share/alsa/alsa.conf
 vendor/etc/route_criteria.conf
 
 # Bluetooth
+bin/bd_prov
 vendor/lib/libbt-vendor.so
 
 # Camera
@@ -228,6 +243,7 @@ etc/firmware/isp_acc_multires_v2_css21_2401.bin
 etc/firmware/isp_acc_sce_em_css21_2401.bin
 etc/firmware/isp_acc_warping_v2_css21_2401.bin
 etc/firmware/isp_acc_warping_v2_em_css21_2401.bin
+etc/firmware/ov680_fw.bin
 etc/firmware/shisp_2401a0_legacy_v21.bin
 etc/firmware/shisp_2401a0_v21.bin
 lib/DataSet/ispDB/ParameterDB.db
@@ -266,7 +282,6 @@ lib/libifp.so
 lib/libimf.so
 lib/libintlc.so
 lib/libirng.so
-lib/libmixvbp.so
 lib/libmix_imagedecoder.so
 lib/libmix_imageencoder.so
 lib/libsvml.so
@@ -321,44 +336,11 @@ vendor/lib/egl/libGLESv1_CM_POWERVR_ROGUE.so
 vendor/lib/egl/libGLESv2_POWERVR_ROGUE.so
 vendor/lib/hw/gralloc.moorefield.so
 
-bin/bd_prov
-bin/bcu_cpufreqrel
-bin/fg_conf
-bin/sl_si_service
-bin/customize_service
-bin/nvm_server
-bin/sensorhubd
-bin/mmgr
-bin/logcontrol
-
-# Firmware
-# *** THIS iS A DUMP OF ALL FILES IN /system/etc/firmware
-# *** Before releasing this, we should move all firmware to appropriate
-#     sections (aka classify all of it) and delete all the things that
-#     we don't really need
-etc/firmware/aac_dec_1495.bin
-etc/firmware/audclass_lib_1495.bin
-etc/firmware/dfw_sst.bin
-etc/firmware/fw_sst_1495.bin
-etc/firmware/geq_lib_1495.bin
-etc/firmware/mp3_dec_1495.bin
-etc/firmware/msvdx.bin.prod
-etc/firmware/msvdx.bin.verf
-etc/firmware/ov680_fw.bin
-etc/firmware/psh.bin.0000.0000.0008.0008.0000.0002
-etc/firmware/psh.bin.0000.0000.0008.0008.0001.0000
-etc/firmware/psh.bin.0000.0000.0008.0008.0001.0001
-etc/firmware/psh.bin.0000.0000.0008.0008.0002.0001
-etc/firmware/psh.bin.zx550ml
+# Unknown Firmware
 etc/firmware/s3202_gff.img
 etc/firmware/s3202_ogs.img
 etc/firmware/s3400_cgs.img
 etc/firmware/s3400_igzo.img
-etc/firmware/topaz.bin.prod
-etc/firmware/topaz.bin.verf
-etc/firmware/vsp.bin.prod
-etc/firmware/vsp.bin.verf
-etc/firmware/vtsv_lib_1495.bin
 
 # GPS
 bin/gpsd
@@ -374,6 +356,13 @@ lib/libhoudini.so
 lib/hw/lights.mofd_v1.so:lib/hw/lights.vendor.mofd_v1.so
 
 # Media
+bin/intel_prop
+etc/firmware/msvdx.bin.prod
+etc/firmware/msvdx.bin.verf
+etc/firmware/topaz.bin.prod
+etc/firmware/topaz.bin.verf
+etc/firmware/vsp.bin.prod
+etc/firmware/vsp.bin.verf
 lib/libdx_cc7.so
 lib/libgabi++-mfx.so
 lib/libmdp_omx_core.so
@@ -392,6 +381,8 @@ lib/libsephdcp2x.so
 lib/libstlport-mfx.so
 
 # Radio
+bin/mmgr
+bin/nvm_server
 lib/libmcdr.so
 lib/libmmgrcli.so
 lib/libmmgr_cnx.so
@@ -756,10 +747,19 @@ vendor/firmware/telephony/zx550ml_TW_726x.tlv
 vendor/firmware/telephony/zx550ml_WW_726x.tlv
 
 # Sensors
+bin/sensorhubd
+etc/firmware/psh.bin.0000.0000.0008.0008.0000.0002
+etc/firmware/psh.bin.0000.0000.0008.0008.0001.0000
+etc/firmware/psh.bin.0000.0000.0008.0008.0001.0001
+etc/firmware/psh.bin.0000.0000.0008.0008.0002.0001
+etc/firmware/psh.bin.zx550ml
 lib/hw/sensors.mofd_v1.so
 lib/libcontextarbitor.so
 lib/libsensorhub.so
 lib/libvirtualsensors.so
+
+# Thermal
+bin/thermald
 
 # WiFi
 etc/wifi/bcmdhd.cal

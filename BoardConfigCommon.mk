@@ -122,7 +122,7 @@ TARGET_KERNEL_CONFIG := cyanogenmod_zenfone2_defconfig
 
 # Kernel cmdline
 BOARD_KERNEL_CMDLINE := init=/init pci=noearly loglevel=0 vmalloc=256M androidboot.hardware=mofd_v1 watchdog.watchdog_thresh=60 androidboot.spid=xxxx:xxxx:xxxx:xxxx:xxxx:xxxx androidboot.serialno=01234567890123456789 snd_pcm.maximum_substreams=8 ip=50.0.0.2:50.0.0.1::255.255.255.0::usb0:on debug_locks=0 n_gsm.mux_base_conf=\"ttyACM0,0 ttyXMM0,1\"
-BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
+#BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
 
 # Lights
 TARGET_PROVIDES_LIBLIGHT := true
@@ -171,7 +171,7 @@ BOARD_CANT_BUILD_RECOVERY_FROM_BOOT_PATCH := true
 TARGET_RECOVERY_PIXEL_FORMAT := "BGRA_8888"
 COMMON_GLOBAL_CFLAGS += -DNO_SECURE_DISCARD
 TARGET_RECOVERY_FSTAB := device/asus/mofd-common/rootdir/etc/fstab.mofd_v1
-TARGET_RECOVERY_DEVICE_MODULES := libinit_mofd librecovery_updater_mofd
+TARGET_RECOVERY_DEVICE_MODULES := libinit_mofd librecovery_updater_mofd intel_prop thermald
 
 # Security
 BUILD_WITH_SECURITY_FRAMEWORK := chaabi_token
