@@ -38,6 +38,7 @@ static android::Mutex gCameraWrapperLock;
 static camera_module_t *gVendorModule = 0;
 
 static char **fixed_set_params = NULL;
+static char **currentVideoSize = NULL;
 
 static int camera_device_open(const hw_module_t* module, const char* name,
                 hw_device_t** device);
@@ -285,9 +286,8 @@ int camera_cancel_picture(struct camera_device * device)
     return VENDOR_CALL(device, cancel_picture);
 }
 
-char * camera_fixup_setparams(struct camera_device * device, const char * settings)
+char * camera_fixup_setparams(struct camera_device *device, const char *settings, bool *previewNeedsRestart)
 {
-    int id = CAMERA_ID(device);
     android::CameraParameters params;
     params.unflatten(android::String8(settings));
 
@@ -296,19 +296,26 @@ char * camera_fixup_setparams(struct camera_device * device, const char * settin
     params.dump();
 #endif
 
-    android::String8 strParams = params.flatten();
-
-    if (fixed_set_params[id])
-        free(fixed_set_params[id]);
-    fixed_set_params[id] = strdup(strParams.string());
-    char *ret = fixed_set_params[id];
+    *previewNeedsRestart = false;
+    const char *videoSize = params.get(android::CameraParameters::KEY_VIDEO_SIZE);
+    if (videoSize != NULL) {
+        int id = CAMERA_ID(device);
+ALOGI("crpalmer: %d %s %s %d\n", id, currentVideoSize[id], videoSize, camera_preview_enabled(device));
+        if (!currentVideoSize[id] || strcmp(currentVideoSize[id], videoSize) != 0) {
+            if (currentVideoSize[id])
+                free(currentVideoSize[id]);
+            currentVideoSize[id] = strdup(videoSize);
+            *previewNeedsRestart = camera_preview_enabled(device);
+        }
+    }
 
 #ifdef LOG_PARAMETERS
     ALOGI("%s: fixed parameters for camera %d:", __FUNCTION__, CAMERA_ID(device));
     params.dump();
 #endif
 
-    return ret;
+    android::String8 strParams = params.flatten();
+    return strdup(strParams.string());
 }
 
 int camera_set_parameters(struct camera_device * device, const char *params)
@@ -319,9 +326,26 @@ int camera_set_parameters(struct camera_device * device, const char *params)
     ALOGI("%s->%08X->%08X", __FUNCTION__, (void*)device, (void*)(((wrapper_camera_device_t*)device)->vendor));
 
     char *tmp = NULL;
-    tmp = camera_fixup_setparams(device, params);
+    bool previewNeedsRestart;
+    tmp = camera_fixup_setparams(device, params, &previewNeedsRestart);
 
+    if (previewNeedsRestart) {
+        ALOGI("%s: restarting preview due to video-size change\n", __FUNCTION__);
+        camera_stop_preview(device);
+    }
     int ret = VENDOR_CALL(device, set_parameters, tmp);
+
+    if (!ret) {
+        int id = CAMERA_ID(device);
+        if (fixed_set_params[id])
+            free(fixed_set_params[id]);
+        fixed_set_params[id] = tmp;
+    } else
+        free(tmp);
+
+    if (previewNeedsRestart)
+        camera_start_preview(device);
+
     return ret;
 }
 
@@ -417,6 +441,8 @@ int camera_device_close(hw_device_t* device)
     for (int i = 0; i < camera_get_number_of_cameras(); i++) {
         if (fixed_set_params[i])
             free(fixed_set_params[i]);
+        if (currentVideoSize[i])
+            free(currentVideoSize[i]);
     }
 
     wrapper_dev = (wrapper_camera_device_t*) device;
@@ -472,7 +498,8 @@ int camera_device_open(const hw_module_t* module, const char* name,
         }
 
         fixed_set_params = (char **) malloc(sizeof(char *) * num_cameras);
-        if (!fixed_set_params) {
+        currentVideoSize = (char **) calloc(sizeof(char *), num_cameras);
+        if (!fixed_set_params || !currentVideoSize) {
             ALOGE("parameter memory allocation fail");
             rv = -ENOMEM;
             goto fail;
