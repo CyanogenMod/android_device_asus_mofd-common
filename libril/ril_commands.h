@@ -16,7 +16,7 @@
 */
     {0, NULL, NULL},                   //none
     {RIL_REQUEST_GET_SIM_STATUS, dispatchVoid, responseSimStatus},
-    {RIL_REQUEST_ENTER_SIM_PIN, dispatchStrings, responseInts},
+    {RIL_REQUEST_ENTER_SIM_PIN, dispatchStrings, responseEnterSimPin},
     {RIL_REQUEST_ENTER_SIM_PUK, dispatchStrings, responseInts},
     {RIL_REQUEST_ENTER_SIM_PIN2, dispatchStrings, responseInts},
     {RIL_REQUEST_ENTER_SIM_PUK2, dispatchStrings, responseInts},
