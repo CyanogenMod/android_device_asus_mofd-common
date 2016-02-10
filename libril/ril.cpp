@@ -282,6 +282,7 @@ static int responseSMS(Parcel &p, void *response, size_t responselen);
 static int responseSIM_IO(Parcel &p, void *response, size_t responselen);
 static int responseCallForwards(Parcel &p, void *response, size_t responselen);
 static int responseDataCallList(Parcel &p, void *response, size_t responselen);
+static int responseEnterSimPin(Parcel &p, void *response, size_t responselen);
 static int responseRadioPower(Parcel &p, void *response, size_t responselen);
 static int responseSetupDataCall(Parcel &p, void *response, size_t responselen);
 static int responseRaw(Parcel &p, void *response, size_t responselen);
@@ -2295,14 +2296,23 @@ static int responseVoid(Parcel &p, void *response, size_t responselen) {
     return 0;
 }
 
-static int responseRadioPower(Parcel &p, void *response, size_t responselen) {
-    if (radio_is_on) {
-        RLOGI("dispatchRadioPower: Enabling NETWORK_SELECTION_AUTOMATIC");
+static void enableNetworkSelectionAutomatic() {
+    RLOGI("Localy enabling NETWORK_SELECTION_AUTOMATIC");
 #if SIM_COUNT >= 2
 #error "This code only works for single SIM"
 #else
-        issueLocalRequest(RIL_REQUEST_SET_NETWORK_SELECTION_AUTOMATIC, NULL, 0, RIL_SOCKET_1);
+    issueLocalRequest(RIL_REQUEST_SET_NETWORK_SELECTION_AUTOMATIC, NULL, 0, RIL_SOCKET_1);
 #endif
+}
+
+static int responseEnterSimPin(Parcel &p, void *response, size_t responselen) {
+    enableNetworkSelectionAutomatic();
+    return responseInts(p, response, responselen);
+}
+
+static int responseRadioPower(Parcel &p, void *response, size_t responselen) {
+    if (radio_is_on) {
+        enableNetworkSelectionAutomatic();
     }
     return responseVoid(p, response, responselen);
 }
@@ -5029,6 +5039,7 @@ requestToString(int request) {
         case RIL_REQUEST_CDMA_SMS_ACKNOWLEDGE:return"CDMA_SMS_ACKNOWLEDGE";
         case RIL_REQUEST_GSM_GET_BROADCAST_SMS_CONFIG:return"GSM_GET_BROADCAST_SMS_CONFIG";
         case RIL_REQUEST_GSM_SET_BROADCAST_SMS_CONFIG:return"GSM_SET_BROADCAST_SMS_CONFIG";
+        case RIL_REQUEST_GSM_SMS_BROADCAST_ACTIVATION:return"RIL_REQUEST_GSM_SMS_BROADCAST_ACTIVATION";
         case RIL_REQUEST_CDMA_GET_BROADCAST_SMS_CONFIG:return "CDMA_GET_BROADCAST_SMS_CONFIG";
         case RIL_REQUEST_CDMA_SET_BROADCAST_SMS_CONFIG:return "CDMA_SET_BROADCAST_SMS_CONFIG";
         case RIL_REQUEST_CDMA_SMS_BROADCAST_ACTIVATION:return "CDMA_SMS_BROADCAST_ACTIVATION";
