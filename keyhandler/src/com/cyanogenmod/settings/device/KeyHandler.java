@@ -258,6 +258,12 @@ public class KeyHandler implements DeviceKeyHandler {
         }
     }
 
+    @Override
+    public boolean handleKeyEvent(KeyEvent event) {
+        return handleKeyEvent(event, null);
+    }
+
+    @Override
     public boolean handleKeyEvent(KeyEvent event, DeviceHandlerCallback callback) {
         boolean isKeySupported = ArrayUtils.contains(sSupportedGestures, event.getScanCode());
         if (isKeySupported && !mEventHandler.hasMessages(GESTURE_REQUEST)) {
