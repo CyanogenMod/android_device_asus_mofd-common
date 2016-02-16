@@ -8,6 +8,9 @@ type asus_config_file, file_type;
 type bluetooth_config_file, file_type, data_file_type;
 type bluetooth_device, dev_type;
 
+# Crypto
+type crypto_file, file_type;
+
 # Display
 type sysfs_touchscreen, fs_type, sysfs_type;
 
