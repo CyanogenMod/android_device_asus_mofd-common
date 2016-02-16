@@ -69,6 +69,7 @@
 
 # Factory
 /factory(/.*)?                  	u:object_r:factory_file:s0
+/factory/userdata_footer                u:object_r:crypto_file:s0
 
 # GPS
 /dev/ttyMFD2                            u:object_r:gps_device:s0
