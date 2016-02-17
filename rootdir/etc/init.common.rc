@@ -1,7 +1,6 @@
 import /init.watchdog.rc
 import /init.firmware.rc
 import /init.power.mofd_v1.rc
-import /init.readahead.rc
 import /init.zram.rc
 
 on early-init
