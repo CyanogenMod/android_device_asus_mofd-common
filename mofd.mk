@@ -215,7 +215,6 @@ PRODUCT_PACKAGES += \
     init.nfc.rc \
     init.platform.usb.rc \
     init.power.mofd_v1.rc \
-    init.readahead.rc \
     init.recovery.mofd_v1.rc \
     init.watchdog.rc \
     init.wifi.rc \
