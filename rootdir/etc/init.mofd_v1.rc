@@ -227,6 +227,9 @@ on post-fs
 # Permissions for Touch Cover Mode
     chown system system /sys/bus/i2c/devices/i2c-7/7-0038/ftscovermode
 
+# Permissions for keydisabler
+    chown root system /sys/bus/i2c/devices/i2c-7/7-0038/ftskeypadenable
+
 # Permissions for Sdcard Power Node
 	chown system system /proc/asus_sd_power
 
