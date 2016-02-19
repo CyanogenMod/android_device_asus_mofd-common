@@ -17,11 +17,11 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <!-- Gesture shortcuts -->
-    <string name="screen_gestures_panel_title">Gesture shortcuts</string>
-    <string name="screen_gestures_panel_summary">Use gestures while the screen is off</string>
+    <string name="screen_gestures_panel_title">Gestures</string>
 
-    <string name="touchscreen_control_gesture_title">Enable Gestures</string>
-    <string name="gesture_category_title">Available Gestures</string>
+    <string name="touchscreen_control_gesture_title">Enable gestures</string>
+
+    <string name="gesture_category_title">Available gestures</string>
     <string name="touchscreen_c_gesture_title">Camera</string>
     <string name="touchscreen_c_gesture_summary">Draw a \"C\" to activate Camera</string>
     <string name="touchscreen_e_gesture_title">Email</string>
@@ -30,7 +30,7 @@
     <string name="touchscreen_s_gesture_summary">Draw a \"S\" to activate Messaging</string>
     <string name="touchscreen_v_gesture_title">Phone</string>
     <string name="touchscreen_v_gesture_summary">Draw a \"V\" to activate Phone</string>
-    <string name="touchscreen_w_gesture_title">Web Browser</string>
+    <string name="touchscreen_w_gesture_title">Browser</string>
     <string name="touchscreen_w_gesture_summary">Draw a \"W\" to activate Web Search</string>
     <string name="touchscreen_z_gesture_title">Flashlight</string>
     <string name="touchscreen_z_gesture_summary">Draw a \"Z\" to activate Flashlight</string>
