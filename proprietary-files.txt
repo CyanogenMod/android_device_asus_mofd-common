@@ -199,6 +199,27 @@ lib/soundfx/liblpepreprocessing.so
 usr/share/alsa/alsa.conf
 vendor/etc/route_criteria.conf
 
+# Aware
+-app/AwareResource/AwareResource.apk
+etc/permissions/com.intel.aware.awareservice.xml
+-framework/com.intel.aware.awareservice.jar
+lib/hw/aware.primary.moorefield.so
+lib/libawarenativehelperjni.so
+lib/libawareservicejni.so
+vendor/intel/aware/GestureModel/GesturePipelineParams.txt
+vendor/intel/aware/GestureModel/MovementDetection_Backward.txt
+vendor/intel/aware/GestureModel/MovementDetection_Forward.txt
+vendor/intel/aware/GestureModel/TemplateMatching.txt
+vendor/intel/aware/GestureModel/am/feat.params
+vendor/intel/aware/GestureModel/am/mdef
+vendor/intel/aware/GestureModel/am/means
+vendor/intel/aware/GestureModel/am/mixture_weights
+vendor/intel/aware/GestureModel/am/noisedict
+vendor/intel/aware/GestureModel/am/transition_matrices
+vendor/intel/aware/GestureModel/am/variances
+vendor/intel/aware/GestureModel/lm/dict
+vendor/intel/aware/GestureModel/lm/grammar
+
 # Bluetooth
 bin/bd_prov
 vendor/lib/libbt-vendor.so
