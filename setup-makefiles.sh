@@ -149,6 +149,10 @@ done
 
 # Pick up overlay for features that depend on non-open-source files
 
+PRODUCT_PACKAGES += \\
+    AwareResource \\
+    com.intel.aware.awareservice
+
 \$(call inherit-product, vendor/$VENDOR/$DEVICE/$DEVICE-vendor-blobs.mk)
 EOF
 
@@ -191,6 +195,26 @@ EOF
 LOCAL_PATH := \$(call my-dir)
 
 ifneq (\$(filter Z008 Z00A,\$(TARGET_DEVICE)),)
+
+include \$(CLEAR_VARS)
+LOCAL_MODULE := AwareResource
+LOCAL_MODULE_OWNER := $VENDOR
+LOCAL_SRC_FILES := proprietary/app/AwareResource/AwareResource.apk
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_SUFFIX := \$(COMMON_ANDROID_PACKAGE_SUFFIX)
+LOCAL_MODULE_CLASS := APPS
+LOCAL_CERTIFICATE := platform
+include \$(BUILD_PREBUILT)
+
+include \$(CLEAR_VARS)
+LOCAL_MODULE := com.intel.aware.awareservice
+LOCAL_MODULE_OWNER := $VENDOR
+LOCAL_SRC_FILES := proprietary/framework/com.intel.aware.awareservice.jar
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_SUFFIX := \$(COMMON_JAVA_PACKAGE_SUFFIX)
+LOCAL_MODULE_CLASS := JAVA_LIBRARIES
+LOCAL_CERTIFICATE := PRESIGNED
+include \$(BUILD_PREBUILT)
 
 include \$(CLEAR_VARS)
 LOCAL_MODULE := intel_prop
