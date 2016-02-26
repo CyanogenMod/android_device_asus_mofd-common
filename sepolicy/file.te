@@ -14,6 +14,9 @@ type sysfs_touchscreen, fs_type, sysfs_type;
 # Factory
 type factory_file, file_type, data_file_type;
 
+# Houdini
+type cpuinfo_file, file_type;
+
 # Media
 type media_efs_file, file_type;
 
