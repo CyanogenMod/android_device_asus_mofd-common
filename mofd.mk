@@ -157,7 +157,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libwrs_omxil_common \
     libwrs_omxil_core_pvwrapped \
-    libOMXVideoDecoderAVC \
     libOMXVideoDecoderH263 \
     libOMXVideoDecoderMPEG4 \
     libOMXVideoDecoderWMV \
@@ -165,7 +164,6 @@ PRODUCT_PACKAGES += \
     libOMXVideoDecoderMPEG2 \
     libOMXVideoDecoderVP9HWR \
     libOMXVideoDecoderVP9Hybrid \
-    libOMXVideoEncoderAVC \
     libOMXVideoEncoderH263 \
     libOMXVideoEncoderMPEG4 \
     libOMXVideoEncoderVP8
@@ -209,7 +207,6 @@ PRODUCT_PACKAGES += \
     init.nfc.rc \
     init.platform.usb.rc \
     init.power.mofd_v1.rc \
-    init.readahead.rc \
     init.recovery.mofd_v1.rc \
     init.watchdog.rc \
     init.wifi.rc \

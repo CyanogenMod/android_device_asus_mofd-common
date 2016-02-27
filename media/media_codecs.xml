@@ -161,6 +161,9 @@ Only the three quirks included above are recognized at this point:
     </Decoders>
 
     <Encoders>
+<!-- Removed until we can fix problems related to using it (if ever).
+     Currently these include screen casting to a nexus player and
+     videos recorded with snapchat (at a minimim).
         <MediaCodec name="OMX.Intel.VideoEncoder.AVC" type="video/avc" >
             <Quirk name="requires-allocate-on-input-ports" />
             <Limit name="size" min="176x144" max="1920x1088" />
@@ -170,6 +173,7 @@ Only the three quirks included above are recognized at this point:
             <Limit name="bitrate" range="1-50000000" />
             <Limit name="concurrent-instances" max="5" />
         </MediaCodec>
+-->
         <MediaCodec name="OMX.Intel.VideoEncoder.VP8" type="video/x-vnd.on2.vp8" >
             <Quirk name="requires-allocate-on-input-ports" />
             <Limit name="size" min="176x144" max="1920x1088" />
