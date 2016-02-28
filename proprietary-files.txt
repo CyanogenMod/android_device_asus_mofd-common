@@ -158,6 +158,7 @@ bin/fg_conf
 bin/sl_si_service
 bin/customize_service
 bin/logcontrol
+etc/permissions/asus.software.zenui.xml
 
 # Audio
 etc/firmware/aac_dec_1495.bin
