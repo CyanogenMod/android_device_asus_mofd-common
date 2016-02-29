@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015-2016 The CyanogenMod Project
+ * Copyright (C) 2015 The CyanogenMod Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,52 +20,26 @@ import com.android.internal.util.cm.ScreenType;
 
 import android.app.ActionBar;
 import android.os.Bundle;
-import android.preference.Preference;
-import android.preference.Preference.OnPreferenceChangeListener;
+import android.provider.Settings;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceCategory;
-import android.preference.SwitchPreference;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import cyanogenmod.providers.CMSettings;
-
-import org.cyanogenmod.internal.util.ScreenType;
-
-public class TouchscreenGestureSettings extends PreferenceActivity implements OnPreferenceChangeListener {
+public class TouchscreenGestureSettings extends PreferenceActivity {
     public static final String CATEGORY_GESTURES = "category_gestures";
-    private static final String KEY_HAPTIC_FEEDBACK = "touchscreen_gesture_haptic_feedback";
-
     public static PreferenceCategory gestureCat;
-    private SwitchPreference mHapticFeedback;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.touchscreen_panel);
-
-        mHapticFeedback = (SwitchPreference) findPreference(KEY_HAPTIC_FEEDBACK);
-        mHapticFeedback.setOnPreferenceChangeListener(this);
-
         gestureCat = (PreferenceCategory) findPreference(CATEGORY_GESTURES);
         if (gestureCat != null) {
             gestureCat.setEnabled(CMActionsSettings.areGesturesEnabled());
         }
         final ActionBar actionBar = getActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
-    }
-
-    @Override
-    public boolean onPreferenceChange(Preference preference, Object newValue) {
-        final String key = preference.getKey();
-        if (KEY_HAPTIC_FEEDBACK.equals(key)) {
-            final boolean value = (Boolean) newValue;
-            CMSettings.System.putInt(getContentResolver(),
-                    CMSettings.System.TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK, value ? 1 : 0);
-            return true;
-        }
-
-        return false;
     }
 
     @Override
@@ -76,9 +50,6 @@ public class TouchscreenGestureSettings extends PreferenceActivity implements On
         if (gestureCat != null) {
             gestureCat.setEnabled(CMActionsSettings.areGesturesEnabled());
         }
-
-        mHapticFeedback.setChecked(CMSettings.System.getInt(getContentResolver(),
-                CMSettings.System.TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK, 1) != 0);
 
         // If running on a phone, remove padding around the listview
         if (!ScreenType.isTablet(this)) {
