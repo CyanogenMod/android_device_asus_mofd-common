@@ -206,6 +206,9 @@ public class KeyHandler implements DeviceKeyHandler {
                 mGestureWakeLock.acquire(GESTURE_WAKELOCK_DURATION);
 
 
+
+
+
                 if (mKeyguardManager.isKeyguardSecure() && mKeyguardManager.isKeyguardLocked()) {
                     action = MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA_SECURE;
                 } else {
@@ -218,12 +221,14 @@ public class KeyHandler implements DeviceKeyHandler {
                 startActivitySafely(c_intent);
                 doHapticFeedback();
 
+
                 Intent c_intent = new Intent(cyanogenmod.content.Intent.ACTION_SCREEN_CAMERA_GESTURE);
                 mContext.sendBroadcast(c_intent, Manifest.permission.STATUS_BAR_SERVICE);
 
 
                 Intent intent = new Intent(cyanogenmod.content.Intent.ACTION_SCREEN_CAMERA_GESTURE);
                 mContext.sendBroadcast(intent, Manifest.permission.STATUS_BAR_SERVICE);
+
 
                 break;
             case KEY_GESTURE_E:
@@ -301,9 +306,13 @@ public class KeyHandler implements DeviceKeyHandler {
     }
 
 
+
     public boolean handleKeyEvent(KeyEvent event) {
 
     public boolean handleKeyEvent(KeyEvent event, DeviceHandlerCallback callback) {
+
+
+    public boolean handleKeyEvent(KeyEvent event) {
 
         boolean isKeySupported = ArrayUtils.contains(sSupportedGestures, event.getScanCode());
 
@@ -324,9 +333,13 @@ public class KeyHandler implements DeviceKeyHandler {
                 return true;
             }
 
+
             Message msg = getMessageForKeyEvent(event);
 
             Message msg = getMessageForKeyEvent(event.getScanCode());
+
+
+            Message msg = getMessageForKeyEvent(event);
 
 
             Message msg = getMessageForKeyEvent(event);
