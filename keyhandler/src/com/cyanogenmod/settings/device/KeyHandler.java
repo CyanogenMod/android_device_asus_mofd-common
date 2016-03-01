@@ -47,11 +47,17 @@ import android.provider.Settings.Global;
 import android.provider.Settings.Secure;
 import android.util.Log;
 import android.view.KeyEvent;
+
 import android.view.WindowManagerGlobal;
 
 import com.android.internal.R;
 import com.android.internal.os.DeviceKeyHandler;
 import com.android.internal.util.ArrayUtils;
+
+import com.android.internal.os.DeviceKeyHandler;
+import com.android.internal.util.ArrayUtils;
+import cyanogenmod.providers.CMSettings;
+
 
 public class KeyHandler implements DeviceKeyHandler {
 
@@ -61,9 +67,11 @@ public class KeyHandler implements DeviceKeyHandler {
     private static final String KEY_GESTURE_HAPTIC_FEEDBACK =
             "touchscreen_gesture_haptic_feedback";
 
+
     private static final String ACTION_DISMISS_KEYGUARD =
             "com.android.keyguard.action.DISMISS_KEYGUARD_SECURELY";
     public static final String SMS_DEFAULT_APPLICATION = "sms_default_application";
+
 
     // Supported scancodes
     private static final int KEY_GESTURE_DOUBLECLICK = 256;
@@ -180,6 +188,7 @@ public class KeyHandler implements DeviceKeyHandler {
             case KEY_GESTURE_C:
                 ensureKeyguardManager();
                 mGestureWakeLock.acquire(GESTURE_WAKELOCK_DURATION);
+
                 if (mKeyguardManager.isKeyguardSecure() && mKeyguardManager.isKeyguardLocked()) {
                     action = MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA_SECURE;
                 } else {
@@ -191,6 +200,10 @@ public class KeyHandler implements DeviceKeyHandler {
                 Intent c_intent = new Intent(action, null);
                 startActivitySafely(c_intent);
                 doHapticFeedback();
+
+                Intent c_intent = new Intent(cyanogenmod.content.Intent.ACTION_SCREEN_CAMERA_GESTURE);
+                mContext.sendBroadcast(c_intent, Manifest.permission.STATUS_BAR_SERVICE);
+
                 break;
             case KEY_GESTURE_E:
                 ensureKeyguardManager();

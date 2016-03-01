@@ -19,12 +19,16 @@ package com.cyanogenmod.settings.device;
 import com.android.internal.util.cm.ScreenType;
 
 import android.app.ActionBar;
+
+import org.cyanogenmod.internal.util.ScreenType;
+
 import android.os.Bundle;
 import android.provider.Settings;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceCategory;
 import android.view.Menu;
 import android.view.MenuItem;
+
 
 
 public class TouchscreenGestureSettings extends PreferenceActivity {
@@ -36,17 +40,18 @@ import cyanogenmod.providers.CMSettings;
 import org.cyanogenmod.internal.util.ScreenType;
 
 public class TouchscreenGestureSettings extends PreferenceActivity implements OnPreferenceChangeListener {
-    public static final String CATEGORY_GESTURES = "category_gestures";
-    private static final String KEY_HAPTIC_FEEDBACK = "touchscreen_gesture_haptic_feedback";
 
+public class TouchscreenGestureSettings extends PreferenceActivity {
+
+    public static final String CATEGORY_GESTURES = "category_gestures";
     public static PreferenceCategory gestureCat;
-    private SwitchPreference mHapticFeedback;
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.touchscreen_panel);
+
 
         gestureCat = (PreferenceCategory) findPreference(CATEGORY_GESTURES);
         if (gestureCat != null) {
@@ -56,6 +61,8 @@ public class TouchscreenGestureSettings extends PreferenceActivity implements On
 
         mHapticFeedback = (SwitchPreference) findPreference(KEY_HAPTIC_FEEDBACK);
         mHapticFeedback.setOnPreferenceChangeListener(this);
+
+
 
 
         gestureCat = (PreferenceCategory) findPreference(CATEGORY_GESTURES);
@@ -79,8 +86,10 @@ public class TouchscreenGestureSettings extends PreferenceActivity implements On
             gestureCat.setEnabled(CMActionsSettings.areGesturesEnabled());
         }
 
+
         mHapticFeedback.setChecked(CMSettings.System.getInt(getContentResolver(),
                 CMSettings.System.TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK, 1) != 0);
+
 
 
         // If running on a phone, remove padding around the listview
