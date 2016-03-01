@@ -34,12 +34,14 @@ public class CMActionsSettings {
     // Preference keys
     public static final String TOUCHSCREEN_GESTURE_CONTROL_KEY = "touchscreen_gesture_control";
     public static final String TOUCHSCREEN_HAPTIC_FEEDBACK_KEY = "touchscreen_gesture_haptic_feedback";
+
     public static final String TOUCHSCREEN_C_GESTURE_KEY = "touchscreen_gesture_c";
     public static final String TOUCHSCREEN_E_GESTURE_KEY = "touchscreen_gesture_e";
     public static final String TOUCHSCREEN_S_GESTURE_KEY = "touchscreen_gesture_s";
     public static final String TOUCHSCREEN_V_GESTURE_KEY = "touchscreen_gesture_v";
     public static final String TOUCHSCREEN_W_GESTURE_KEY = "touchscreen_gesture_w";
     public static final String TOUCHSCREEN_Z_GESTURE_KEY = "touchscreen_gesture_z";
+
     private static final String TOUCHSCREEN_GESTURE_CONTROL_KEY = "touchscreen_gesture_control";
     private static final String TOUCHSCREEN_C_GESTURE_KEY = "touchscreen_gesture_c";
     private static final String TOUCHSCREEN_E_GESTURE_KEY = "touchscreen_gesture_e";
@@ -47,6 +49,7 @@ public class CMActionsSettings {
     private static final String TOUCHSCREEN_V_GESTURE_KEY = "touchscreen_gesture_v";
     private static final String TOUCHSCREEN_W_GESTURE_KEY = "touchscreen_gesture_w";
     private static final String TOUCHSCREEN_Z_GESTURE_KEY = "touchscreen_gesture_z";
+
 
 
     // Proc nodes
@@ -62,14 +65,18 @@ public class CMActionsSettings {
     public static final int KEY_MASK_GESTURE_W = 0x20;
     public static final int KEY_MASK_GESTURE_Z = 0x02;
 
+
     private static boolean mIsGestureEnabled;
     private static boolean mIsHapticEnabled;
+
+
     private static boolean mIsGesture_C_Enabled;
     private static boolean mIsGesture_E_Enabled;
     private static boolean mIsGesture_S_Enabled;
     private static boolean mIsGesture_V_Enabled;
     private static boolean mIsGesture_W_Enabled;
     private static boolean mIsGesture_Z_Enabled;
+
 
     public final int KEY_MASK_GESTURE_CONTROL = 0x40;
     public final int KEY_MASK_GESTURE_C = 0x04;
@@ -87,6 +94,7 @@ public class CMActionsSettings {
     private boolean mIsGesture_Z_Enabled;
 
 
+
     private final Context mContext;
 
     public CMActionsSettings(Context context ) {
@@ -95,6 +103,7 @@ public class CMActionsSettings {
         sharedPrefs.registerOnSharedPreferenceChangeListener(mPrefListener);
         mContext = context;
     }
+
 
 
 
@@ -108,6 +117,9 @@ public class CMActionsSettings {
         mIsHapticEnabled = sharedPreferences.getBoolean(TOUCHSCREEN_HAPTIC_FEEDBACK_KEY, false);
 
     public void loadPreferences(SharedPreferences sharedPreferences) {
+
+
+    public static void loadPreferences(SharedPreferences sharedPreferences) {
 
         mIsGesture_C_Enabled = sharedPreferences.getBoolean(TOUCHSCREEN_C_GESTURE_KEY, false);
         mIsGesture_E_Enabled = sharedPreferences.getBoolean(TOUCHSCREEN_E_GESTURE_KEY, false);
@@ -159,7 +171,7 @@ public class CMActionsSettings {
     /* Use bitwise logic to set gesture_mode in kernel driver.
        Check each if each key is enabled with & operator and KEY_MASK,
        if enabled toggle the appropriate bit with ^ XOR operator */
-    public void updateGestureMode() {
+    public static void updateGestureMode() {
         int gesture_mode = 0;
 
         if (((gesture_mode & KEY_MASK_GESTURE_C) == 1) != mIsGesture_C_Enabled)
