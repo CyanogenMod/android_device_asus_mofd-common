@@ -281,12 +281,24 @@ public class KeyHandler implements DeviceKeyHandler {
 
     public boolean handleKeyEvent(KeyEvent event) {
         boolean isKeySupported = ArrayUtils.contains(sSupportedGestures, event.getScanCode());
+
         if (isKeySupported && !mEventHandler.hasMessages(GESTURE_REQUEST)) {
+
+        if (!isKeySupported) {
+            return false;
+        }
+
+        if (!mEventHandler.hasMessages(GESTURE_REQUEST)) {
+
             if (event.getScanCode() == KEY_GESTURE_DOUBLECLICK && !mPowerManager.isScreenOn()) {
                 mPowerManager.wakeUpWithProximityCheck(SystemClock.uptimeMillis(), "wakeup-gesture-proximity");
                 return true;
             }
+
             Message msg = getMessageForKeyEvent(event);
+
+            Message msg = getMessageForKeyEvent(event.getScanCode());
+
             boolean defaultProximity = mContext.getResources().getBoolean(
                 com.android.internal.R.bool.config_proximityCheckOnWakeEnabledByDefault);
             boolean proximityWakeCheckEnabled = Settings.System.getInt(mContext.getContentResolver(),
