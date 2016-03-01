@@ -112,7 +112,7 @@ PRODUCT_COPY_FILES += \
 
 # Keystore
 PRODUCT_PACKAGES += \
-    keystore.moorefield.so
+    keystore.moorefield
 
 # Lights
 PRODUCT_PACKAGES += \
