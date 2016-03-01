@@ -16,6 +16,10 @@
 
 package com.cyanogenmod.settings.device;
 
+
+
+import android.Manifest;
+
 import android.app.KeyguardManager;
 import android.content.ActivityNotFoundException;
 import android.content.ContentResolver;
@@ -48,15 +52,22 @@ import android.provider.Settings.Secure;
 import android.util.Log;
 import android.view.KeyEvent;
 
+
 import android.view.WindowManagerGlobal;
 
 import com.android.internal.R;
 import com.android.internal.os.DeviceKeyHandler;
 import com.android.internal.util.ArrayUtils;
 
+import android.view.WindowManagerGlobal;
+
+import com.android.internal.R;
+
+import cyanogenmod.providers.CMSettings;
+
+
 import com.android.internal.os.DeviceKeyHandler;
 import com.android.internal.util.ArrayUtils;
-import cyanogenmod.providers.CMSettings;
 
 
 public class KeyHandler implements DeviceKeyHandler {
@@ -68,9 +79,14 @@ public class KeyHandler implements DeviceKeyHandler {
             "touchscreen_gesture_haptic_feedback";
 
 
+
+
+
     private static final String ACTION_DISMISS_KEYGUARD =
             "com.android.keyguard.action.DISMISS_KEYGUARD_SECURELY";
     public static final String SMS_DEFAULT_APPLICATION = "sms_default_application";
+
+
 
 
     // Supported scancodes
@@ -189,6 +205,7 @@ public class KeyHandler implements DeviceKeyHandler {
                 ensureKeyguardManager();
                 mGestureWakeLock.acquire(GESTURE_WAKELOCK_DURATION);
 
+
                 if (mKeyguardManager.isKeyguardSecure() && mKeyguardManager.isKeyguardLocked()) {
                     action = MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA_SECURE;
                 } else {
@@ -203,6 +220,10 @@ public class KeyHandler implements DeviceKeyHandler {
 
                 Intent c_intent = new Intent(cyanogenmod.content.Intent.ACTION_SCREEN_CAMERA_GESTURE);
                 mContext.sendBroadcast(c_intent, Manifest.permission.STATUS_BAR_SERVICE);
+
+
+                Intent intent = new Intent(cyanogenmod.content.Intent.ACTION_SCREEN_CAMERA_GESTURE);
+                mContext.sendBroadcast(intent, Manifest.permission.STATUS_BAR_SERVICE);
 
                 break;
             case KEY_GESTURE_E:
@@ -282,6 +303,7 @@ public class KeyHandler implements DeviceKeyHandler {
     public boolean handleKeyEvent(KeyEvent event) {
         boolean isKeySupported = ArrayUtils.contains(sSupportedGestures, event.getScanCode());
 
+
         if (isKeySupported && !mEventHandler.hasMessages(GESTURE_REQUEST)) {
 
         if (!isKeySupported) {
@@ -289,6 +311,9 @@ public class KeyHandler implements DeviceKeyHandler {
         }
 
         if (!mEventHandler.hasMessages(GESTURE_REQUEST)) {
+
+
+        if (isKeySupported && !mEventHandler.hasMessages(GESTURE_REQUEST)) {
 
             if (event.getScanCode() == KEY_GESTURE_DOUBLECLICK && !mPowerManager.isScreenOn()) {
                 mPowerManager.wakeUpWithProximityCheck(SystemClock.uptimeMillis(), "wakeup-gesture-proximity");
@@ -298,6 +323,9 @@ public class KeyHandler implements DeviceKeyHandler {
             Message msg = getMessageForKeyEvent(event);
 
             Message msg = getMessageForKeyEvent(event.getScanCode());
+
+
+            Message msg = getMessageForKeyEvent(event);
 
             boolean defaultProximity = mContext.getResources().getBoolean(
                 com.android.internal.R.bool.config_proximityCheckOnWakeEnabledByDefault);
