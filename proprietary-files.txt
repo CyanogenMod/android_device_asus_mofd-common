@@ -304,6 +304,7 @@ vendor/firmware/01s5k8aay.drvb
 # DRM
 lib/libkeymaster.so
 lib/hw/keystore.moorefield.so:lib/hw/keystore.vendor.moorefield.so
+lib/libcrypto.so:lib/libstock_crypto.so
 vendor/lib/drm/libdrmwvmplugin.so
 vendor/lib/mediadrm/libwvdrmengine.so
 vendor/lib/libWVStreamControlAPI_L1.so
