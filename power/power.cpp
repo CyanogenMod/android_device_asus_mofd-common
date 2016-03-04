@@ -28,39 +28,6 @@ struct local_power_module {
 
 #define BUF_SIZE 80
 
-#define CPU2_ONLINE       "/sys/devices/system/cpu/cpu2/online"
-#define CPU3_ONLINE       "/sys/devices/system/cpu/cpu3/online"
-
-static char last_online[2][BUF_SIZE];
-
-static int sysfs_read(const char *path, char buf[BUF_SIZE]) {
-    int len;
-    int fd = open(path, O_RDONLY);
-
-    if (fd < 0) {
-        strerror_r(errno, buf, sizeof(buf));
-        ALOGE("Error opening %s: %s\n", path, buf);
-        return fd;
-    }
-
-    len = read(fd, buf, BUF_SIZE-1);
-    if (len < 0) {
-        strerror_r(errno, buf, sizeof(buf));
-        ALOGE("Error read from %s: %s\n", path, buf);
-    } else {
-        buf[len] = '\0';
-    }
-
-    close(fd);
-    return len;
-}
-
-static void sysfs_read_or_empty(const char *path, char buf[BUF_SIZE]) {
-    if (sysfs_read(path, buf) < 0) {
-         buf[0] = '\0';
-    }
-}
-
 static void sysfs_write(const char *path, const char *const s) {
     char buf[BUF_SIZE];
     int len;
@@ -81,26 +48,10 @@ static void sysfs_write(const char *path, const char *const s) {
     close(fd);
 }
 
-static void sysfs_write_unless_empty(const char *path, const char *const s) {
-    if (*s) {
-        sysfs_write(path, s);
-    }
-}
-
 static void power_init(struct power_module *) {
 }
 
-void power_set_interactive(struct power_module *, int on) {
-    if (on) {
-        sysfs_write_unless_empty(CPU2_ONLINE, last_online[0]);
-        sysfs_write_unless_empty(CPU3_ONLINE, last_online[1]);
-    } else {
-        sysfs_read_or_empty(CPU2_ONLINE, last_online[0]);
-        sysfs_read_or_empty(CPU3_ONLINE, last_online[1]);
-
-        sysfs_write(CPU2_ONLINE, "0");
-        sysfs_write(CPU3_ONLINE, "0");
-    }
+static void power_set_interactive(struct power_module *, int on __unused) {
 }
 
 static void power_hint(struct power_module *module __unused, power_hint_t hint __unused, void *data __unused) {
