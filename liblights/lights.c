@@ -74,16 +74,14 @@ void init_globals(void)
 }
 
 static int
-write_int(char const* path, int value)
+write_str(char const* path, char const* str)
 {
     int fd;
     static int already_warned = 0;
 
     fd = open(path, O_RDWR);
     if (fd >= 0) {
-        char buffer[20];
-        int bytes = sprintf(buffer, "%d\n", value);
-        ssize_t amt = write(fd, buffer, (size_t)bytes);
+        ssize_t amt = write(fd, str, strlen(str));
         close(fd);
         return amt == -1 ? -errno : 0;
     } else {
@@ -93,6 +91,23 @@ write_int(char const* path, int value)
         }
         return -errno;
     }
+}
+
+static int
+write_int(char const* path, int value)
+{
+    char buffer[20];
+    sprintf(buffer, "%d\n", value);
+    return write_str(path, buffer);
+}
+
+static int
+write_blink(char const* path, int value, int on_ms, int off_ms)
+{
+    char buffer[100];
+
+    sprintf(buffer, "%d %d %d\n", value, on_ms, off_ms);
+    return write_str(path, buffer);
 }
 
 static int
@@ -152,8 +167,8 @@ set_light_locked(struct light_state_t const* state)
     if (blink) {
         write_int(RED_LED_FILE, LED_LIGHT_OFF);
         write_int(GREEN_LED_FILE, LED_LIGHT_OFF);
-        write_int(RED_BLINK_FILE, (red ? 1 : 0));
-        write_int(GREEN_BLINK_FILE, (green ? 1 : 0));
+        write_blink(RED_BLINK_FILE, (red ? 1 : 0), state->flashOnMS, state->flashOffMS);
+        write_blink(GREEN_BLINK_FILE, (green ? 1 : 0), state->flashOnMS, state->flashOffMS);
     } else {
         write_int(RED_BLINK_FILE, blink);
         write_int(GREEN_BLINK_FILE, blink);
