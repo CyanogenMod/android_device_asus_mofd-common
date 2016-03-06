@@ -137,6 +137,7 @@ set_light_locked(struct light_state_t const* state)
     int blink;
     int red = 0;
     int green = 0;
+    int blue = 0;
     unsigned int colorRGB = state->color;
 
     switch (state->flashMode) {
@@ -152,6 +153,10 @@ set_light_locked(struct light_state_t const* state)
 
     red = ((colorRGB >> 16) & 0xFF);
     green = ((colorRGB >> 8) & 0xFF);
+    blue = (colorRGB & 0xFF);
+
+    if (blue)
+        green = red = blue;
 
     ALOGD("set_light_locked colorRGB=%08X, red=%d, green=%d, blink=%d",
             colorRGB, red, green, blink);
