@@ -354,9 +354,6 @@ etc/binfmt_misc/arm_exe
 bin/houdini
 lib/libhoudini.so
 
-# Lights
-lib/hw/lights.mofd_v1.so:lib/hw/lights.vendor.mofd_v1.so
-
 # Media
 bin/intel_prop
 etc/firmware/msvdx.bin.prod
