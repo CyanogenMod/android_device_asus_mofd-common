@@ -54,9 +54,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Camera
 PRODUCT_PACKAGES += \
+    bspcapability \
     camera.mofd_v1 \
-    libshim_camera \
-    Snap
+    libshim_camera
 
 # Charger
 PRODUCT_PACKAGES += \
@@ -94,11 +94,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 ADDITIONAL_DEFAULT_PROPERTIES += ro.dalvik.vm.native.bridge=libhoudini.so
 
-# Keyhandler
-PRODUCT_PACKAGES += \
-    CMActions \
-    com.cyanogenmod.keyhandler
-
 # Key layout files
 PRODUCT_COPY_FILES += \
     device/asus/mofd-common/keylayout/ASUS_TransKeyboard.kl:system/usr/keylayout/ASUS_TransKeyboard.kl \
@@ -111,11 +106,11 @@ PRODUCT_COPY_FILES += \
 
 # Keystore
 PRODUCT_PACKAGES += \
-    keystore.moorefield.so
+    keystore.moorefield
 
 # Lights
 PRODUCT_PACKAGES += \
-    lights.mofd_v1
+    lights.moorefield
 
 # Media
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -298,6 +293,8 @@ $(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/firmware/bcm4339
 # specific management of sep_policy.conf
 PRODUCT_COPY_FILES += \
     device/asus/mofd-common/sep_policy.conf:system/etc/security/sep_policy.conf
+    
+
 
 # hardware optimizations
 #PRODUCT_PROPERTY_OVERRIDES += \

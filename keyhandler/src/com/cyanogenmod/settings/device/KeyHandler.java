@@ -16,6 +16,10 @@
 
 package com.cyanogenmod.settings.device;
 
+
+
+import android.Manifest;
+
 import android.app.KeyguardManager;
 import android.content.ActivityNotFoundException;
 import android.content.ContentResolver;
@@ -47,14 +51,24 @@ import android.provider.Settings.Global;
 import android.provider.Settings.Secure;
 import android.util.Log;
 import android.view.KeyEvent;
+
+
+import android.view.WindowManagerGlobal;
+
+import com.android.internal.R;
+import com.android.internal.os.DeviceKeyHandler;
+import com.android.internal.util.ArrayUtils;
+
 import android.view.WindowManagerGlobal;
 
 import com.android.internal.R;
 
 import android.provider.Settings;
 
+
 import com.android.internal.os.DeviceKeyHandler;
 import com.android.internal.util.ArrayUtils;
+
 
 public class KeyHandler implements DeviceKeyHandler {
 
@@ -64,9 +78,16 @@ public class KeyHandler implements DeviceKeyHandler {
     private static final String KEY_GESTURE_HAPTIC_FEEDBACK =
             "touchscreen_gesture_haptic_feedback";
 
+
+
+
+
     private static final String ACTION_DISMISS_KEYGUARD =
             "com.android.keyguard.action.DISMISS_KEYGUARD_SECURELY";
     public static final String SMS_DEFAULT_APPLICATION = "sms_default_application";
+
+
+
 
     // Supported scancodes
     private static final int KEY_GESTURE_DOUBLECLICK = 256;
@@ -113,10 +134,9 @@ public class KeyHandler implements DeviceKeyHandler {
 
         final Resources resources = mContext.getResources();
         mProximityTimeOut = resources.getInteger(
-             com.android.internal.R.integer.config_proximityCheckTimeout);
+                com.android.internal.R.integer.config_proximityCheckTimeout);
         mProximityWakeSupported = resources.getBoolean(
-             com.android.internal.R.bool.config_proximityCheckOnWake);
-
+                com.android.internal.R.bool.config_proximityCheckOnWake);
         if (mProximityWakeSupported) {
             mSensorManager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
             mProximitySensor = mSensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
@@ -186,6 +206,11 @@ public class KeyHandler implements DeviceKeyHandler {
             case KEY_GESTURE_C:
                 ensureKeyguardManager();
                 mGestureWakeLock.acquire(GESTURE_WAKELOCK_DURATION);
+
+
+
+
+
                 if (mKeyguardManager.isKeyguardSecure() && mKeyguardManager.isKeyguardLocked()) {
                     action = MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA_SECURE;
                 } else {
@@ -197,6 +222,16 @@ public class KeyHandler implements DeviceKeyHandler {
                 Intent c_intent = new Intent(action, null);
                 startActivitySafely(c_intent);
                 doHapticFeedback();
+
+
+                Intent c_intent = new Intent(cyanogenmod.content.Intent.ACTION_SCREEN_CAMERA_GESTURE);
+                mContext.sendBroadcast(c_intent, Manifest.permission.STATUS_BAR_SERVICE);
+
+
+                Intent intent = new Intent(cyanogenmod.content.Intent.ACTION_SCREEN_CAMERA_GESTURE);
+                mContext.sendBroadcast(intent, Manifest.permission.STATUS_BAR_SERVICE);
+
+
                 break;
             case KEY_GESTURE_E:
                 ensureKeyguardManager();
@@ -270,14 +305,45 @@ public class KeyHandler implements DeviceKeyHandler {
         }
     }
 
+
+
     public boolean handleKeyEvent(KeyEvent event) {
+
+    public boolean handleKeyEvent(KeyEvent event, DeviceHandlerCallback callback) {
+
+
+    public boolean handleKeyEvent(KeyEvent event) {
+
         boolean isKeySupported = ArrayUtils.contains(sSupportedGestures, event.getScanCode());
+
+
         if (isKeySupported && !mEventHandler.hasMessages(GESTURE_REQUEST)) {
+
+        if (!isKeySupported) {
+            return false;
+        }
+
+        if (!mEventHandler.hasMessages(GESTURE_REQUEST)) {
+
+
+        if (isKeySupported && !mEventHandler.hasMessages(GESTURE_REQUEST)) {
+
             if (event.getScanCode() == KEY_GESTURE_DOUBLECLICK && !mPowerManager.isScreenOn()) {
                 mPowerManager.wakeUpWithProximityCheck(SystemClock.uptimeMillis(), "wakeup-gesture-proximity");
                 return true;
             }
+
+
             Message msg = getMessageForKeyEvent(event);
+
+            Message msg = getMessageForKeyEvent(event.getScanCode());
+
+
+            Message msg = getMessageForKeyEvent(event);
+
+
+            Message msg = getMessageForKeyEvent(event);
+
             boolean defaultProximity = mContext.getResources().getBoolean(
                 com.android.internal.R.bool.config_proximityCheckOnWakeEnabledByDefault);
             boolean proximityWakeCheckEnabled = Settings.System.getInt(mContext.getContentResolver(),

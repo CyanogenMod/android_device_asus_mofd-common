@@ -26,18 +26,47 @@ import android.preference.PreferenceCategory;
 import android.view.Menu;
 import android.view.MenuItem;
 
+
+
 public class TouchscreenGestureSettings extends PreferenceActivity {
     public static final String CATEGORY_GESTURES = "category_gestures";
     public static PreferenceCategory gestureCat;
+
+import cyanogenmod.providers.CMSettings;
+
+import org.cyanogenmod.internal.util.ScreenType;
+
+public class TouchscreenGestureSettings extends PreferenceActivity implements OnPreferenceChangeListener {
+
+public class TouchscreenGestureSettings extends PreferenceActivity {
+
+    public static final String CATEGORY_GESTURES = "category_gestures";
+    public static PreferenceCategory gestureCat;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.touchscreen_panel);
+
+
         gestureCat = (PreferenceCategory) findPreference(CATEGORY_GESTURES);
         if (gestureCat != null) {
             gestureCat.setEnabled(CMActionsSettings.areGesturesEnabled());
         }
+
+
+        mHapticFeedback = (SwitchPreference) findPreference(KEY_HAPTIC_FEEDBACK);
+        mHapticFeedback.setOnPreferenceChangeListener(this);
+
+
+
+
+        gestureCat = (PreferenceCategory) findPreference(CATEGORY_GESTURES);
+        if (gestureCat != null) {
+            gestureCat.setEnabled(CMActionsSettings.areGesturesEnabled());
+        }
+
         final ActionBar actionBar = getActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
     }
@@ -46,10 +75,19 @@ public class TouchscreenGestureSettings extends PreferenceActivity {
     protected void onResume() {
         super.onResume();
 
+
+
+
         gestureCat = (PreferenceCategory) findPreference(CATEGORY_GESTURES);
         if (gestureCat != null) {
             gestureCat.setEnabled(CMActionsSettings.areGesturesEnabled());
         }
+
+
+        mHapticFeedback.setChecked(CMSettings.System.getInt(getContentResolver(),
+                CMSettings.System.TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK, 1) != 0);
+
+
 
         // If running on a phone, remove padding around the listview
         if (!ScreenType.isTablet(this)) {

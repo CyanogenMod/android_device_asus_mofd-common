@@ -17,6 +17,4 @@
 <!-- Telecomm resources that may need to be customized for different hardware or product
     builds. -->
 <resources>
-    <!-- DSDA phones that don't support local call hold need special handling -->
-    <bool name="dsda_supports_lch">false</bool>
 </resources>
