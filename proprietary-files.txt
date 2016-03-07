@@ -304,6 +304,7 @@ vendor/firmware/01s5k8aay.drvb
 # DRM
 lib/libkeymaster.so
 lib/hw/keystore.moorefield.so:lib/hw/keystore.vendor.moorefield.so
+lib/libcrypto.so:lib/libstock_crypto.so
 vendor/lib/drm/libdrmwvmplugin.so
 vendor/lib/mediadrm/libwvdrmengine.so
 vendor/lib/libWVStreamControlAPI_L1.so
@@ -352,9 +353,6 @@ etc/binfmt_misc/arm_dyn
 etc/binfmt_misc/arm_exe
 bin/houdini
 lib/libhoudini.so
-
-# Lights
-lib/hw/lights.mofd_v1.so:lib/hw/lights.vendor.mofd_v1.so
 
 # Media
 bin/intel_prop

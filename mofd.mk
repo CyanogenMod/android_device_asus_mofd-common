@@ -106,11 +106,11 @@ PRODUCT_COPY_FILES += \
 
 # Keystore
 PRODUCT_PACKAGES += \
-    keystore.moorefield.so
+    keystore.moorefield
 
 # Lights
 PRODUCT_PACKAGES += \
-    lights.mofd_v1
+    lights.moorefield
 
 # Media
 PRODUCT_PROPERTY_OVERRIDES += \
