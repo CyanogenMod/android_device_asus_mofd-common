@@ -33,8 +33,6 @@ public class CMActionsSettings {
 
     // Preference keys
     public static final String TOUCHSCREEN_GESTURE_CONTROL_KEY = "touchscreen_gesture_control";
-    public static final String TOUCHSCREEN_HAPTIC_FEEDBACK_KEY = "touchscreen_gesture_haptic_feedback";
-
     public static final String TOUCHSCREEN_C_GESTURE_KEY = "touchscreen_gesture_c";
     public static final String TOUCHSCREEN_E_GESTURE_KEY = "touchscreen_gesture_e";
     public static final String TOUCHSCREEN_S_GESTURE_KEY = "touchscreen_gesture_s";
@@ -42,21 +40,10 @@ public class CMActionsSettings {
     public static final String TOUCHSCREEN_W_GESTURE_KEY = "touchscreen_gesture_w";
     public static final String TOUCHSCREEN_Z_GESTURE_KEY = "touchscreen_gesture_z";
 
-    private static final String TOUCHSCREEN_GESTURE_CONTROL_KEY = "touchscreen_gesture_control";
-    private static final String TOUCHSCREEN_C_GESTURE_KEY = "touchscreen_gesture_c";
-    private static final String TOUCHSCREEN_E_GESTURE_KEY = "touchscreen_gesture_e";
-    private static final String TOUCHSCREEN_S_GESTURE_KEY = "touchscreen_gesture_s";
-    private static final String TOUCHSCREEN_V_GESTURE_KEY = "touchscreen_gesture_v";
-    private static final String TOUCHSCREEN_W_GESTURE_KEY = "touchscreen_gesture_w";
-    private static final String TOUCHSCREEN_Z_GESTURE_KEY = "touchscreen_gesture_z";
-
-
-
     // Proc nodes
     public static final String TOUCHSCREEN_GESTURE_MODE_NODE = "/sys/bus/i2c/devices/i2c-7/7-0038/ftsgesturemode";
 
     // Key Masks
-
     public static final int KEY_MASK_GESTURE_CONTROL = 0x40;
     public static final int KEY_MASK_GESTURE_C = 0x04;
     public static final int KEY_MASK_GESTURE_E = 0x08;
@@ -65,40 +52,13 @@ public class CMActionsSettings {
     public static final int KEY_MASK_GESTURE_W = 0x20;
     public static final int KEY_MASK_GESTURE_Z = 0x02;
 
-
-
     private static boolean mIsGestureEnabled;
-    private static boolean mIsHapticEnabled;
-
-
-
-
-    private static boolean mIsGestureEnabled;
-
     private static boolean mIsGesture_C_Enabled;
     private static boolean mIsGesture_E_Enabled;
     private static boolean mIsGesture_S_Enabled;
     private static boolean mIsGesture_V_Enabled;
     private static boolean mIsGesture_W_Enabled;
     private static boolean mIsGesture_Z_Enabled;
-
-
-    public final int KEY_MASK_GESTURE_CONTROL = 0x40;
-    public final int KEY_MASK_GESTURE_C = 0x04;
-    public final int KEY_MASK_GESTURE_E = 0x08;
-    public final int KEY_MASK_GESTURE_S = 0x10;
-    public final int KEY_MASK_GESTURE_V = 0x01;
-    public final int KEY_MASK_GESTURE_W = 0x20;
-    public final int KEY_MASK_GESTURE_Z = 0x02;
-
-    private boolean mIsGesture_C_Enabled;
-    private boolean mIsGesture_E_Enabled;
-    private boolean mIsGesture_S_Enabled;
-    private boolean mIsGesture_V_Enabled;
-    private boolean mIsGesture_W_Enabled;
-    private boolean mIsGesture_Z_Enabled;
-
-
 
     private final Context mContext;
 
@@ -110,7 +70,6 @@ public class CMActionsSettings {
     }
 
 
-
     public static boolean areGesturesEnabled() {
         Log.d(TAG,"Are gestures enabled:" +mIsGestureEnabled);
         return mIsGestureEnabled;
@@ -118,17 +77,6 @@ public class CMActionsSettings {
 
     public static void loadPreferences(SharedPreferences sharedPreferences) {
         mIsGestureEnabled = sharedPreferences.getBoolean(TOUCHSCREEN_GESTURE_CONTROL_KEY, false);
-
-        mIsHapticEnabled = sharedPreferences.getBoolean(TOUCHSCREEN_HAPTIC_FEEDBACK_KEY, false);
-
-    public void loadPreferences(SharedPreferences sharedPreferences) {
-
-
-    public static void loadPreferences(SharedPreferences sharedPreferences) {
-
-
-        mIsHapticEnabled = sharedPreferences.getBoolean(TOUCHSCREEN_HAPTIC_FEEDBACK_KEY, false);
-
         mIsGesture_C_Enabled = sharedPreferences.getBoolean(TOUCHSCREEN_C_GESTURE_KEY, false);
         mIsGesture_E_Enabled = sharedPreferences.getBoolean(TOUCHSCREEN_E_GESTURE_KEY, false);
         mIsGesture_S_Enabled = sharedPreferences.getBoolean(TOUCHSCREEN_S_GESTURE_KEY, false);
@@ -144,24 +92,10 @@ public class CMActionsSettings {
                 public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
                     boolean updated = true;
 
-
                     if (TOUCHSCREEN_GESTURE_CONTROL_KEY.equals(key)) {
                         mIsGestureEnabled = sharedPreferences.getBoolean(TOUCHSCREEN_GESTURE_CONTROL_KEY, false);
                         TouchscreenGestureSettings.gestureCat.setEnabled(areGesturesEnabled());
-                    } else if (TOUCHSCREEN_HAPTIC_FEEDBACK_KEY.equals(key)) {
-                        mIsHapticEnabled = sharedPreferences.getBoolean(TOUCHSCREEN_HAPTIC_FEEDBACK_KEY, false);
                     } else if (TOUCHSCREEN_C_GESTURE_KEY.equals(key)) {
-
-                    if (TOUCHSCREEN_C_GESTURE_KEY.equals(key)) {
-
-
-                    if (TOUCHSCREEN_GESTURE_CONTROL_KEY.equals(key)) {
-                        mIsGestureEnabled = sharedPreferences.getBoolean(TOUCHSCREEN_GESTURE_CONTROL_KEY, false);
-                        TouchscreenGestureSettings.gestureCat.setEnabled(areGesturesEnabled());
-                    } else if (TOUCHSCREEN_HAPTIC_FEEDBACK_KEY.equals(key)) {
-                        mIsHapticEnabled = sharedPreferences.getBoolean(TOUCHSCREEN_HAPTIC_FEEDBACK_KEY, false);
-                    } else if (TOUCHSCREEN_C_GESTURE_KEY.equals(key)) {
-
                         mIsGesture_C_Enabled = sharedPreferences.getBoolean(TOUCHSCREEN_C_GESTURE_KEY, false);
                     } else if (TOUCHSCREEN_E_GESTURE_KEY.equals(key)) {
                         mIsGesture_E_Enabled = sharedPreferences.getBoolean(TOUCHSCREEN_E_GESTURE_KEY, false);
