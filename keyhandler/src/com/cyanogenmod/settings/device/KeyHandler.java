@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 The CyanogenMod Project
+ * Copyright (C) 2015-2016 The CyanogenMod Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,7 +16,9 @@
 
 package com.cyanogenmod.settings.device;
 
+import android.app.ActivityManagerNative;
 import android.app.KeyguardManager;
+import android.Manifest;
 import android.content.ActivityNotFoundException;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -27,9 +29,9 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.hardware.camera2.CameraManager;
-import android.hardware.camera2.CameraCharacteristics;
 import android.hardware.camera2.CameraAccessException;
+import android.hardware.camera2.CameraCharacteristics;
+import android.hardware.camera2.CameraManager;
 import android.media.session.MediaSessionLegacyHelper;
 import android.net.Uri;
 import android.os.Handler;
@@ -43,18 +45,15 @@ import android.os.UserHandle;
 import android.os.Vibrator;
 import android.provider.MediaStore;
 import android.provider.Settings;
-import android.provider.Settings.Global;
 import android.provider.Settings.Secure;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.WindowManagerGlobal;
 
-import com.android.internal.R;
-
-import android.provider.Settings;
-
 import com.android.internal.os.DeviceKeyHandler;
 import com.android.internal.util.ArrayUtils;
+
+import android.provider.Settings;
 
 public class KeyHandler implements DeviceKeyHandler {
 
@@ -66,10 +65,8 @@ public class KeyHandler implements DeviceKeyHandler {
 
     private static final String ACTION_DISMISS_KEYGUARD =
             "com.android.keyguard.action.DISMISS_KEYGUARD_SECURELY";
-    public static final String SMS_DEFAULT_APPLICATION = "sms_default_application";
 
     // Supported scancodes
-    private static final int KEY_GESTURE_DOUBLECLICK = 256;
     private static final int KEY_GESTURE_C = 257;
     private static final int KEY_GESTURE_E = 258;
     private static final int KEY_GESTURE_S = 259;
@@ -79,8 +76,9 @@ public class KeyHandler implements DeviceKeyHandler {
 
     private static final int GESTURE_WAKELOCK_DURATION = 3000;
 
+    public static final String SMS_DEFAULT_APPLICATION = "sms_default_application";
+
     private static final int[] sSupportedGestures = new int[] {
-        KEY_GESTURE_DOUBLECLICK,
         KEY_GESTURE_C,
         KEY_GESTURE_E,
         KEY_GESTURE_S,
@@ -113,9 +111,9 @@ public class KeyHandler implements DeviceKeyHandler {
 
         final Resources resources = mContext.getResources();
         mProximityTimeOut = resources.getInteger(
-             com.android.internal.R.integer.config_proximityCheckTimeout);
+               com.android.internal.R.integer.config_proximityCheckTimeout);
         mProximityWakeSupported = resources.getBoolean(
-             com.android.internal.R.bool.config_proximityCheckOnWake);
+               com.android.internal.R.bool.config_proximityCheckOnWake);
 
         if (mProximityWakeSupported) {
             mSensorManager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
@@ -124,14 +122,13 @@ public class KeyHandler implements DeviceKeyHandler {
                     "ProximityWakeLock");
         }
 
-                mVibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
+        mVibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
         if (mVibrator == null || !mVibrator.hasVibrator()) {
             mVibrator = null;
         }
-        
+
         mCameraManager = (CameraManager) mContext.getSystemService(Context.CAMERA_SERVICE);
         mCameraManager.registerTorchCallback(new MyTorchCallback(), mEventHandler);
-
     }
 
     private class MyTorchCallback extends CameraManager.TorchCallback {
@@ -140,7 +137,7 @@ public class KeyHandler implements DeviceKeyHandler {
             if (!cameraId.equals(mRearCameraId))
                 return;
             mTorchEnabled = enabled;
-    }
+        }
 
         @Override
         public void onTorchModeUnavailable(String cameraId) {
@@ -179,12 +176,10 @@ public class KeyHandler implements DeviceKeyHandler {
     private class EventHandler extends Handler {
         @Override
         public void handleMessage(Message msg) {
-            KeyEvent event = (KeyEvent) msg.obj;
-            String action = null;
-
-            switch (event.getScanCode()) {
+            switch (msg.arg1) {
             case KEY_GESTURE_C:
                 ensureKeyguardManager();
+                final String action;
                 mGestureWakeLock.acquire(GESTURE_WAKELOCK_DURATION);
                 if (mKeyguardManager.isKeyguardSecure() && mKeyguardManager.isKeyguardLocked()) {
                     action = MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA_SECURE;
@@ -269,36 +264,44 @@ public class KeyHandler implements DeviceKeyHandler {
             }
         }
     }
-
     public boolean handleKeyEvent(KeyEvent event) {
         boolean isKeySupported = ArrayUtils.contains(sSupportedGestures, event.getScanCode());
-        if (isKeySupported && !mEventHandler.hasMessages(GESTURE_REQUEST)) {
-            if (event.getScanCode() == KEY_GESTURE_DOUBLECLICK && !mPowerManager.isScreenOn()) {
-                mPowerManager.wakeUpWithProximityCheck(SystemClock.uptimeMillis(), "wakeup-gesture-proximity");
+        if (!isKeySupported) {
+            return false;
+        }
+
+        // We only want ACTION_UP event, except KEY_GESTURE_C
+        if (event.getScanCode() == KEY_GESTURE_C) {
+            if (event.getAction() != KeyEvent.ACTION_DOWN) {
                 return true;
             }
-            Message msg = getMessageForKeyEvent(event);
+        } else if (event.getAction() != KeyEvent.ACTION_UP) {
+            return true;
+        }
+
+        if (!mEventHandler.hasMessages(GESTURE_REQUEST)) {
+            Message msg = getMessageForKeyEvent(event.getScanCode());
             boolean defaultProximity = mContext.getResources().getBoolean(
                 com.android.internal.R.bool.config_proximityCheckOnWakeEnabledByDefault);
             boolean proximityWakeCheckEnabled = Settings.System.getInt(mContext.getContentResolver(),
                     Settings.System.PROXIMITY_ON_WAKE, defaultProximity ? 1 : 0) == 1;
             if (mProximityWakeSupported && proximityWakeCheckEnabled && mProximitySensor != null) {
                 mEventHandler.sendMessageDelayed(msg, mProximityTimeOut);
-                processEvent(event);
+                processEvent(event.getScanCode());
             } else {
                 mEventHandler.sendMessage(msg);
             }
         }
-        return isKeySupported;
+        return true;
     }
 
-    private Message getMessageForKeyEvent(KeyEvent keyEvent) {
+    private Message getMessageForKeyEvent(int scancode) {
         Message msg = mEventHandler.obtainMessage(GESTURE_REQUEST);
-        msg.obj = keyEvent;
+        msg.arg1 = scancode;
         return msg;
     }
 
-    private void processEvent(final KeyEvent keyEvent) {
+    private void processEvent(final int scancode) {
         mProximityWakeLock.acquire();
         mSensorManager.registerListener(new SensorEventListener() {
             @Override
@@ -311,7 +314,7 @@ public class KeyHandler implements DeviceKeyHandler {
                 }
                 mEventHandler.removeMessages(GESTURE_REQUEST);
                 if (event.values[0] == mProximitySensor.getMaximumRange()) {
-                    Message msg = getMessageForKeyEvent(keyEvent);
+                    Message msg = getMessageForKeyEvent(scancode);
                     mEventHandler.sendMessage(msg);
                 }
             }
@@ -320,6 +323,19 @@ public class KeyHandler implements DeviceKeyHandler {
             public void onAccuracyChanged(Sensor sensor, int accuracy) {}
 
         }, mProximitySensor, SensorManager.SENSOR_DELAY_FASTEST);
+    }
+
+    private void dispatchMediaKeyWithWakeLockToMediaSession(int keycode) {
+        MediaSessionLegacyHelper helper = MediaSessionLegacyHelper.getHelper(mContext);
+        if (helper != null) {
+            KeyEvent event = new KeyEvent(SystemClock.uptimeMillis(),
+                    SystemClock.uptimeMillis(), KeyEvent.ACTION_DOWN, keycode, 0);
+            helper.sendMediaButtonEvent(event, true);
+            event = KeyEvent.changeAction(event, KeyEvent.ACTION_UP);
+            helper.sendMediaButtonEvent(event, true);
+        } else {
+            Log.w(TAG, "Unable to send media key event");
+        }
     }
 
     private void startActivitySafely(Intent intent) {
