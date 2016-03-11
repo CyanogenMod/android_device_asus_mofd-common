@@ -73,6 +73,9 @@ endif
 # Hardware
 BOARD_HARDWARE_CLASS := device/asus/mofd-common/cmhw
 
+# Healthd
+BOARD_HAL_STATIC_LIBRARIES := libhealthd.moorefield
+
 # Houdini: enable ARM codegen for x86
 BUILD_ARM_FOR_X86 := true
 
