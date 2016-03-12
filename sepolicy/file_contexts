@@ -84,7 +84,6 @@
 
 # radio
 /config/telephony(/.*)?                 u:object_r:radio_data_file:s0
-/data/logs(/.*)?                        u:object_r:radio_log_file:s0
 /dev/bus/usb/001/00[12]                 u:object_r:radio_device:s0
 /dev/gsmtty[0-9]*                       u:object_r:radio_device:s0
 /dev/mdm_ctrl[01]                       u:object_r:radio_device:s0
@@ -107,6 +106,11 @@
 
 # WTF is the ril doing here with these firmware file in /cache??
 /cache/telephony(/.*)?                  u:object_r:radio_cache_file:s0
+
+# Modem creates logs but never rotates them?  Either way, we can't read these
+# logs so they aren't doing us any good so don't make them available to the
+# daemons
+# /data/logs(/.*)?                        u:object_r:radio_log_file:s0
 
 # sensorhubd
 /data/pids                              u:object_r:sensorhubd_debug_file:s0
