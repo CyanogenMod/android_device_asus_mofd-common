@@ -57,7 +57,7 @@ PRODUCT_PACKAGES += \
     bspcapability \
     camera.mofd_v1 \
     libshim_camera \
-    Snap
+    SnapdragonCamera
 
 # Charger
 PRODUCT_PACKAGES += \
