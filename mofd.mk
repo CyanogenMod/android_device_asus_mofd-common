@@ -23,6 +23,13 @@ $(call inherit-product-if-exists, frameworks/native/build/phone-xxhdpi-2048-hwui
 DEVICE_PACKAGE_OVERLAYS := \
     device/asus/mofd-common/overlay
 
+#APPS
+PRODUCT_PACKAGES += \
+    FileManager \
+    DSPmanager \
+    Gello \
+    Launcher2 
+
 # Art
 PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.dex2oat-swap=false
@@ -57,7 +64,7 @@ PRODUCT_PACKAGES += \
     bspcapability \
     camera.mofd_v1 \
     libshim_camera \
-    SnapdragonCamera
+    Snap
 
 # Charger
 PRODUCT_PACKAGES += \
