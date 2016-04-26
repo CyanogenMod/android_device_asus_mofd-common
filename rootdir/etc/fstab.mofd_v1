@@ -11,4 +11,4 @@
 */block/sda*            auto        auto    defaults    voldmanaged=usb:auto
 */block/mmcblk1*        auto        auto    defaults    voldmanaged=sdcard1:auto,encryptable=userdata
 
-/dev/block/zram0        none        swap    defaults    zramsize=419430400
+/dev/block/zram0        none        swap    defaults    zramsize=419430400,zramstreams=3
