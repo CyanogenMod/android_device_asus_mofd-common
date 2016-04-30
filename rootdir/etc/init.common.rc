@@ -22,7 +22,6 @@ on init
 
     # Support legacy paths
     symlink /sdcard /mnt/sdcard
-    symlink /sdcard /storage/sdcard0
 
 on boot
 #    chown system system /dev/pvr_sync
