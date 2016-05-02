@@ -76,6 +76,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     device/asus/mofd-common/powervr.ini:system/etc/powervr.ini
 
+# Gello
+PRODUCT_PACKAGES += \
+    Gello
+
 # GPS
 PRODUCT_PACKAGES += \
     libshim_gps
