@@ -116,6 +116,7 @@ TARGET_REQUIRES_SYNCHRONOUS_SETSURFACE := true
 # Init
 TARGET_INIT_VENDOR_LIB := libinit_mofd
 TARGET_LIBINIT_DEFINES_FILE := device/asus/mofd-common/init/init_mofd.cpp
+TARGET_INIT_UMOUNT_AND_FSCK_IS_UNSAFE := true
 
 # Inline kernel building
 TARGET_KERNEL_SOURCE := kernel/asus/moorefield
