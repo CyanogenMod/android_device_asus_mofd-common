@@ -176,6 +176,20 @@ COMMON_GLOBAL_CFLAGS += -DNO_SECURE_DISCARD
 TARGET_RECOVERY_FSTAB := device/asus/mofd-common/rootdir/etc/fstab.mofd_v1
 TARGET_RECOVERY_DEVICE_MODULES := libinit_mofd librecovery_updater_mofd intel_prop thermald
 
+# TWRP
+TW_THEME := portrait_hdpi
+TWHAVE_SELINUX := true
+TWRP_INCLUDE_LOGCAT := true
+TW_INCLUDE_CRYPTO := true
+TW_EXCLUDE_SUPERSU := true
+TW_INTERNAL_STORAGE_PATH := "/data/media"
+TW_INTERNAL_STORAGE_MOUNT_POINT := "/sdcard"
+TW_EXTERNAL_STORAGE_PATH := "/storage/MicroSD"
+TW_EXTERNAL_STORAGE_MOUNT_POINT := "/external_sd"
+TW_HAVE_X86_ACCELERATED_PIXELFLINGER := true
+TARGET_RECOVERY_UPDATER_LIBS := libintel_updater
+TARGET_RECOVERY_UPDATER_EXTRA_LIBS := liboempartitioning_static
+
 # Security
 BUILD_WITH_SECURITY_FRAMEWORK := chaabi_token
 BUILD_WITH_CHAABI_SUPPORT := true
