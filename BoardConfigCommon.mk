@@ -187,6 +187,11 @@ TW_INTERNAL_STORAGE_MOUNT_POINT := "/sdcard"
 TW_EXTERNAL_STORAGE_PATH := "/storage/MicroSD"
 TW_EXTERNAL_STORAGE_MOUNT_POINT := "/external_sd"
 TW_HAVE_X86_ACCELERATED_PIXELFLINGER := true
+
+# For libintel_updater, liboemparttioning_static, add to your local_manifest.xml/ or clone it seperate this :
+# "https://github.com/quanganh2627/android_vendor_intel_hardware_libintelprov.git".
+# I temporary fix for compat with cm-13.0 only, based on tag "imin/mofd_v1_64/a50/rel_20150520-2015_ww21".
+# Use "git tag" to checkout another tag for another device.
 TARGET_RECOVERY_UPDATER_LIBS := libintel_updater
 TARGET_RECOVERY_UPDATER_EXTRA_LIBS := liboempartitioning_static
 
