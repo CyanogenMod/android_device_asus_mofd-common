@@ -19,21 +19,25 @@ package com.cyanogenmod.settings.device;
 import android.app.ActionBar;
 import android.os.Bundle;
 import android.preference.Preference;
-import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceCategory;
 import android.preference.SwitchPreference;
-import android.view.Menu;
+import android.provider.Settings;
 import android.view.MenuItem;
 
 import cyanogenmod.providers.CMSettings;
 
 import org.cyanogenmod.internal.util.ScreenType;
 
-public class TouchscreenGestureSettings extends PreferenceActivity implements OnPreferenceChangeListener {
+public class TouchscreenGestureSettings extends PreferenceActivity {
 
+    private static final String CATEGORY_AMBIENT_DISPLAY = "ambient_display_key";
+    private static final String KEY_GESTURE_HAND_WAVE = "gesture_hand_wave";
     private static final String KEY_HAPTIC_FEEDBACK = "touchscreen_gesture_haptic_feedback";
+    private static final String KEY_PROXIMITY_WAKE = "proximity_wake_enable";
 
+    private SwitchPreference mHandwavePreference;
+    private SwitchPreference mProximityWakePreference;
     private SwitchPreference mHapticFeedback;
 
     @Override
@@ -41,24 +45,18 @@ public class TouchscreenGestureSettings extends PreferenceActivity implements On
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.touchscreen_panel);
 
+        PreferenceCategory ambientDisplay =
+            (PreferenceCategory) findPreference(CATEGORY_AMBIENT_DISPLAY);
+        ambientDisplay.setEnabled(isDozeEnabled());
+        mHandwavePreference = (SwitchPreference) findPreference(KEY_GESTURE_HAND_WAVE);
+        mHandwavePreference.setOnPreferenceChangeListener(mGesturePrefListener);
+        mProximityWakePreference = (SwitchPreference) findPreference(KEY_PROXIMITY_WAKE);
+        mProximityWakePreference.setOnPreferenceChangeListener(mGesturePrefListener);
         mHapticFeedback = (SwitchPreference) findPreference(KEY_HAPTIC_FEEDBACK);
-        mHapticFeedback.setOnPreferenceChangeListener(this);
+        mHapticFeedback.setOnPreferenceChangeListener(mHapticPrefListener);
 
         final ActionBar actionBar = getActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
-    }
-
-    @Override
-    public boolean onPreferenceChange(Preference preference, Object newValue) {
-        final String key = preference.getKey();
-        if (KEY_HAPTIC_FEEDBACK.equals(key)) {
-            final boolean value = (Boolean) newValue;
-            CMSettings.System.putInt(getContentResolver(),
-                    CMSettings.System.TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK, value ? 1 : 0);
-            return true;
-        }
-
-        return false;
     }
 
     @Override
@@ -82,4 +80,40 @@ public class TouchscreenGestureSettings extends PreferenceActivity implements On
         }
         return false;
     }
+
+    private boolean isDozeEnabled() {
+        return Settings.Secure.getInt(getContentResolver(),
+                Settings.Secure.DOZE_ENABLED, 1) != 0;
+    }
+
+    private Preference.OnPreferenceChangeListener mGesturePrefListener =
+        new Preference.OnPreferenceChangeListener() {
+        @Override
+        public boolean onPreferenceChange(Preference preference, Object newValue) {
+            if ((boolean) newValue) {
+                final String key = preference.getKey();
+                if (KEY_GESTURE_HAND_WAVE.equals(key)) {
+                    mProximityWakePreference.setChecked(false);
+                } else if (KEY_PROXIMITY_WAKE.equals(key)) {
+                    mHandwavePreference.setChecked(false);
+                }
+            }
+            return true;
+        }
+    };
+
+    private Preference.OnPreferenceChangeListener mHapticPrefListener =
+        new Preference.OnPreferenceChangeListener() {
+        @Override
+        public boolean onPreferenceChange(Preference preference, Object newValue) {
+            final String key = preference.getKey();
+            if (KEY_HAPTIC_FEEDBACK.equals(key)) {
+                final boolean value = (Boolean) newValue;
+                CMSettings.System.putInt(getContentResolver(),
+                        CMSettings.System.TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK, value ? 1 : 0);
+                return true;
+            }
+            return false;
+        }
+    };
 }
