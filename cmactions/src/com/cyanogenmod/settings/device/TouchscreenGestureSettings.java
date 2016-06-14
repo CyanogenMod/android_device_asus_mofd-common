@@ -38,7 +38,6 @@ public class TouchscreenGestureSettings extends PreferenceActivity {
     private static final String KEY_HAPTIC_FEEDBACK = "touchscreen_gesture_haptic_feedback";
     private static final String KEY_PROXIMITY_WAKE = "proximity_wake_enable";
 
-    private Context mContext;
     private Handler mGestureHandler = new Handler();
 
     private SwitchPreference mAmbientDisplayPreference;
@@ -46,52 +45,32 @@ public class TouchscreenGestureSettings extends PreferenceActivity {
     private SwitchPreference mProximityWakePreference;
     private SwitchPreference mHapticFeedback;
 
-    private SwitchPreference mCGesturePreference;
-    private SwitchPreference mEGesturePreference;
-    private SwitchPreference mSGesturePreference;
-    private SwitchPreference mVGesturePreference;
-    private SwitchPreference mWGesturePreference;
-    private SwitchPreference mZGesturePreference;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.touchscreen_panel);
 
+        // Ambient Display
         PreferenceCategory ambientDisplay =
             (PreferenceCategory) findPreference(CATEGORY_AMBIENT_DISPLAY);
         ambientDisplay.setEnabled(isDozeEnabled());
         mHandwavePreference = (SwitchPreference) findPreference(KEY_GESTURE_HAND_WAVE);
-        mHandwavePreference.setOnPreferenceChangeListener(mGesturePrefListener);
+        mHandwavePreference.setOnPreferenceChangeListener(mProxPrefListener);
         mProximityWakePreference = (SwitchPreference) findPreference(KEY_PROXIMITY_WAKE);
-        mProximityWakePreference.setOnPreferenceChangeListener(mGesturePrefListener);
+        mProximityWakePreference.setOnPreferenceChangeListener(mProxPrefListener);
         mHapticFeedback = (SwitchPreference) findPreference(KEY_HAPTIC_FEEDBACK);
         mHapticFeedback.setOnPreferenceChangeListener(mHapticPrefListener);
-        mCGesturePreference =
-                (SwitchPreference) findPreference(CMActionsSettings.TOUCHSCREEN_C_GESTURE_KEY);
-        mCGesturePreference.setOnPreferenceChangeListener(mGesturePrefListener);
-        mEGesturePreference =
-                (SwitchPreference) findPreference(CMActionsSettings.TOUCHSCREEN_E_GESTURE_KEY);
-        mEGesturePreference.setOnPreferenceChangeListener(mGesturePrefListener);
-        mSGesturePreference =
-                (SwitchPreference) findPreference(CMActionsSettings.TOUCHSCREEN_S_GESTURE_KEY);
-        mSGesturePreference.setOnPreferenceChangeListener(mGesturePrefListener);
-        mVGesturePreference =
-                (SwitchPreference) findPreference(CMActionsSettings.TOUCHSCREEN_V_GESTURE_KEY);
-        mVGesturePreference.setOnPreferenceChangeListener(mGesturePrefListener);
-        mWGesturePreference =
-                (SwitchPreference) findPreference(CMActionsSettings.TOUCHSCREEN_W_GESTURE_KEY);
-        mWGesturePreference.setOnPreferenceChangeListener(mGesturePrefListener);
-        mZGesturePreference =
-                (SwitchPreference) findPreference(CMActionsSettings.TOUCHSCREEN_Z_GESTURE_KEY);
-        mZGesturePreference.setOnPreferenceChangeListener(mGesturePrefListener);
+
+        // Gestures
+        for (String gestureKey : CMActionsSettings.ALL_GESTURE_KEYS) {
+            Preference pref = findPreference(gestureKey);
+            pref.setOnPreferenceChangeListener(mGesturePrefListener);
+        }
 
         final ActionBar actionBar = getActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         ((ViewGroup)getListView().getParent()).setPadding(0, 0, 0, 0);
-
-        mContext = getApplicationContext();
     }
 
     @Override
@@ -115,7 +94,7 @@ public class TouchscreenGestureSettings extends PreferenceActivity {
                 Settings.Secure.DOZE_ENABLED, 1) != 0;
     }
 
-    private Preference.OnPreferenceChangeListener mGesturePrefListener =
+    private Preference.OnPreferenceChangeListener mProxPrefListener =
         new Preference.OnPreferenceChangeListener() {
         @Override
         public boolean onPreferenceChange(Preference preference, Object newValue) {
@@ -135,14 +114,10 @@ public class TouchscreenGestureSettings extends PreferenceActivity {
         new Preference.OnPreferenceChangeListener() {
         @Override
         public boolean onPreferenceChange(Preference preference, Object newValue) {
-            final String key = preference.getKey();
-            if (KEY_HAPTIC_FEEDBACK.equals(key)) {
-                final boolean value = (Boolean) newValue;
-                CMSettings.System.putInt(getContentResolver(),
-                        CMSettings.System.TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK, value ? 1 : 0);
-                return true;
-            }
-            return false;
+            final boolean value = (Boolean) newValue;
+            CMSettings.System.putInt(getContentResolver(),
+                    CMSettings.System.TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK, value ? 1 : 0);
+            return true;
         }
     };
 
@@ -156,13 +131,9 @@ public class TouchscreenGestureSettings extends PreferenceActivity {
         };
 
     private final Runnable mUpdateGestures = new Runnable() {
-        public void run(){
-            try {
-                CMActionsSettings.updateGestureMode(mContext);
-            }
-            catch (Exception e) {
-                // Can't do much anyway
-            }
+        @Override
+        public void run() {
+            CMActionsSettings.updateGestureMode(TouchscreenGestureSettings.this);
         }
     };
 }
