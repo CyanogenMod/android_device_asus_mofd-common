@@ -27,10 +27,9 @@ import android.preference.PreferenceCategory;
 import android.preference.SwitchPreference;
 import android.provider.Settings;
 import android.view.MenuItem;
+import android.view.ViewGroup;
 
 import cyanogenmod.providers.CMSettings;
-
-import org.cyanogenmod.internal.util.ScreenType;
 
 public class TouchscreenGestureSettings extends PreferenceActivity {
 
@@ -90,6 +89,8 @@ public class TouchscreenGestureSettings extends PreferenceActivity {
         final ActionBar actionBar = getActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
+        ((ViewGroup)getListView().getParent()).setPadding(0, 0, 0, 0);
+
         mContext = getApplicationContext();
     }
 
@@ -98,10 +99,6 @@ public class TouchscreenGestureSettings extends PreferenceActivity {
         super.onResume();
         mHapticFeedback.setChecked(CMSettings.System.getInt(getContentResolver(),
                 CMSettings.System.TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK, 1) != 0);
-        // If running on a phone, remove padding around the listview
-        if (!ScreenType.isTablet(this)) {
-            getListView().setPadding(0, 0, 0, 0);
-        }
     }
 
     @Override
