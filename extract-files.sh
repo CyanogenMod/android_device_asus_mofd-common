@@ -8,9 +8,9 @@ function extract() {
         if [ -z $DEST ]; then
             DEST=$FILE
         fi
-        DIR=`dirname $FILE`
-        if [ ! -d $2/$DIR ]; then
-            mkdir -p $2/$DIR
+        DEST_DIR=`dirname $DEST`
+        if [ ! -d $2/$DEST_DIR ]; then
+            mkdir -p $2/$DEST_DIR
         fi
         if [ "$SRC" = "adb" ]; then
             # Try CM target first
