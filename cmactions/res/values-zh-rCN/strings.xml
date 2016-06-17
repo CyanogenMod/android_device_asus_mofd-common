@@ -29,4 +29,5 @@
   <string name="touchscreen_w_gesture_summary">绘制一个“W”来打开浏览器应用</string>
   <string name="touchscreen_z_gesture_title">手电筒</string>
   <string name="touchscreen_z_gesture_summary">绘制一个“Z”来切换手电筒</string>
+  <!-- Ambient Display Options -->
 </resources>

@@ -29,4 +29,5 @@
   <string name="touchscreen_w_gesture_summary">బ్రౌజర్ అనువర్తనం తెరవడానికి ఒక \"W\" డ్రా</string>
   <string name="touchscreen_z_gesture_title">ఫ్లాష్లైట్</string>
   <string name="touchscreen_z_gesture_summary">ఫ్లాష్లైట్ మార్చడానికి ఒక \"Z\" డ్రా</string>
+  <!-- Ambient Display Options -->
 </resources>

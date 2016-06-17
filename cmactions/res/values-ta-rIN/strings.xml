@@ -29,4 +29,5 @@
   <string name="touchscreen_w_gesture_summary">உலாவி பயன்பாட்டை திறக்க ஒரு \"W\" வரை</string>
   <string name="touchscreen_z_gesture_title">ஃபிளாஷ்லைட்</string>
   <string name="touchscreen_z_gesture_summary">ஃப்ளாஷ்லைட் நிலைமாறுவதற்கு ஒரு \"Z\" வரை</string>
+  <!-- Ambient Display Options -->
 </resources>

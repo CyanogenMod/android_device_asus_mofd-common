@@ -29,4 +29,5 @@
   <string name="touchscreen_w_gesture_summary">วาดตัว \"W\" เพื่อเปิดแอปเบราว์เซอร์</string>
   <string name="touchscreen_z_gesture_title">ไฟฉาย</string>
   <string name="touchscreen_z_gesture_summary">วาดตัว \"Z\" เพื่อสลับไฟฉาย</string>
+  <!-- Ambient Display Options -->
 </resources>

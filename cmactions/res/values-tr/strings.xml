@@ -29,4 +29,5 @@
   <string name="touchscreen_w_gesture_summary">Tarayıcı uygulamasını açmak için \"W\" çizin</string>
   <string name="touchscreen_z_gesture_title">El feneri</string>
   <string name="touchscreen_z_gesture_summary">El fenerini açıp kapatmak için \'Z\' çizin</string>
+  <!-- Ambient Display Options -->
 </resources>

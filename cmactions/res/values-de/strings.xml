@@ -29,4 +29,5 @@
   <string name="touchscreen_w_gesture_summary">\"W\" zeichnen, um den Browser zu starten</string>
   <string name="touchscreen_z_gesture_title">Taschenlampe</string>
   <string name="touchscreen_z_gesture_summary">\"Z\" zeichnen, um die Taschenlampe ein-/auszuschalten</string>
+  <!-- Ambient Display Options -->
 </resources>

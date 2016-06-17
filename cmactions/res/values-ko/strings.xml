@@ -29,4 +29,5 @@
   <string name="touchscreen_w_gesture_summary">\"W\"를 그려 브라우저 앱 열기</string>
   <string name="touchscreen_z_gesture_title">손전등</string>
   <string name="touchscreen_z_gesture_summary">\'V\'를 그려 손전등 토글</string>
+  <!-- Ambient Display Options -->
 </resources>

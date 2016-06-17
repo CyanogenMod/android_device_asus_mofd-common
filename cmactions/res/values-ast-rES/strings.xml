@@ -29,4 +29,5 @@
   <string name="touchscreen_w_gesture_summary">Dibuxar una \"W\" p\'abrir el restolador</string>
   <string name="touchscreen_z_gesture_title">Llinterna</string>
   <string name="touchscreen_z_gesture_summary">Dibuxa una \"Z\" p\'abrir la llinterna</string>
+  <!-- Ambient Display Options -->
 </resources>

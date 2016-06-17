@@ -29,4 +29,5 @@
   <string name="touchscreen_w_gesture_summary">Narišite \"W\", da odprete brskalnik</string>
   <string name="touchscreen_z_gesture_title">Svetilka</string>
   <string name="touchscreen_z_gesture_summary">Narišite \"Z\", da preklopite svetilko</string>
+  <!-- Ambient Display Options -->
 </resources>

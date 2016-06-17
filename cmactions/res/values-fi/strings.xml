@@ -29,4 +29,5 @@
   <string name="touchscreen_w_gesture_summary">Piirrä \"W\" avataksesi selaimen</string>
   <string name="touchscreen_z_gesture_title">Taskulamppu</string>
   <string name="touchscreen_z_gesture_summary">Piirrä \"Z\" avataksesi taskulampun</string>
+  <!-- Ambient Display Options -->
 </resources>

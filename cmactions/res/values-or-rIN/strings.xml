@@ -29,4 +29,5 @@
   <string name="touchscreen_w_gesture_summary">ବ୍ରାଉଜର୍ ଆପ୍ ଖୋଲିବା ପାଇଁ ଏକ \"W\" ଆଙ୍କନ୍ତୁ</string>
   <string name="touchscreen_z_gesture_title">ଫ୍ଲାସଲାଇଟ୍</string>
   <string name="touchscreen_z_gesture_summary">ଫ୍ଲାସ୍‍ଲାଇଟ୍‍ ଟୋଗଲ୍‍ କରିବା ପାଇଁ ଏକ \"Z\" ଆଙ୍କନ୍ତୁ</string>
+  <!-- Ambient Display Options -->
 </resources>

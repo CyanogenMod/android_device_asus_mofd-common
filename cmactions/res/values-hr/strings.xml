@@ -29,4 +29,5 @@
   <string name="touchscreen_w_gesture_summary">Nacrtajte \"W\" za otvaranje aplikacije Preglednik</string>
   <string name="touchscreen_z_gesture_title">Bljeskalica</string>
   <string name="touchscreen_z_gesture_summary">Nacrtajte \"Z\" za upravljanje svjetiljkom</string>
+  <!-- Ambient Display Options -->
 </resources>

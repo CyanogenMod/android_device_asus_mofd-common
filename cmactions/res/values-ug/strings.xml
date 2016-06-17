@@ -29,4 +29,5 @@
   <string name="touchscreen_w_gesture_summary">تور كۆرگۈچنى قوزغىتىش ئۈچۈن \"W\" شەكلىنى سىزىڭ</string>
   <string name="touchscreen_z_gesture_title">قول چىراغ</string>
   <string name="touchscreen_z_gesture_summary">قول چىراقنى قوزغىتىش ئۈچۈن \"Z\" شەكلىنى سىزىڭ</string>
+  <!-- Ambient Display Options -->
 </resources>

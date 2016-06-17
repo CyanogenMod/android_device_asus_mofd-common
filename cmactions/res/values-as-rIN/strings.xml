@@ -29,4 +29,5 @@
   <string name="touchscreen_w_gesture_summary">ব্ৰাউজাৰ এপ্পটো খোলিবলৈ \"W\" আঁকক</string>
   <string name="touchscreen_z_gesture_title">ফ্লেশলাইট</string>
   <string name="touchscreen_z_gesture_summary">ফ্লেশলাইট টগল কৰিবলৈ \"Z\" আঁকক</string>
+  <!-- Ambient Display Options -->
 </resources>

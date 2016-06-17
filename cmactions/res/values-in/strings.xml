@@ -29,4 +29,5 @@
   <string name="touchscreen_w_gesture_summary">Gambar \"W\" untuk membuka aplikasi peramban</string>
   <string name="touchscreen_z_gesture_title">Senter</string>
   <string name="touchscreen_z_gesture_summary">Gambar \"Z\" untuk mengaktifkan/menonaktifkan senter</string>
+  <!-- Ambient Display Options -->
 </resources>

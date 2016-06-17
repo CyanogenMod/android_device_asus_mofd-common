@@ -29,4 +29,5 @@
   <string name="touchscreen_w_gesture_summary">Marraztu \"W\" bat nabigatzailea irekitzeko</string>
   <string name="touchscreen_z_gesture_title">Linterna</string>
   <string name="touchscreen_z_gesture_summary">Marraztu \"Z\" bat linterna txandakatzeko</string>
+  <!-- Ambient Display Options -->
 </resources>

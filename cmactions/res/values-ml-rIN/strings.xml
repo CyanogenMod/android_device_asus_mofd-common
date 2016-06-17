@@ -29,4 +29,5 @@
   <string name="touchscreen_w_gesture_summary">ബ്രൗസർ അപ്ലിക്കേഷൻ തുറക്കുന്നതിന് ഒരു \"W\" വരയ്ക്കുക</string>
   <string name="touchscreen_z_gesture_title">ഫ്‌ലാഷ്‌ലൈറ്റ്</string>
   <string name="touchscreen_z_gesture_summary">ഫ്ലാഷ്ലൈറ്റ് ടോഗിൾ ചെയ്യാന്‍ ഒരു \"Z\" വരയ്ക്കുക</string>
+  <!-- Ambient Display Options -->
 </resources>

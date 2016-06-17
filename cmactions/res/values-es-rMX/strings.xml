@@ -29,4 +29,5 @@
   <string name="touchscreen_w_gesture_summary">Dibuja una \"W\" para abrir la aplicación del navegador</string>
   <string name="touchscreen_z_gesture_title">Linterna</string>
   <string name="touchscreen_z_gesture_summary">Dibuja una \'Z\' para alternar la linterna</string>
+  <!-- Ambient Display Options -->
 </resources>

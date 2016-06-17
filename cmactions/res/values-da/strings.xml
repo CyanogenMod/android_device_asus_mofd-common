@@ -29,4 +29,5 @@
   <string name="touchscreen_w_gesture_summary">Tegn et \"W\" for at åbne browser-appen</string>
   <string name="touchscreen_z_gesture_title">Lommelygte</string>
   <string name="touchscreen_z_gesture_summary">Tegn et \"Z\" for at slå lommelygten til/fra</string>
+  <!-- Ambient Display Options -->
 </resources>

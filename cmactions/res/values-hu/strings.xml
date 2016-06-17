@@ -29,4 +29,5 @@
   <string name="touchscreen_w_gesture_summary">Rajzoljon egy \"W\" betűt a böngésző indításához</string>
   <string name="touchscreen_z_gesture_title">Zseblámpa</string>
   <string name="touchscreen_z_gesture_summary">Rajzoljon egy \"Z\" betűt a zseblámpához</string>
+  <!-- Ambient Display Options -->
 </resources>

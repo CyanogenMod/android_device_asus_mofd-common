@@ -29,4 +29,5 @@
   <string name="touchscreen_w_gesture_summary">Намалюй \"W\" для адкрыцця браўзэра</string>
   <string name="touchscreen_z_gesture_title">Ліхтарык</string>
   <string name="touchscreen_z_gesture_summary">Намалюй «Z» для ўключэння ці выключэння ліхтарыка</string>
+  <!-- Ambient Display Options -->
 </resources>

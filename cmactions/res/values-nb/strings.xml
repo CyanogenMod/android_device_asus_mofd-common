@@ -29,4 +29,5 @@
   <string name="touchscreen_w_gesture_summary">Tegn en \"W\" for å åpne internett</string>
   <string name="touchscreen_z_gesture_title">Lommelykt</string>
   <string name="touchscreen_z_gesture_summary">Tegn en \"Z\" for å slå på/av lommelykt</string>
+  <!-- Ambient Display Options -->
 </resources>

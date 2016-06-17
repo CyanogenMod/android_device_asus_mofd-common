@@ -29,4 +29,5 @@
   <string name="touchscreen_w_gesture_summary">Gestem „W“ otevřít aplikaci prohlížeče</string>
   <string name="touchscreen_z_gesture_title">Svítilna</string>
   <string name="touchscreen_z_gesture_summary">Gestem „Z“ rozsvítit/zhasnout svítlinu</string>
+  <!-- Ambient Display Options -->
 </resources>

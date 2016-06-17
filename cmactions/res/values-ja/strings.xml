@@ -29,4 +29,5 @@
   <string name="touchscreen_w_gesture_summary">Wを描いてブラウザアプリを開く</string>
   <string name="touchscreen_z_gesture_title">フラッシュライト</string>
   <string name="touchscreen_z_gesture_summary">Zを描いてフラッシュライトを切り替える</string>
+  <!-- Ambient Display Options -->
 </resources>

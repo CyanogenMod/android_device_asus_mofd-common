@@ -29,4 +29,5 @@
   <string name="touchscreen_w_gesture_summary">رسم \"W\" لفتح تطبيق المستعرض</string>
   <string name="touchscreen_z_gesture_title">كشاف</string>
   <string name="touchscreen_z_gesture_summary">رسم \'Z\' للتبديل بين الكشاف</string>
+  <!-- Ambient Display Options -->
 </resources>

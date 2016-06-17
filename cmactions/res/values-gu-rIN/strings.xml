@@ -29,4 +29,5 @@
   <string name="touchscreen_w_gesture_summary">\"W\" દોરો બ્રાઉઝર એપ્લીકેશન સક્રિય કરવા માટે</string>
   <string name="touchscreen_z_gesture_title">ફ્લેશલાઇટ</string>
   <string name="touchscreen_z_gesture_summary">ફ્લૅશલાઇટ ટૉગલ કરવા માટે \'Z\' દોરો</string>
+  <!-- Ambient Display Options -->
 </resources>

@@ -29,4 +29,5 @@
   <string name="touchscreen_w_gesture_summary">Disegna una \"W\" per aprire il browser</string>
   <string name="touchscreen_z_gesture_title">Torcia</string>
   <string name="touchscreen_z_gesture_summary">Disegna una \"Z\" per accendere la torcia</string>
+  <!-- Ambient Display Options -->
 </resources>

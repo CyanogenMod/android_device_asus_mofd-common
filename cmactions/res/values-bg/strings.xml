@@ -29,4 +29,5 @@
   <string name="touchscreen_w_gesture_summary">Изпишете буквата \"W\", за да отворите браузъра</string>
   <string name="touchscreen_z_gesture_title">Фенерче</string>
   <string name="touchscreen_z_gesture_summary">Изпишете буквата \"Z\", за превключване на фенерчето</string>
+  <!-- Ambient Display Options -->
 </resources>

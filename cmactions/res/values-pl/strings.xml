@@ -29,4 +29,5 @@
   <string name="touchscreen_w_gesture_summary">Narysuj \"W\", aby otworzyć przeglądarkę</string>
   <string name="touchscreen_z_gesture_title">Latarka</string>
   <string name="touchscreen_z_gesture_summary">Narysuj \"Z\", aby włączyć latarkę</string>
+  <!-- Ambient Display Options -->
 </resources>

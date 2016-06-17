@@ -29,4 +29,5 @@
   <string name="touchscreen_w_gesture_summary">Teken \'n \"W\" om webleser oop te maak</string>
   <string name="touchscreen_z_gesture_title">Flits</string>
   <string name="touchscreen_z_gesture_summary">Teken \'n \'Z\' om flits aan/af te skakel</string>
+  <!-- Ambient Display Options -->
 </resources>
