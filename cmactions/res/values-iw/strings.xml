@@ -30,5 +30,9 @@
   <string name="touchscreen_z_gesture_title">פנס</string>
   <string name="touchscreen_z_gesture_summary">צייר \"Z\" כדי להפעיל את הפנס</string>
   <!-- Ambient Display Options -->
+  <string name="ambient_display_title">תצוגת התראות עמומה</string>
+  <string name="hand_wave_gesture_title">נפנוף יד</string>
+  <string name="pick_up_gesture_title">הרמה</string>
+  <string name="pick_up_gesture_summary">הצג התראות בעת הרמה</string>
   <string name="pocket_gesture_title">כיס</string>
 </resources>
