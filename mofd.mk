@@ -191,6 +191,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Ramdisk
 PRODUCT_PACKAGES += \
+    brcm_config_init.sh \
     config_init.sh \
     fstab.mofd_v1 \
     init.avc.rc \
