@@ -19,3 +19,8 @@ on boot
     setprop ro.nfc.se.uicc false
     setprop ro.nfc.se.ese false
 
+service brcm_config_init /system/bin/sh /etc/brcm_config_init.sh
+    class late_start
+    oneshot
+    #seclabel u:r:nfc_init:s0
+
