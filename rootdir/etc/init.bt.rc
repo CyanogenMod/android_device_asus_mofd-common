@@ -1,8 +1,9 @@
 import init.bt.vendor.rc
 
-# Point on the right bt_vendor.conf at runtime
-on property:ro.product.name=*
-    setprop ro.bt.conf_file /system/etc/bluetooth/bt_${ro.product.name}.conf
+on post-fs
+    mkdir /config/bt
+    chown system bluetooth /config/bt
+    chmod 0770 /config/bt
 
 service dhcpcd_bt-pan /system/bin/dhcpcd -ABKL
     class main
