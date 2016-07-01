@@ -77,9 +77,6 @@ PRODUCT_COPY_FILES += \
     device/asus/mofd-common/powervr.ini:system/etc/powervr.ini
 
 # GPS
-PRODUCT_PACKAGES += \
-    libshim_gps
-
 PRODUCT_COPY_FILES += \
     device/asus/mofd-common/configs/gps.conf:system/etc/gps.conf \
     device/asus/mofd-common/configs/gps.xml:system/etc/gps.xml
