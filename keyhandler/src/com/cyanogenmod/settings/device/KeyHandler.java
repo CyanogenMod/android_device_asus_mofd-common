@@ -54,12 +54,12 @@ public class KeyHandler implements DeviceKeyHandler {
     private static final int GESTURE_REQUEST = 1;
 
     // Supported scancodes
-    private static final int KEY_GESTURE_C = 257;
-    private static final int KEY_GESTURE_E = 258;
-    private static final int KEY_GESTURE_S = 259;
-    private static final int KEY_GESTURE_V = 260;
-    private static final int KEY_GESTURE_W = 261;
-    private static final int KEY_GESTURE_Z = 262;
+    private static final int KEY_GESTURE_C = 249;
+    private static final int KEY_GESTURE_E = 250;
+    private static final int KEY_GESTURE_S = 251;
+    private static final int KEY_GESTURE_V = 252;
+    private static final int KEY_GESTURE_W = 253;
+    private static final int KEY_GESTURE_Z = 254;
 
     private static final int GESTURE_WAKELOCK_DURATION = 3000;
 
