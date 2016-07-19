@@ -35,4 +35,5 @@
   <string name="pick_up_gesture_title">הרמה</string>
   <string name="pick_up_gesture_summary">הצג התראות בעת הרמה</string>
   <string name="pocket_gesture_title">כיס</string>
+  <string name="proximity_wake_enable_summary">הער את המכשיר בנפנוף יד</string>
 </resources>
