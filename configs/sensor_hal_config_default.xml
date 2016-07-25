@@ -54,6 +54,7 @@
       <minDelay>10000</minDelay>
       <maxDelay>1000000</maxDelay>
       <scale axis_x="0.1" axis_y="0.1" axis_z="0.1"></scale>
+      <fifoMaxEventCount>2048</fifoMaxEventCount>
     </device>
   </sensor>
   <sensor type="gyroscope" category="libsensorhub">
@@ -78,7 +79,7 @@
       <maxRange>1200</maxRange>
       <resolution>0.001</resolution>
       <power>0.001</power>
-      <minDelay>50000</minDelay>
+      <minDelay>40000</minDelay>
       <maxDelay>1000000</maxDelay>
       <scale axis_x="0.001"></scale>
       <fifoMaxEventCount>2048</fifoMaxEventCount>
@@ -149,8 +150,9 @@
       <maxRange>1.0</maxRange>
       <resolution>1.0</resolution>
       <power>0.35</power>
-      <minDelay>0</minDelay>
+      <minDelay>-1</minDelay>
       <maxDelay>0</maxDelay>
+      <wakeup>1</wakeup>
     </device>
   </sensor>
   <sensor type="tilt_detector" category="libsensorhub">
@@ -161,8 +163,9 @@
       <maxRange>1.0</maxRange>
       <resolution>1.0</resolution>
       <power>0.35</power>
-      <minDelay>0</minDelay>
+      <minDelay>-1</minDelay>
       <maxDelay>0</maxDelay>
+      <wakeup>1</wakeup>
     </device>
   </sensor>
   <sensor type="pick_up_gesture" category="libsensorhub">
@@ -173,8 +176,9 @@
       <maxRange>1.0</maxRange>
       <resolution>1.0</resolution>
       <power>0.35</power>
-      <minDelay>0</minDelay>
+      <minDelay>-1</minDelay>
       <maxDelay>0</maxDelay>
+      <wakeup>1</wakeup>
     </device>
   </sensor>
   <sensor type="step_detector" category="libsensorhub">
@@ -211,8 +215,9 @@
       <maxRange>1</maxRange>
       <resolution>1</resolution>
       <power>0.35</power>
-      <minDelay>0</minDelay>
+      <minDelay>-1</minDelay>
       <maxDelay>0</maxDelay>
+      <wakeup>1</wakeup>
     </device>
   </sensor>
   <sensor type="shake" category="libsensorhub">
@@ -269,19 +274,6 @@
       <fifoMaxEventCount>2048</fifoMaxEventCount>
     </device>
   </sensor>
-  <sensor type="terminal" category="libsensorhub">
-    <device>
-      <name>PSH Terminal sensor</name>
-      <vendor>Intel Inc.</vendor>
-      <version>1</version>
-      <maxRange>7.0</maxRange>
-      <resolution>1.0</resolution>
-      <power>0.35</power>
-      <minDelay>0</minDelay>
-      <maxDelay>0</maxDelay>
-      <fifoMaxEventCount>2048</fifoMaxEventCount>
-    </device>
-  </sensor>
   <sensor type="simple_tapping" category="libsensorhub">
     <device>
       <name>PSH Simple Tapping sensor</name>
@@ -292,6 +284,7 @@
       <power>0.35</power>
       <minDelay>0</minDelay>
       <maxDelay>0</maxDelay>
+      <wakeup>1</wakeup>
       <fifoMaxEventCount>2048</fifoMaxEventCount>
     </device>
   </sensor>
@@ -320,18 +313,6 @@
       <maxDelay>1000000</maxDelay>
     </device>
   </sensor>
-  <sensor type="physical_activity" category="libsensorhub">
-    <device>
-      <name>PSH Physical Activity sensor</name>
-      <vendor>Intel Inc.</vendor>
-      <version>1</version>
-      <maxRange>1.0</maxRange>
-      <resolution>1.0</resolution>
-      <power>0.35</power>
-      <minDelay>5000</minDelay>
-      <maxDelay>1000000</maxDelay>
-    </device>
-  </sensor>
   <sensor type="gesture" category="libsensorhub">
     <device>
       <name>PSH Gesture sensor</name>
@@ -342,18 +323,6 @@
       <power>0.35</power>
       <minDelay>0</minDelay>
       <maxDelay>0</maxDelay>
-    </device>
-  </sensor>
-  <sensor type="audio_classifier" category="libsensorhub">
-    <device>
-      <name>PSH Audio Classifier sensor</name>
-      <vendor>Intel Inc.</vendor>
-      <version>1</version>
-      <maxRange>1.0</maxRange>
-      <resolution>1.0</resolution>
-      <power>0.35</power>
-      <minDelay>5000</minDelay>
-      <maxDelay>1000000</maxDelay>
     </device>
   </sensor>
   <sensor type="uncalibrated_magnetic_field" category="libsensorhub">
@@ -392,8 +361,8 @@
       <maxRange>100.0</maxRange>
       <resolution>1.0</resolution>
       <power>0.001</power>
-      <minDelay>10000</minDelay>
-      <maxDelay>1000000</maxDelay>
+      <minDelay>0</minDelay>
+      <maxDelay>0</maxDelay>
     </device>
   </sensor>
   <sensor type="gesture_hmm" category="libsensorhub">
@@ -454,8 +423,8 @@
       <maxRange>7.0</maxRange>
       <resolution>1.0</resolution>
       <power>0.35</power>
-      <minDelay>0</minDelay>
-      <maxDelay>0</maxDelay>
+      <minDelay>10000</minDelay>
+      <maxDelay>100000</maxDelay>
       <fifoMaxEventCount>2048</fifoMaxEventCount>
     </device>
   </sensor>
