@@ -79,8 +79,9 @@ Only the three quirks included above are recognized at this point:
 -->
 
 <MediaCodecs>
-    <Include href="media_codecs_google_audio.xml" />
-
+    <Settings>
+        <Setting name="max-video-encoder-input-buffers" value="2" />
+    </Settings>
     <Decoders>
         <MediaCodec name="OMX.Intel.VideoDecoder.MPEG4" type="video/mp4v-es">
             <Limit name="size" min="96x32" max="1920x1088" />
@@ -89,7 +90,7 @@ Only the three quirks included above are recognized at this point:
             <Limit name="blocks-per-second" range="12-244800" />
             <Limit name="bitrate" range="1-20000000" />
             <Feature name="adaptive-playback" optional="yes" />
-            <Limit name="concurrent-instances" max="2" />
+            <Limit name="concurrent-instances" max="4" />
         </MediaCodec>
         <MediaCodec name="OMX.Intel.VideoDecoder.H263" type="video/3gpp">
             <Limit name="size" min="96x32" max="720x576" />
@@ -107,7 +108,7 @@ Only the three quirks included above are recognized at this point:
             <Limit name="blocks-per-second" range="12-864000" />
             <Limit name="bitrate" range="1-50000000" />
             <Feature name="adaptive-playback" />
-            <Limit name="concurrent-instances" max="2" />
+            <Limit name="concurrent-instances" max="5" />
         </MediaCodec>
         <MediaCodec name="OMX.Intel.VideoDecoder.AVC.secure" type="video/avc">
             <Limit name="size" min="96x32" max="1920x1088" />
@@ -117,7 +118,7 @@ Only the three quirks included above are recognized at this point:
             <Limit name="bitrate" range="1-50000000" />
             <Feature name="adaptive-playback" />
             <Feature name="secure-playback" required="true" />
-            <Limit name="concurrent-instances" max="5" />
+            <Limit name="concurrent-instances" max="1" />
         </MediaCodec>
         <MediaCodec name="OMX.Intel.VideoDecoder.VP8" type="video/x-vnd.on2.vp8">
             <Limit name="size" min="96x32" max="1920x1088" />
@@ -126,8 +127,9 @@ Only the three quirks included above are recognized at this point:
             <Limit name="blocks-per-second" range="12-489600" />
             <Limit name="bitrate" range="1-50000000" />
             <Feature name="adaptive-playback" />
-            <Limit name="concurrent-instances" max="2" />
+            <Limit name="concurrent-instances" max="5" />
         </MediaCodec>
+<!--
         <MediaCodec name="OMX.Intel.VideoDecoder.MPEG2" type="video/mpeg2">
             <Limit name="size" min="96x32" max="1920x1088" />
             <Limit name="alignment" value="2x2" />
@@ -135,13 +137,14 @@ Only the three quirks included above are recognized at this point:
             <Limit name="blocks-per-second" range="12-489600" />
             <Limit name="bitrate" range="1-80000000" />
             <Feature name="adaptive-playback" />
-            <Limit name="concurrent-instances" max="3" />
+            <Limit name="concurrent-instances" max="4" />
         </MediaCodec>
-        <MediaCodec name="OMX.Intel.VideoDecoder.VP9.hybrid" type="video/x-vnd.on2.vp9">
-            <Limit name="size" min="16x16" max="1920x1088" />
+-->
+        <MediaCodec name="OMX.Intel.VideoDecoder.VP9.hwr" type="video/x-vnd.on2.vp9">
+            <Limit name="size" min="16x16" max="1920x1080" />
             <Limit name="alignment" value="2x2" />
-            <Limit name="block-size" value="16x16" />
-            <Limit name="blocks-per-second" range="1-244800" />
+            <Limit name="block-size" value="8x8" />
+            <Limit name="blocks-per-second" range="4-972000" />
             <Limit name="bitrate" range="1-8000000" />
             <Feature name="adaptive-playback" />
             <Limit name="concurrent-instances" max="2" />
@@ -155,12 +158,36 @@ Only the three quirks included above are recognized at this point:
             <Feature name="adaptive-playback" />
             <Limit name="concurrent-instances" max="5" />
         </MediaCodec>
-
-       <MediaCodec name="OMX.google.gsm.decoder" type="audio/gsm" />
-       <MediaCodec name="OMX.Intel.alac.decoder" type="audio/alac" />
+<!--
+        <MediaCodec name="OMX.Intel.alac.decoder" type="audio/alac" />
+-->
+        <MediaCodec name="OMX.Intel.mp3.decoder" type="audio/mpeg" />
+        <MediaCodec name="OMX.Intel.amrnb.decoder" type="audio/3gpp" />
+        <MediaCodec name="OMX.Intel.amrwb.decoder" type="audio/amr-wb" />
+        <MediaCodec name="OMX.Intel.aac.decoder" type="audio/mp4a-latm" />
+        <MediaCodec name="OMX.Intel.vorbis.decoder" type="audio/vorbis" />
+<!--
+        <MediaCodec name="OMX.Intel.wma.decoder" type="audio/x-ms-wma" />
+-->
     </Decoders>
 
     <Encoders>
+<!--
+        <MediaCodec name="OMX.Intel.VideoEncoder.MPEG4" type="video/mp4v-es" >
+            <Quirk name="requires-allocate-on-input-ports" />
+            <Limit name="size" min="176x144" max="720x480" />
+            <Limit name="alignment" value="8x8" />
+            <Limit name="block-size" value="16x16" />
+            <Limit name="concurrent-instances" max="3" />
+        </MediaCodec>
+-->
+        <MediaCodec name="OMX.Intel.VideoEncoder.H263" type="video/3gpp" >
+            <Quirk name="requires-allocate-on-input-ports" />
+            <Limit name="size" min="176x144" max="720x480" />
+            <Limit name="alignment" value="8x8" />
+            <Limit name="block-size" value="16x16" />
+            <Limit name="concurrent-instances" max="3" />
+        </MediaCodec>
         <MediaCodec name="OMX.Intel.VideoEncoder.AVC" type="video/avc" >
             <Quirk name="requires-allocate-on-input-ports" />
             <Limit name="size" min="176x144" max="1920x1088" />
@@ -168,7 +195,7 @@ Only the three quirks included above are recognized at this point:
             <Limit name="block-size" value="16x16" />
             <Limit name="frame-rate" range="1-60" />
             <Limit name="bitrate" range="1-50000000" />
-            <Limit name="concurrent-instances" max="5" />
+            <Limit name="concurrent-instances" max="3" />
         </MediaCodec>
         <MediaCodec name="OMX.Intel.VideoEncoder.VP8" type="video/x-vnd.on2.vp8" >
             <Quirk name="requires-allocate-on-input-ports" />
@@ -177,10 +204,14 @@ Only the three quirks included above are recognized at this point:
             <Limit name="block-size" value="16x16" />
             <Limit name="frame-rate" range="1-30" />
             <Limit name="bitrate" range="1-10000000" />
-            <Limit name="concurrent-instances" max="5" />
+            <Limit name="concurrent-instances" max="3" />
         </MediaCodec>
+        <MediaCodec name="OMX.Intel.amrnb.encoder" type="audio/3gpp" />
+        <MediaCodec name="OMX.Intel.amrwb.encoder" type="audio/amr-wb" />
+        <MediaCodec name="OMX.Intel.aac.encoder" type="audio/mp4a-latm" />
     </Encoders>
 
+    <Include href="media_codecs_google_audio.xml" />
     <Include href="media_codecs_google_video.xml" />
     <Include href="media_codecs_ffmpeg.xml" />
 </MediaCodecs>
