@@ -746,10 +746,13 @@ vendor/firmware/telephony/zx550ml_WW_726x.tlv
 
 # Sensors
 bin/sensorhubd
+etc/firmware/psh.bin
 etc/firmware/psh.bin.0000.0000.0008.0008.0000.0002
 etc/firmware/psh.bin.0000.0000.0008.0008.0001.0000
 etc/firmware/psh.bin.0000.0000.0008.0008.0001.0001
 etc/firmware/psh.bin.0000.0000.0008.0008.0002.0001
+etc/firmware/psh.bin.ze550ml
+etc/firmware/psh.bin.ze551ml
 etc/firmware/psh.bin.zx550ml
 lib/hw/sensors.mofd_v1.so
 lib/libcontextarbitor.so
