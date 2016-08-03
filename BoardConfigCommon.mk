@@ -125,8 +125,8 @@ BOARD_KERNEL_IMAGE_NAME := bzImage
 TARGET_KERNEL_CONFIG := cyanogenmod_zenfone2_defconfig
 
 # Kernel cmdline
-BOARD_KERNEL_CMDLINE := init=/init pci=noearly loglevel=0 vmalloc=256M androidboot.hardware=mofd_v1 watchdog.watchdog_thresh=60 androidboot.spid=xxxx:xxxx:xxxx:xxxx:xxxx:xxxx androidboot.serialno=01234567890123456789 snd_pcm.maximum_substreams=8 ip=50.0.0.2:50.0.0.1::255.255.255.0::usb0:on debug_locks=0 n_gsm.mux_base_conf=\"ttyACM0,0 ttyXMM0,1\"
-#BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
+BOARD_KERNEL_CMDLINE := init=/init pci=noearly console=logk0 loglevel=0 vmalloc=256M androidboot.hardware=mofd_v1 watchdog.watchdog_thresh=60 androidboot.spid=xxxx:xxxx:xxxx:xxxx:xxxx:xxxx androidboot.serialno=01234567890123456789 gpt snd_pcm.maximum_substreams=8 ptrace.ptrace_can_access=1 panic=15 ip=50.0.0.2:50.0.0.1::255.255.255.0::usb0:on debug_locks=0 n_gsm.mux_base_conf=\"ttyACM0,0 ttyXMM0,1\" bootboost=1'
+BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
 
 # Lights
 TARGET_PROVIDES_LIBLIGHT := true
@@ -146,6 +146,9 @@ USE_INTEL_SECURE_AVC := true
 # - MFX_IPP: sets IPP library optimization to use
 USE_MEDIASDK := true
 MFX_IPP := p8
+
+# Mkbootimg
+BOARD_CUSTOM_BOOTIMG_MK := device/asus/mofd-common/mkbootimg.mk
 
 # Video Post Processing
 TARGET_HAS_ISV := true
