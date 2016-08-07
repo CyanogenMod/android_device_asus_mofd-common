@@ -345,8 +345,3 @@ service_redefine media /system/bin/mediaserver
     group audio camera inet net_bt net_bt_admin net_bw_acct drmrpc mediadrm radio system
     ioprio rt 4
 
-service_redefine keystore /system/bin/keystore /data/misc/keystore
-    class main
-    user keystore
-    group keystore drmrpc system
-    setenv LD_SHIM_LIBS /system/libbinder.so|libstock_crypto.so:/system/lib/hw/keystore.vendor.moorefield.so|libstock_crypto.so
