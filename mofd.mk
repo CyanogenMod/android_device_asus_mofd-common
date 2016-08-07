@@ -108,10 +108,6 @@ PRODUCT_COPY_FILES += \
     device/asus/mofd-common/keylayout/Vendor_0b05_Product_17fc.kl:system/usr/keylayout/Vendor_0b05_Product_17fc.kl \
     device/asus/mofd-common/keylayout/Vendor_0b05_Product_1803.kl:system/usr/keylayout/Vendor_0b05_Product_1803.kl
 
-# Keystore
-PRODUCT_PACKAGES += \
-    keystore.moorefield
-
 # Lights
 PRODUCT_PACKAGES += \
     lights.moorefield
