@@ -79,9 +79,9 @@ BUILD_ARM_FOR_X86 := true
 
 # IMG graphics
 BOARD_GFX_REV := RGX6400
-ENABLE_IMG_GRAPHICS := true
-ENABLE_MRFL_GRAPHICS := true
-INTEL_HWC_MOOREFIELD := true
+#ENABLE_IMG_GRAPHICS := true
+#ENABLE_MRFL_GRAPHICS := true
+#INTEL_HWC_MOOREFIELD := true
 HWUI_IMG_FBO_CACHE_OPTIM := true
 TARGET_INTEL_HWCOMPOSER_FORCE_ONLY_ONE_RGB_LAYER := true
 
@@ -97,8 +97,8 @@ ADDITIONAL_DEFAULT_PROPERTIES += \
 MAX_EGL_CACHE_ENTRY_SIZE := 65536
 MAX_EGL_CACHE_SIZE := 1048576
 
-INTEL_VA := true
-BUILD_WITH_FULL_STAGEFRIGHT := true
+#INTEL_VA := true
+#BUILD_WITH_FULL_STAGEFRIGHT := true
 BOARD_USES_VIDEO := true
 
 # Disable IMG RS GPU driver
@@ -130,13 +130,13 @@ TARGET_PROVIDES_LIBLIGHT := true
 
 # Media
 TARGET_NUPLAYER_CANNOT_SET_SURFACE_WITHOUT_A_FLUSH := true
-BOARD_USES_WRS_OMXIL_CORE := true
-BOARD_USES_MRST_OMX := true
-USE_HW_VP8 := true
+#BOARD_USES_WRS_OMXIL_CORE := true
+#BOARD_USES_MRST_OMX := true
+#USE_HW_VP8 := true
 
 # Media: DRM Protected Video
-BOARD_WIDEVINE_OEMCRYPTO_LEVEL := 1
-USE_INTEL_SECURE_AVC := true
+#BOARD_WIDEVINE_OEMCRYPTO_LEVEL := 1
+#USE_INTEL_SECURE_AVC := true
 
 # Settings for the Media SDK library and plug-ins:
 # - USE_MEDIASDK: use Media SDK support or not
@@ -148,7 +148,7 @@ MFX_IPP := p8
 BOARD_CUSTOM_BOOTIMG_MK := device/asus/mofd-common/mkbootimg.mk
 
 # Video Post Processing
-TARGET_HAS_ISV := true
+#TARGET_HAS_ISV := true
 ADDITIONAL_DEFAULT_PROPERTIES += \
     persist.intel.isv.vpp = 1 \
     persist.intel.isv.frc = 1
