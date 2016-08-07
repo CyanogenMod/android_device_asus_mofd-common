@@ -365,6 +365,53 @@ lib/libOMXVideoDecoderAVCSecure.so
 lib/libsepdrm_cc54.so
 lib/libsephdcp2x.so
 
+# Stock media stack
+bin/msvdx_bin
+bin/surfaceflinger
+bin/topaz_bin
+lib/hw/hwcomposer.moorefield.so
+lib/libOMXVideoDecoderH263.so
+lib/libOMXVideoDecoderMPEG2.so
+lib/libOMXVideoDecoderMPEG4.so
+lib/libOMXVideoDecoderPAVC.so
+lib/libOMXVideoDecoderVP8.so
+lib/libOMXVideoDecoderVP9HWR.so
+lib/libOMXVideoDecoderWMV.so
+lib/libOMXVideoEncoderAVC.so
+lib/libOMXVideoEncoderH263.so
+lib/libOMXVideoEncoderMPEG4.so
+lib/libOMXVideoEncoderVP8.so
+lib/libPVROCL.so
+lib/libdrm_bsp.so
+lib/libhwcwidi.so
+lib/libintelmetadatabuffer.so
+lib/libisv_omx_core.so
+lib/libisv_profile.so
+lib/libmrm_omx_adaptor.so
+lib/libmrm_arbitrator.so
+lib/libmultidisplay.so
+lib/libstagefright_hdcp.so
+lib/libstagefright_soft_aacdec_mdp.so
+lib/libstagefright_soft_aacenc_mdp.so
+lib/libstagefright_soft_alacdec.so
+lib/libstagefright_soft_amrdec_mdp.so
+lib/libstagefright_soft_amrenc_mdp.so
+lib/libstagefright_soft_mp3dec_mdp.so
+lib/libstagefright_soft_vorbisdec_mdp.so
+lib/libstagefright_soft_wmadec_mdp.so
+lib/libstagefright_usbd.so
+lib/libstagefrighthw.so
+lib/libva-android.so
+lib/libva-tpi.so
+lib/libva.so
+lib/libva_videodecoder.so
+lib/libva_videoencoder.so
+lib/libvpp_setting.so
+lib/libwrs_omxil_common.so
+lib/libwrs_omxil_core_pvwrapped.so
+lib/libwsbm.so
+lib/pvr_drv_video.so
+
 # Radio
 bin/mmgr
 bin/mmgr_am.sh
@@ -797,8 +844,6 @@ vendor/firmware/telephony/ze550ml_TH_726x.tlv
 vendor/firmware/telephony/ze550ml_TW_726x.tlv
 vendor/firmware/telephony/ze550ml_US_726x.tlv
 vendor/firmware/telephony/ze550ml_WW_726x.tlv
-
-
 
 # Sensors
 bin/sensorhubd
