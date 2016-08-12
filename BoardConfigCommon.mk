@@ -45,8 +45,6 @@ TARGET_USES_64_BIT_BINDER := true
 BOARD_HAVE_BLUETOOTH := true
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/asus/mofd-common/bluetooth
 
-# Bootloader
-TARGET_OTA_ASSERT_DEVICE := Z00A,Z008
 # bootstub as 2nd bootloader
 TARGET_BOOTLOADER_IS_2ND := true
 
@@ -177,6 +175,9 @@ TARGET_RECOVERY_PIXEL_FORMAT := "BGRA_8888"
 COMMON_GLOBAL_CFLAGS += -DNO_SECURE_DISCARD
 TARGET_RECOVERY_FSTAB := device/asus/mofd-common/rootdir/etc/fstab.mofd_v1
 TARGET_RECOVERY_DEVICE_MODULES := libinit_mofd librecovery_updater_mofd intel_prop thermald
+
+# Release tools
+TARGET_RELEASETOOLS_EXTENSIONS := device/asus/mofd-common
 
 # Security
 BUILD_WITH_SECURITY_FRAMEWORK := chaabi_token
