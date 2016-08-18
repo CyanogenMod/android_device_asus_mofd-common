@@ -20,12 +20,15 @@ ZE551ML=31
 ZR550ML=28
 ZX550ML=27
 ZE551ML_CKD=30
+ZE553ML=29
+ZE552ML=28
 
 RFSKUID_DETECT=$(cat /sys/module/intel_mid_sfi/parameters/rf_sku_id)
 PROJID_DETECT=$(cat /sys/module/intel_mid_sfi/parameters/project_id)
 COUNTRY_CODE=$(cat /factory/PhoneInfodisk/country_code)
+AUDIO_DETECT=$(getprop ro.config.packingcode)
 
-log -p i -t config_init "PROJID: $PROJID_DETECT ,RFSKUID: $RFSKUID_DETECT"
+log -p i -t config_init "PROJID: $PROJID_DETECT ,RFSKUID: $RFSKUID_DETECT ,COUNTRYCODE: $COUNTRY_CODE"
 
 if [ -n "$PROJID_DETECT" ]; then
 	case $PROJID_DETECT in
@@ -52,6 +55,10 @@ if [ -n "$PROJID_DETECT" ]; then
 						echo "V1_DSDA_ZE550ML_CN" > /config/local_config
 						;;
 					"$US_BAND")
+						if [ "$COUNTRY_CODE" = "US" ]; then
+							setprop ro.asus.phone.hac 1
+							setprop ro.asus.phone.tty 1
+						fi
 						echo "V1_DSDA_ZE550ML_US" > /config/local_config
 						;;
 					"$TR_BAND")
@@ -68,10 +75,14 @@ if [ -n "$PROJID_DETECT" ]; then
 				echo "V1_DSDA" > /config/local_config
 			fi
 			;;
-		"$ZX550ML")
+		"$ZX550ML" | "$ZE553ML")
 			if [ -n "$RFSKUID_DETECT" ]; then
 				case $RFSKUID_DETECT in
 					"$WW_US_BAND")
+						if [ "$COUNTRY_CODE" = "US" ]; then
+							setprop ro.asus.phone.hac 1
+							setprop ro.asus.phone.tty 1
+						fi
 						echo "V1_SINGLE_ZX550ML_WW" > /config/local_config
 						;;
 					"$TW_CN_JP_BAND")
@@ -105,7 +116,21 @@ PROPS_FILE=init.props
 # Get selected software configuration
 
 config=`cat /config/local_config`
-mount -o bind /system/etc/catalog/$config /local_cfg
+mount -o bind /system/etc/catalog/$config/platform /local_cfg/platform
+mount -o bind /system/etc/catalog/$config/telephony_config /local_cfg/telephony_config
+
+# ZX550ML=27
+if [ $PROJID_DETECT = 27 ]; then
+	if [ "$AUDIO_DETECT" != "TW" ] && [ "$AUDIO_DETECT" != "CN" ] && [ "$AUDIO_DETECT" != "C3" ] && [ "$AUDIO_DETECT" != "C4" ] && [ "$AUDIO_DETECT" != "C5" ] && [ "$AUDIO_DETECT" != "VN" ] && [ "$AUDIO_DETECT" != "MY" ] && [ "$AUDIO_DETECT" != "HE" ]; then
+		mount -o bind /system/etc/catalog/V1_EUSPEC_COMM/audiocomms_config /local_cfg/audiocomms_config
+		setprop use.audio.eu.parameters "true"
+	else
+		mount -o bind /system/etc/catalog/V1_7260/audiocomms_config /local_cfg/audiocomms_config
+		setprop use.audio.eu.parameters "false"
+	fi
+else
+	mount -o bind /system/etc/catalog/V1_DSDA/audiocomms_config /local_cfg/audiocomms_config
+fi
 
 log -p i -t config_init "Activating configuration $config"
 
