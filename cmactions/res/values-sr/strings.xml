@@ -17,7 +17,7 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- Gesture shortcuts -->
-  <string name="gesture_display_title">Гестови екрана</string>
+  <string name="gesture_display_title">Гестови искљученог екрана</string>
   <string name="touchscreen_c_gesture_title">Камера</string>
   <string name="touchscreen_c_gesture_summary">Нацртај \"C\" да би активирао камеру</string>
   <string name="touchscreen_e_gesture_title">Е-пошта</string>
