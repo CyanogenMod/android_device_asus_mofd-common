@@ -73,22 +73,22 @@ void set_feature(struct power_module *module __unused, feature_t feature, int st
 }
 
 struct local_power_module HAL_MODULE_INFO_SYM = {
-    base: {
-       common: {
-            tag: HARDWARE_MODULE_TAG,
-            module_api_version: POWER_MODULE_API_VERSION_0_3,
-            hal_api_version: HARDWARE_HAL_API_VERSION,
-            id: POWER_HARDWARE_MODULE_ID,
-            name: "Mofd_v1 Power HAL",
-            author: "The CyanogenMod Project",
-            methods: &power_module_methods,
-            dso: 0,
-            reserved: {0},
+    .base = {
+       .common = {
+            .tag = HARDWARE_MODULE_TAG,
+            .module_api_version = POWER_MODULE_API_VERSION_0_3,
+            .hal_api_version = HARDWARE_HAL_API_VERSION,
+            .id = POWER_HARDWARE_MODULE_ID,
+            .name = "Mofd_v1 Power HAL",
+            .author = "The CyanogenMod Project",
+            .methods = &power_module_methods,
+            .dso = 0,
+            .reserved = {0},
         },
-        init: power_init,
-        setInteractive: power_set_interactive,
-        powerHint: power_hint,
-        setFeature: set_feature,
-        getFeature: 0,
+        .init = power_init,
+        .setInteractive = power_set_interactive,
+        .powerHint = power_hint,
+        .setFeature = set_feature,
+        .getFeature = 0,
     },
 };
