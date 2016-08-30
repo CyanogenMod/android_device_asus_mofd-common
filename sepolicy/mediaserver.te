@@ -8,8 +8,8 @@ allow mediaserver radio_device:chr_file rw_file_perms;
 allow mediaserver sensorservice_service:service_manager find;
 
 # This is evil but we cannot constrain it anymore than
-# "any system_file" because the domain rules in external/sepolicy.
-allow mediaserver system_file:file execmod;
+# "any system_data_file" because the domain rules in external/sepolicy.
+allow mediaserver system_data_file:file execmod;
 
 # This is less evil, but really sucks.  I don't want to screw up the
 # /factory/ partition for people who return to stock and therefore don't
