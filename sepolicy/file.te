@@ -29,7 +29,7 @@ type radio_sysfs_file, fs_type, sysfs_type;
 type sensorhubd_debug_file, file_type;
 type sensorhubd_efs_file, file_type;
 type sensorhubd_socket, file_type;
-type i2c_device, dev_type;
+#type i2c_device, dev_type;
 type sensor_sysfs_file, fs_type, sysfs_type;
 
 # Silentlake service
