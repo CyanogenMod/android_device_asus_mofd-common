@@ -21,15 +21,3 @@ service p2p_supplicant /system/bin/wpa_supplicant \
     socket wpa_wlan0 dgram 660 wifi wifi
     disabled
     oneshot
-
-service dhcpcd_p2p /system/bin/dhcpcd -aABKL
-    class main
-    group wifi system dhcp
-    disabled
-    oneshot
-
-service iprenew_p2p /system/bin/dhcpcd -n
-    class main
-    group wifi system dhcp
-    disabled
-    oneshot

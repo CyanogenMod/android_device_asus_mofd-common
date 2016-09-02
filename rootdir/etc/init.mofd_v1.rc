@@ -324,17 +324,6 @@ on property:persist.asus.instant_camera=0
     write sys/devices/platform/gpio-keys/disabled_wakeup 115
     write sys/devices/platform/gpio-keys/disabled_wakeup 114
 
-# Add for USB ethernet dongle
-service dhcpcd_eth0 /system/bin/dhcpcd -ABDKL -f/system/etc/dhcpcd/dhcpcd.conf
-    class main
-    disabled
-    oneshot
-
-service iprenew_eth0 /system/bin/dhcpcd -n
-    class main
-    disabled
-    oneshot
-
 # From init.rc in stock, these redefine service definitions
 
 service_redefine media /system/bin/mediaserver
