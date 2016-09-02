@@ -2,4 +2,3 @@ type asus_prop, property_type;
 type camera_prop, property_type;
 type gps_prop, property_type;
 type hdmi_prop, property_type;
-type charger_prop, property_type;
