@@ -263,7 +263,6 @@ PRODUCT_PACKAGES += \
     libwpa_client \
     lib_driver_cmd_bcmdhd \
     hostapd \
-    dhcpcd.conf \
     wpa_supplicant \
     wpa_supplicant.conf
 
