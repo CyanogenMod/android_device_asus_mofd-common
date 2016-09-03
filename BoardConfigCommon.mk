@@ -72,7 +72,7 @@ endif
 BOARD_HARDWARE_CLASS := device/asus/mofd-common/cmhw
 
 # Healthd
-BOARD_HAL_STATIC_LIBRARIES := libhealthd.moorefield
+#BOARD_HAL_STATIC_LIBRARIES := libhealthd.moorefield
 
 # Houdini: enable ARM codegen for x86
 BUILD_ARM_FOR_X86 := true
@@ -182,7 +182,7 @@ BUILD_WITH_SECURITY_FRAMEWORK := chaabi_token
 BUILD_WITH_CHAABI_SUPPORT := true
 
 # SELinux
-BOARD_SEPOLICY_DIRS += device/asus/mofd-common/sepolicy
+#BOARD_SEPOLICY_DIRS += device/asus/mofd-common/sepolicy
 
 # Sensors
 BOARD_GLOBAL_CFLAGS += -DCOMPAT_SENSORS_M
