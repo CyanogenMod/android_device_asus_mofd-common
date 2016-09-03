@@ -33,16 +33,10 @@ import cyanogenmod.providers.CMSettings;
 
 public class TouchscreenGestureSettings extends PreferenceActivity {
 
-    private static final String CATEGORY_AMBIENT_DISPLAY = "ambient_display_key";
-    private static final String KEY_GESTURE_HAND_WAVE = "gesture_hand_wave";
     private static final String KEY_HAPTIC_FEEDBACK = "touchscreen_gesture_haptic_feedback";
-    private static final String KEY_PROXIMITY_WAKE = "proximity_wake_enable";
 
     private Handler mGestureHandler = new Handler();
 
-    private SwitchPreference mAmbientDisplayPreference;
-    private SwitchPreference mHandwavePreference;
-    private SwitchPreference mProximityWakePreference;
     private SwitchPreference mHapticFeedback;
 
     @Override
@@ -50,14 +44,6 @@ public class TouchscreenGestureSettings extends PreferenceActivity {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.touchscreen_panel);
 
-        // Ambient Display
-        PreferenceCategory ambientDisplay =
-            (PreferenceCategory) findPreference(CATEGORY_AMBIENT_DISPLAY);
-        ambientDisplay.setEnabled(isDozeEnabled());
-        mHandwavePreference = (SwitchPreference) findPreference(KEY_GESTURE_HAND_WAVE);
-        mHandwavePreference.setOnPreferenceChangeListener(mProxPrefListener);
-        mProximityWakePreference = (SwitchPreference) findPreference(KEY_PROXIMITY_WAKE);
-        mProximityWakePreference.setOnPreferenceChangeListener(mProxPrefListener);
         mHapticFeedback = (SwitchPreference) findPreference(KEY_HAPTIC_FEEDBACK);
         mHapticFeedback.setOnPreferenceChangeListener(mHapticPrefListener);
 
@@ -88,27 +74,6 @@ public class TouchscreenGestureSettings extends PreferenceActivity {
         }
         return false;
     }
-
-    private boolean isDozeEnabled() {
-        return Settings.Secure.getInt(getContentResolver(),
-                Settings.Secure.DOZE_ENABLED, 1) != 0;
-    }
-
-    private Preference.OnPreferenceChangeListener mProxPrefListener =
-        new Preference.OnPreferenceChangeListener() {
-        @Override
-        public boolean onPreferenceChange(Preference preference, Object newValue) {
-            if ((boolean) newValue) {
-                final String key = preference.getKey();
-                if (KEY_GESTURE_HAND_WAVE.equals(key)) {
-                    mProximityWakePreference.setChecked(false);
-                } else if (KEY_PROXIMITY_WAKE.equals(key)) {
-                    mHandwavePreference.setChecked(false);
-                }
-            }
-            return true;
-        }
-    };
 
     private Preference.OnPreferenceChangeListener mHapticPrefListener =
         new Preference.OnPreferenceChangeListener() {
