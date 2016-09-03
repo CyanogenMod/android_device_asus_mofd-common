@@ -27,7 +27,6 @@ public class BootCompletedReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(final Context context, Intent intent) {
         Log.d(TAG, "Booting");
-        context.startService(new Intent(context, SensorsDozeService.class));
         CMActionsSettings.updateGestureMode(context);
     }
 }
