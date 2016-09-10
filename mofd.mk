@@ -207,7 +207,6 @@ PRODUCT_PACKAGES += \
     init.config_init.rc \
     init.debug.rc \
     init.diag.rc \
-    init.firmware.rc \
     init.gps.rc \
     init.logtool.rc \
     init.modem.rc \
@@ -220,8 +219,6 @@ PRODUCT_PACKAGES += \
     init.wifi.rc \
     init.wifi.vendor.rc \
     init.zram.rc \
-    intel_prop \
-    intel_prop.cfg \
     thermald \
     ueventd.mofd_v1.rc
 

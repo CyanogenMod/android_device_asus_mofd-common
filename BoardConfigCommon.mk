@@ -179,7 +179,7 @@ BOARD_PROVIDES_LIBRIL := true
 TARGET_RECOVERY_PIXEL_FORMAT := "BGRA_8888"
 BOARD_GLOBAL_CFLAGS += -DNO_SECURE_DISCARD
 TARGET_RECOVERY_FSTAB := device/asus/mofd-common/rootdir/etc/fstab.mofd_v1
-TARGET_RECOVERY_DEVICE_MODULES := libinit_mofd librecovery_updater_mofd intel_prop thermald
+TARGET_RECOVERY_DEVICE_MODULES := libinit_mofd librecovery_updater_mofd thermald
 TARGET_RECOVERY_DENSITY := hdpi
 
 # Release tools

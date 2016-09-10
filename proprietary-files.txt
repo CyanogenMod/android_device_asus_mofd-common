@@ -161,7 +161,6 @@ lib/arm/linker
 # Asus tools
 bin/bcu_cpufreqrel
 bin/fg_conf
-bin/customize_service
 bin/logcontrol
 etc/permissions/asus.software.zenui.xml
 
@@ -361,7 +360,6 @@ bin/houdini
 lib/libhoudini.so
 
 # Media
-bin/intel_prop
 etc/firmware/msvdx.bin.prod
 etc/firmware/msvdx.bin.verf
 etc/firmware/topaz.bin.prod

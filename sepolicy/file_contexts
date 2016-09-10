@@ -2,10 +2,8 @@
 /system/bin/bcu_cpufreqrel              u:object_r:asus_config_exec:s0
 /system/bin/init\.class_main\.sh          u:object_r:asus_config_exec:s0
 /system/bin/config_init\.sh              u:object_r:asus_config_exec:s0
-/system/bin/customize_service           u:object_r:asus_config_exec:s0
 /system/bin/fg_conf                     u:object_r:asus_config_exec:s0
 /system/bin/init_config\.sh              u:object_r:asus_config_exec:s0
-/system/bin/intel_prop                  u:object_r:asus_config_exec:s0
 /system/bin/logcontrol                  u:object_r:asus_config_exec:s0
 /system/bin/sl_si_service               u:object_r:asus_config_exec:s0
 /config(/.*)?                           u:object_r:asus_config_file:s0
