@@ -137,8 +137,6 @@ on property:sys.boot_completed=1
     start bcu_cpufreqrel
 
 on charger
-    #set properties in COS
-    start intel_prop
 
     chown system system /dev/dri/card0
     chmod 0666 /dev/dri/card0

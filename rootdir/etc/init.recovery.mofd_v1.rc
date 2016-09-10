@@ -31,10 +31,6 @@ on property:sys.usb.config=adb
     write /sys/class/android_usb/android0/functions $sys.usb.config
     write /sys/class/android_usb/android0/enable 1
 
-service intel_prop /sbin/intel_prop
-    oneshot
-    seclabel u:r:asus_config_exec:s0
-
 # copied from common/init.watchdogd.rc
 service watchdogd /sbin/watchdogd 60 20
     oneshot
