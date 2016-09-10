@@ -355,7 +355,6 @@ bin/houdini
 lib/libhoudini.so
 
 # Media
-bin/intel_prop
 etc/firmware/msvdx.bin.prod
 etc/firmware/msvdx.bin.verf
 etc/firmware/topaz.bin.prod

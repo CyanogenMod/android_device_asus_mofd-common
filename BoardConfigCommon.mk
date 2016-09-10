@@ -173,7 +173,7 @@ BOARD_CANT_BUILD_RECOVERY_FROM_BOOT_PATCH := true
 TARGET_RECOVERY_PIXEL_FORMAT := "BGRA_8888"
 COMMON_GLOBAL_CFLAGS += -DNO_SECURE_DISCARD
 TARGET_RECOVERY_FSTAB := device/asus/mofd-common/rootdir/etc/fstab.mofd_v1
-TARGET_RECOVERY_DEVICE_MODULES := libinit_mofd librecovery_updater_mofd intel_prop thermald
+TARGET_RECOVERY_DEVICE_MODULES := libinit_mofd librecovery_updater_mofd thermald
 
 # Security
 BUILD_WITH_SECURITY_FRAMEWORK := chaabi_token
