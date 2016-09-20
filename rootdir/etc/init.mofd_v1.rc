@@ -16,6 +16,8 @@ on early-init
     setprop ro.boot.min.cap 0
 
 on init
+    export LD_SHIM_LIBS /system/lib/hw/camera.vendor.mofd_v1.so|libshim_camera.so
+
     write /sys/class/graphics/fbcon/cursor_blink 0
     mkdir /data/system/ 0770 system system
     mkdir /data/misc 01771 system misc
