@@ -198,9 +198,33 @@ bin/bd_prov
 vendor/lib/libbt-vendor.so
 
 # Camera
+etc/atomisp/00gc2235.aiqb
+etc/atomisp/00imx134.aiqb
+etc/atomisp/00imx135-0-0x2-0x1.aiqb
+etc/atomisp/00imx135-0-0x4-0.aiqb
+etc/atomisp/00imx135-0-0x8-0.aiqb
+etc/atomisp/00imx135-0-0x8-0x1.aiqb
+etc/atomisp/00imx135-0-0x8-0x2.aiqb
+etc/atomisp/00imx135-0-0x8-0x5.aiqb
+etc/atomisp/00imx175.aiqb
+etc/atomisp/00imx219.aiqb
 etc/atomisp/00m10mo-0-0x8-0.aiqb
+etc/atomisp/00mt9e013.aiqb
+etc/atomisp/00ov13850.aiqb
+etc/atomisp/00ov5693.aiqb
+etc/atomisp/00ov8830-0-0x2-0.aiqb
+etc/atomisp/00ov8858.aiqb
 etc/atomisp/00t4k37.aiqb
+etc/atomisp/01gc0339.aiqb
+etc/atomisp/01imx132.aiqb
+etc/atomisp/01imx208.aiqb
+etc/atomisp/01mt9m114.aiqb
+etc/atomisp/01ov2722.aiqb
 etc/atomisp/01ov5670.aiqb
+etc/atomisp/01ov680.aiqb
+etc/atomisp/01ov9724.aiqb
+etc/atomisp/01ov9760.aiqb
+etc/atomisp/01s5k6b2yx.aiqb
 etc/camera3_profiles.xml
 etc/camera_profiles.xml
 etc/cms_device_config.xml
@@ -227,8 +251,8 @@ lib/libArcsoftFlawlessFace.so
 lib/libarcsoftHDR_3DNR.so
 lib/libArcsoftHDR.so
 lib/libArcsoftNightHawk.so
-lib/libarcsoft_beautyshot.so
 lib/libarcsoft_panorama_burstcapture.so
+lib/libarcsoft_sensorndk.so
 lib/libArcsoftStabilizer.so
 lib/libasfparser.so
 lib/libcamera_defocus.so
@@ -242,6 +266,7 @@ lib/libia_dvs_2.so
 lib/libia_emd_decoder.so
 lib/libia_exc.so
 lib/libia_face.so
+lib/libia_isp_1_5.so
 lib/libia_isp_2_2.so
 lib/libia_log.so
 lib/libia_mkn.so
@@ -261,6 +286,14 @@ lib/libxditk_DIT_Moorefield.so
 lib/libxditk_ISP.so
 lib/libxditk_SR.so
 media/cameraConfig/style.cng
+vendor/firmware/00imx135-0-0x2-0x1.drvb
+vendor/firmware/00imx135-0-0x4-0.drvb
+vendor/firmware/00imx135-0-0x8-0.drvb
+vendor/firmware/00imx135-0-0x8-0x1.drvb
+vendor/firmware/00imx135-0-0x8-0x2.drvb
+vendor/firmware/00imx135-0-0x8-0x5.drvb
+vendor/firmware/00ov8830-0-0x2-0.drvb
+vendor/firmware/01s5k8aay.drvb
 
 # DRM
 lib/drm/libfwdlockengine.so
@@ -271,57 +304,30 @@ vendor/lib/libWVStreamControlAPI_L1.so
 vendor/lib/libwvdrm_L1.so
 
 # EGL
-vendor/bin/bcc.moorefield
-vendor/bin/framebuffer_test
+lib/libpvr2d.so
 vendor/bin/hwperfbin2jsont
 vendor/bin/pvrdebug
 vendor/bin/pvrhwperf
 vendor/bin/pvrlogdump
 vendor/bin/pvrsrvctl
 vendor/bin/pvrtld
-vendor/lib/__ocl_svml_n8.so
-vendor/lib/clbltfnn8.rtl
-vendor/lib/clbltfnn8_img_cbk.o
-vendor/lib/clbltfnn8_img_cbk.rtl
-vendor/lib/clbltfnshared.rtl
-vendor/lib/libbcc.moorefield.so
-vendor/lib/libbcinfo.moorefield.so
-vendor/lib/libcl_logger.so
-vendor/lib/libclang_compiler.so
-vendor/lib/libcommon_clang.so
-vendor/lib/libcptcompiler.so
-vendor/lib/libcpu_device.so
-vendor/lib/libcreatesurface.so
-vendor/lib/libgnustl_shared.so
 vendor/lib/libIMGegl.so
-vendor/lib/libintelocl.so
-vendor/lib/libLLVM.moorefield.so
 vendor/lib/libsrv_um.so
 vendor/lib/libusc.so
 vendor/lib/libglslcompiler.so
-vendor/lib/libOclCpuBackEnd.so
-vendor/lib/libOpenCL.so.1.2
+vendor/lib/liboclcompiler.so
 vendor/lib/libpvrANDROID_WSEGL.so
-vendor/lib/libpvrcpt.so
-vendor/lib/libPVRRS.dbg
-vendor/lib/libPVRRS.sha1.dbg
-vendor/lib/libPVRRS.sha1.so
-vendor/lib/libPVRRS.so
+vendor/lib/libpvr2d.dbg
+vendor/lib/libpvr2d.so
+vendor/lib/libPVROCL.so
 vendor/lib/libPVRScopeServices.so
-vendor/lib/librsccompiler.so
-vendor/lib/librscruntime.bc
 vendor/lib/libsrv_init.so
-vendor/lib/libtask_executor.so
-vendor/lib/libtbb.so
-vendor/lib/libtbbmalloc.so
 vendor/lib/libufwriter.dbg
 vendor/lib/libufwriter.so
-vendor/lib/opencl_.pch
 vendor/lib/egl/libEGL_POWERVR_ROGUE.so
 vendor/lib/egl/libGLESv1_CM_POWERVR_ROGUE.so
 vendor/lib/egl/libGLESv2_POWERVR_ROGUE.so
 vendor/lib/hw/gralloc.moorefield.so
-vendor/lib/hw/memtrack.moorefield.so
 
 # Unknown Firmware
 etc/firmware/if.bin
@@ -350,13 +356,13 @@ etc/firmware/topaz.bin.verf
 etc/firmware/vsp.bin.prod
 etc/firmware/vsp.bin.verf
 lib/libdx_cc7.so
+lib/libgabi++-mfx.so
 lib/libmdp_omx_core.so
 lib/libmfx_omx_components_sw.so
 lib/libmfx_omx_core.so
 lib/libmfxsw32.so
 lib/libmixvbp_h264secure.so
 lib/libmixvbp_h264.so
-lib/libmixvbp_mpeg2.so
 lib/libmixvbp_mpeg4.so
 lib/libmixvbp.so
 lib/libmixvbp_vc1.so
@@ -365,6 +371,7 @@ lib/libOMXVideoDecoderAVC.so
 lib/libOMXVideoDecoderAVCSecure.so
 lib/libsepdrm_cc54.so
 lib/libsephdcp2x.so
+lib/libstlport-mfx.so
 
 # Radio
 bin/mmgr
