@@ -15,21 +15,14 @@ on early-init
     mount debugfs none /sys/kernel/debug mode=0755
 
 on init
+    mkdir /mnt/shell 0700 shell shell
+
     # set usb serial number
     write /sys/class/android_usb/android0/iSerial ${ro.serialno}
-
-    mkdir /storage/emulated 0555 root root
 
     symlink /sdcard /storage/sdcard0
 
 on boot
-#    chown system system /dev/pvr_sync
-#    chmod 666 /dev/pvr_sync
-
-#   chown system system /dev/dri/card0
-#   chmod 0666 /dev/dri/card0
-#   symlink /dev/dri/card0 /dev/card0
-
     # IMG Graphics specific setup. See also "service pvrsrvctl"
     # The permissions below should be tighter.
 #    chown system system /dev/card0
@@ -106,6 +99,9 @@ on post-fs-data
     # We implement this property in buildinfo.sh. So comment this.
     # setprop ro.camera.sound.forced 1
 
+    # set this to switch to CPU renderscipt
+    setprop debug.rs.default-CPU-driver 1
+
     # Set this property to avoid fm rx to be muted
     setprop ro.fmrx.sound.forced 1
 
@@ -120,8 +116,6 @@ on post-fs-data
     setprop persist.thermal.display.msg 1
     setprop persist.thermal.display.vibra 1
 
-    setprop persist.selective.ota_budget 1800000
-
     # Set this property for the use of unlock
     setprop ro.build.servaddr 1
 
@@ -130,13 +124,14 @@ on post-fs-data
     #support emmc_total_size
     symlink /sys/devices/pci0000:00/0000:00:01.0/emmc_total_size /data/data/emmc_total_size
 
-
 on property:sys.boot_completed=1
     start bcu_cpufreqrel
 
 on charger
     #set properties in COS
     start intel_prop
+
+    setprop thermal.lite.crash 0
 
     chown system system /dev/dri/card0
     chmod 0666 /dev/dri/card0
@@ -176,15 +171,6 @@ service charger_app /charger
     class charger
     user root
     seclabel u:r:healthd:s0
-
-# For log uploader by qinghua_liu@asus.com
-service logbackup /system/bin/sh /system/etc/packlogs.sh
-    class late_start
-    user root
-    group sdcard_rw
-    oneshot
-    disabled
-    seclabel u:r:logtoold:s0
 
 # Enable native bridge for target executables
 on property:ro.enable.native.bridge.exec=1
