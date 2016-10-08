@@ -81,7 +81,12 @@ PRODUCT_COPY_FILES += \
     device/asus/mofd-common/configs/gps.xml:system/etc/gps.xml
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.spid.gps.tty=ttyMFD2
+    ro.spid.gps.tty=ttyMFD2 \
+    ro.spid.gps.FrqPlan=FRQ_PLAN_26MHZ_2PPM \
+    ro.spid.gps.RfType=GL_RF_47531_BRCM
+
+ADDITIONAL_DEFAULT_PROPERTIES += \
+    ro.gnss.sv.status=true
 
 # Houdini (arm native bridge)
 PRODUCT_PROPERTY_OVERRIDES += \
