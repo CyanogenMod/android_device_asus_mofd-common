@@ -75,6 +75,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     device/asus/mofd-common/powervr.ini:system/etc/powervr.ini
 
+# Factory reset protection
+ADDITIONAL_DEFAULT_PROPERTIES += \
+    ro.frp.pst=/dev/block/by-name/persistent
+
 # GPS
 PRODUCT_COPY_FILES += \
     device/asus/mofd-common/configs/gps.conf:system/etc/gps.conf \
