@@ -3,7 +3,16 @@ on fs
     mkdir /local_cfg/platform
     mkdir /local_cfg/telephony_config
     mkdir /local_cfg/audiocomms_config
+    start csts
     start config_init
+
+
+service csts /system/bin/customize_service
+    class core
+    user root
+    #seclabel u:r:dumpstate:s0
+    group root
+    oneshot
 
 service config_init /system/bin/config_init.sh
     disabled

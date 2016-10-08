@@ -1,0 +1,22 @@
+on init
+    mkdir /logs
+
+on early-boot
+    chown system log /logs
+    chmod 0770 /logs
+
+on post-fs-data
+    mkdir /logs/core
+    chown root log /logs/core
+    chmod 0750 /logs/core
+    write /proc/sys/kernel/core_pattern /logs/core/%t_%e_%p.core
+
+    mkdir /logs/modemcrash 0775 system system
+    mkdir /logs/stats 0775 system system
+    mkdir /logs/aplogs 0775 system log
+
+on charger
+    mkdir /logs/modemcrash 0775 system system
+    mkdir /logs/stats 0775 system system
+    mkdir /logs/aplogs 0775 system log
+
