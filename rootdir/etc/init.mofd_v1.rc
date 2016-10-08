@@ -30,18 +30,13 @@ on init
     # in the generated path, so that the names pulled out of the GPT
     # can be associated with the correct disk. Create a shortcut to
     # /dev/block/by-name so that we can use the same fstabs everywhere.
+    mkdir /dev/block 0755 root root
     symlink /dev/block/pci/pci0000:00/0000:00:01.0/by-name /dev/block/by-name
 
     write /proc/sys/kernel/hung_task_timeout_secs 0
 
-    chmod 0644 /system/framework/core.jar
-    chmod 0644 /system/framework/framework.jar
-    chmod 0644 /system/framework/apache-xml.jar
-    chmod 0644 /system/framework/ext.jar
-
-    mkdir /factory
-    mkdir /config
-    #mkdir /logs
+    # DMA32 zone protection for GFX, Camera allocation limited to first 4GB
+    write /proc/sys/vm/lowmem_reserve_ratio "256 32 32"
 
     #  Mount the sep filesystem
     mount sepfs sepfs /sys/fs/sepfs
@@ -63,6 +58,7 @@ on boot
     chown system system /sys/class/powercap/intel-rapl/intel-rapl:0/constraint_0_power_limit_uw
     chown system system /sys/fps_throttle/notify
     chown system system /sys/fps_throttle/handshake
+    chown media media /dev/i2c-1
 
 #   Disable audio offloading
     setprop audio.offload.disable 1
@@ -109,9 +105,9 @@ on boot
    chown media media /sys/kernel/debug/sst/lpe_stack
 
 on post-fs-data
-    chown media_rw media_rw /data/media
-
     mkdir /data/misc/firmware 0770 system system
+
+    mkdir /data/silent_lake 0777 system system
 
     #Invoke fuel gauging helper binary to restore config data
     chmod 0770 /dev/max170xx
@@ -119,19 +115,19 @@ on post-fs-data
     chown system system /sys/class/power_supply/max17047_battery/model_name
     chown system system /sys/class/power_supply/max17047_battery/serial_number
     symlink /dev/max170xx /dev/fg
+    mkdir /data/sensorhubdcal 0755 system system
     start fg_conf
 
     mkdir /data/logs
     chown system log /data/logs
     chmod 0770 /data/logs
-    # symlink /data/logs /logs
+
     # Enable Dynamic Turbo feature
     setprop persist.thermal.turbo.dynamic 1
 
-    #setup silentlake vidt and start service
-    chown system system /dev/vidt
-    chmod 0660 /dev/vidt
-    start sl_si_service
+    mkdir /data/misc/dnsmasq 0755 root root
+    mkdir /data/misc/dnsmasq/dalvik-cache 0755 root root
+    restorecon_recursive /data/misc/dnsmasq
 
 on post-fs
     # Assume SMP uses shared cpufreq policy for all CPUs
@@ -201,15 +197,16 @@ on post-fs
 #For Disable Charging control
 	chown system system /proc/smb1357_disable_chrg
 
+# For Audio headset ringtone volume index when ringer mode is vibrate
+    setprop ro.audio.vibra.ring.vol.idx 5
+
 # Permissions for BCU sysfs interface and make generic path to access by apps
     chown system system /sys/devices/platform/bcove_bcu/camflash_ctrl
     symlink /sys/devices/platform/bcove_bcu /dev/bcu
+
     restorecon_recursive /factory
     restorecon_recursive /config
     restorecon_recursive /logs
-
-# For audio headset ringtone volume index when ringer mode is vibrate
-    setprop ro.audio.vibra.ring.vol.idx 5
 
 # Permissions for Touch Proximity node
     chown system system /proc/asus_touch_proximity_status
@@ -230,47 +227,20 @@ on post-fs
 # Permissions for keydisabler
     chown root system /sys/bus/i2c/devices/i2c-7/7-0038/ftskeypadenable
 
-# Permissions for Sdcard Power Node
-	chown system system /proc/asus_sd_power
+#Enable/disable hall sensor irq
+on property:persist.asus.coverenabled=1
+    write /sys/kernel/hall_sensor_kobject/hall_sensor/activity 1
 
-
-service sl_si_service /system/bin/sl_si_service d=1
-    user system
-    group system
-    socket silentlake stream 666 system system
-    disabled
-    oneshot
+on property:persist.asus.coverenabled=0
+    write /sys/kernel/hall_sensor_kobject/hall_sensor/activity 0
+		
+# start ril-daemon. class main in init.rc
+    setprop ro.rild.start 1
 
 service fg_conf /system/bin/fg_conf -w
     group system
     oneshot
     disabled
-
-#+++++++++++++++++++++lynn 2014/10/27 FAC++++++++++++++++++++++
-# import ASUS factory tools script
-# note:Shipping IMG no this service,because no "AsusFactory" floder where asusft.sh exist.
-service asusft /system/bin/sh /system/etc/asus/asusft.sh
-    class eng
-    oneshot
-    on property:ro.secure=0
-    class_start eng
-#---------------------lynn 2014/10/27 FAC----------------------
-
-#+++++++++++++++++++++ward_du  2014/11/07 For BT,Wifi MAC and ISN,SSN ++++++++++++++++++++++
-service customize /system/bin/customize_service
-	class core
-	user root
-	oneshot
-#---------------------ward_du 2014/11/07 FAC----------------------
-
-# Root command service
-service app_runcmd /system/bin/app_runcmd.sh
-     disabled
-     oneshot
-
-service wifitest_runcmd /system/bin/wifitest_runcmd.sh
-     disabled
-     oneshot
 
 on property:init.svc.pvrsrvctl=stopped
     # GPU freq
@@ -318,24 +288,6 @@ on charger
 #    chmod 0664 /sys/bus/pci/devices/0000:00:16.1/control
 #    write /sys/bus/pci/devices/0000:00:16.1/control "0 1 0"
 
-on property:persist.asus.instant_camera=1
-    write sys/devices/platform/gpio-keys/enabled_wakeup 115
-    write sys/devices/platform/gpio-keys/enabled_wakeup 114
-
-on property:persist.asus.instant_camera=0
-    write sys/devices/platform/gpio-keys/disabled_wakeup 115
-    write sys/devices/platform/gpio-keys/disabled_wakeup 114
-
-# Add for USB ethernet dongle
-service dhcpcd_eth0 /system/bin/dhcpcd -ABDKL -f/system/etc/dhcpcd/dhcpcd.conf
-    class main
-    disabled
-    oneshot
-
-service iprenew_eth0 /system/bin/dhcpcd -n
-    class main
-    disabled
-    oneshot
 
 # From init.rc in stock, these redefine service definitions
 
@@ -345,3 +297,14 @@ service_redefine media /system/bin/mediaserver
     group audio camera inet net_bt net_bt_admin net_bw_acct drmrpc mediadrm radio system
     ioprio rt 4
 
+on property:persist.asus.instant_camera=1
+    write sys/devices/platform/gpio-keys/enabled_wakeup 115
+    write sys/devices/platform/gpio-keys/enabled_wakeup 114
+    write sys/devices/platform/gpio-keys/enabled_wakeup 249
+    write sys/devices/platform/gpio-keys/enabled_wakeup 212
+
+on property:persist.asus.instant_camera=0
+    write sys/devices/platform/gpio-keys/disabled_wakeup 115
+    write sys/devices/platform/gpio-keys/disabled_wakeup 114
+    write sys/devices/platform/gpio-keys/disabled_wakeup 249
+    write sys/devices/platform/gpio-keys/disabled_wakeup 212
