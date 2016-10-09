@@ -145,9 +145,6 @@ USE_INTEL_SECURE_AVC := true
 USE_MEDIASDK := true
 MFX_IPP := p8
 
-# Mkbootimg
-BOARD_CUSTOM_BOOTIMG_MK := device/asus/mofd-common/mkbootimg.mk
-
 # Video Post Processing
 TARGET_HAS_ISV := true
 ADDITIONAL_DEFAULT_PROPERTIES += \
@@ -192,6 +189,10 @@ BOARD_GLOBAL_CFLAGS += -DCOMPAT_SENSORS_M
 
 # Tap-to-Wake
 TARGET_TAP_TO_WAKE_NODE := "/sys/devices/pci0000:00/0000:00:09.2/i2c-7/7-0038/ftsdclickmode"
+
+# Verity
+PRODUCT_SUPPORTS_BOOT_SIGNER := true
+PRODUCT_VERITY_SIGNING_KEY := build/target/product/security/verity
 
 # Wifi
 BOARD_WLAN_DEVICE           := bcmdhd
