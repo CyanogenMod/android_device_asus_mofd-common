@@ -226,7 +226,8 @@ PRODUCT_COPY_FILES += \
 
 # Shims
 PRODUCT_PACKAGES += \
-    libshim_icu
+    libshim_icu \
+    libshim_gpsd
 
 # Thermal itux
 ENABLE_ITUXD := true
