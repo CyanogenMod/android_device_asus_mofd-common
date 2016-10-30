@@ -6,8 +6,11 @@ init_daemon_domain(sensorhubd)
 allow sensorhubd efs_file:dir search;
 allow sensorhubd efs_file:file r_file_perms;
 allow sensorhubd factory_file:dir search;
-allow sensorhubd factory_file:file r_file_perms;
+allow sensorhubd factory_file:file rw_file_perms;
 allow sensorhubd sensor_sysfs_file:file rw_file_perms;
+allow sensorhubd sysfs:dir r_dir_perms;
+allow sensorhubd sysfs:file r_file_perms;
+allow sensorhubd rootfs:lnk_file r_file_perms;
 
 # Note: sensorhubd tries to exec a script to update the firmware, we
 #    specifically do not allow that since we don't ship the script
