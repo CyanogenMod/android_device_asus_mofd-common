@@ -30,12 +30,14 @@
 /dev/block/by-name/recovery             u:object_r:recovery_block_device:s0
 /dev/block/by-name/system               u:object_r:system_block_device:s0
 /dev/block/by-name/userdata             u:object_r:userdata_block_device:s0
+/dev/block/by-name/misc                 u:object_r:misc_block_device:s0
 /dev/block/pci/pci0000:00/0000:00:01\.0/by-name/boot           u:object_r:boot_block_device:s0
 /dev/block/pci/pci0000:00/0000:00:01\.0/by-name/cache          u:object_r:cache_block_device:s0
 /dev/block/pci/pci0000:00/0000:00:01\.0/by-name/config         u:object_r:config_block_device:s0
 /dev/block/pci/pci0000:00/0000:00:01\.0/by-name/recovery       u:object_r:recovery_block_device:s0
 /dev/block/pci/pci0000:00/0000:00:01\.0/by-name/system         u:object_r:system_block_device:s0
 /dev/block/pci/pci0000:00/0000:00:01\.0/by-name/userdata       u:object_r:userdata_block_device:s0
+/dev/block/pci/pci0000:00/0000:00:01\.0/by-name/misc           u:object_r:misc_block_device:s0
 /dev/block/zram0                                               u:object_r:swap_block_device:s0
 
 # Needed to potentially fsck them
@@ -82,6 +84,7 @@
 
 # radio
 /config/telephony(/.*)?                 u:object_r:radio_data_file:s0
+/data/modem(/.*)?                       u:object_r:radio_data_file:s0
 /dev/bus/usb/001/00[12]                 u:object_r:radio_device:s0
 /dev/gsmtty[0-9]*                       u:object_r:radio_device:s0
 /dev/mdm_ctrl[01]                       u:object_r:radio_device:s0
