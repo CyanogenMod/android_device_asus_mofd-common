@@ -3,6 +3,7 @@ config.CID                              u:object_r:asus_prop:s0
 config.idcode                           u:object_r:asus_prop:s0
 config.packingcode                      u:object_r:asus_prop:s0
 config.versatility                      u:object_r:asus_prop:s0
+cpufreq                                 u:object_r:asus_prop:s0
 factorymode                             u:object_r:asus_prop:s0
 init.shutdown_to_charging               u:object_r:charger_prop:s0
 isn                                     u:object_r:asus_prop:s0
