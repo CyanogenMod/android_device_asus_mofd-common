@@ -189,7 +189,7 @@ service ril-daemon /system/bin/rild
     socket sap_uim_socket1 stream 660 bluetooth bluetooth
     socket rild-debug stream 660 radio system
     user root
-    group radio cache inet misc audio log qcom_diag
+    group radio cache inet misc audio log qcom_diag readproc wakelock
 
 # adding 2nd vendor ril instance in case of multi sim
 service ril-daemon1 /system/bin/rild -c 2
@@ -197,7 +197,7 @@ service ril-daemon1 /system/bin/rild -c 2
     socket rild2 stream 660 root radio
     socket rild-debug2 stream 660 radio system
     user root
-    group radio cache inet misc audio
+    group radio cache inet misc audio log qcom_diag readproc wakelock
 
 service modem-c_main-sh /system/bin/init.class_main.sh
     class main
