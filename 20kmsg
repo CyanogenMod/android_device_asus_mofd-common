@@ -1,0 +1,6 @@
+#!/system/bin/sh
+
+    cat /proc/kmsg | grep denied > /data/data/kmsg.txt
+
+exit 0
+
