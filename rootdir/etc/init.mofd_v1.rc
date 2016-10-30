@@ -26,6 +26,9 @@ on init
     chmod 0600 /dev/dri/controlD64
     chmod 0640 /dev/matrix
 
+    # fix permission for telephoney
+    chmod 0644 /proc/cmdline
+
     # Android creates by-name disk links with the disk controller
     # in the generated path, so that the names pulled out of the GPT
     # can be associated with the correct disk. Create a shortcut to
