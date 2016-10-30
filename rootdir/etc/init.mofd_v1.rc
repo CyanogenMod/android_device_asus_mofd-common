@@ -259,6 +259,7 @@ service drm /system/bin/drmserver
     class main
     user drm
     group drm system inet drmrpc sdcard_r
+    writepid /dev/cpuset/foreground/tasks
 
 service sensorhubd /system/bin/sensorhubd
     class main
@@ -295,6 +296,7 @@ service media /system/bin/mediaserver
     user media
     group audio camera inet net_bt net_bt_admin net_bw_acct drmrpc mediadrm radio system
     ioprio rt 4
+    writepid /dev/cpuset/foreground/tasks /dev/stune/foreground/tasks
 
 on property:persist.asus.instant_camera=1
     write sys/devices/platform/gpio-keys/enabled_wakeup 115
