@@ -405,4 +405,7 @@
          that can be set by the user. -->
     <integer name="config_screenBrightnessDoze">10</integer>
 
+    <!-- Disable IpReachability monitor -->
+    <bool name="config_wifi_ipreachability_monitor">false</bool>
+
 </resources>
