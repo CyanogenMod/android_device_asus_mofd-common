@@ -18,7 +18,8 @@ LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
 LOCAL_SRC_FILES := healthd_board_moorefield.cpp
 LOCAL_MODULE := libhealthd.moorefield
-LOCAL_C_INCLUDES := system/core/healthd
+LOCAL_C_INCLUDES := system/core/healthd/include
+LOCAL_EXPORT_C_INCLUDE_DIRS := system/core/include
 LOCAL_CFLAGS := -Werror
 include $(BUILD_STATIC_LIBRARY)
 

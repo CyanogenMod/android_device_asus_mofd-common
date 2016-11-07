@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-#include <healthd.h>
+#include <healthd/healthd.h>
 #include <cutils/properties.h>
 
 #define SHUTDOWN_PROP "init.shutdown_to_charging"
