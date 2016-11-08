@@ -41,5 +41,5 @@ def AddIfwiAssertion(info, input_zip):
     info.script.AppendExtra(cmd)
 
 def FullOTA_InstallEnd(info):
-  info.script.AppendExtra('run_program("/tmp/install/bin/sign_boot.sh");')
+  info.script.AppendExtra('assert(run_program("/tmp/install/bin/sign_boot.sh") == 0);')
 
