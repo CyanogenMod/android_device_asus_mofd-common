@@ -40,3 +40,6 @@ def AddIfwiAssertion(info, input_zip):
            ');')
     info.script.AppendExtra(cmd)
 
+def FullOTA_InstallEnd(info):
+  info.script.AppendExtra('package_extract_file("boot.img", "/tmp/boot.img");')
+  info.script.AppendExtra('run_program("dd", "if=/tmp/boot.img", "of=/dev/block/by-name/boot");')
