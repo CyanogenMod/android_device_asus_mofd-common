@@ -44,6 +44,12 @@ PRODUCT_COPY_FILES += \
     device/asus/mofd-common/audio/audio_policy.conf:system/etc/audio_policy.conf \
     device/asus/mofd-common/audio/route_criteria.conf:system/etc/route_criteria.conf
 
+# Boot image hackery
+PRODUCT_COPY_FILES += \
+    device/asus/mofd-common/releasetools/mkbootimg:install/bin/mkbootimg \
+    device/asus/mofd-common/releasetools/unmkbootimg:install/bin/unmkbootimg \
+    device/asus/mofd-common/releasetools/sign_boot.sh:install/bin/sign_boot.sh
+
 # Bluetooth
 PRODUCT_COPY_FILES += \
     device/asus/mofd-common/bluetooth/bt_vendor.conf:system/etc/bluetooth/bt_vendor.conf
