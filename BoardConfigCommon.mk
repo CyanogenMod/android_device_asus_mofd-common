@@ -183,7 +183,7 @@ TARGET_RECOVERY_DEVICE_MODULES := libinit_mofd librecovery_updater_mofd intel_pr
 TARGET_RECOVERY_DENSITY := hdpi
 
 # Release tools
-TARGET_RELEASETOOLS_EXTENSIONS := device/asus/mofd-common
+TARGET_RELEASETOOLS_EXTENSIONS := device/asus/mofd-common/releasetools
 
 # Security
 BUILD_WITH_SECURITY_FRAMEWORK := chaabi_token
