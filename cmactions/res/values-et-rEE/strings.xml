@@ -17,5 +17,27 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- Gesture shortcuts -->
+  <string name="gesture_display_title">Väljalülitatud ekraani žestid</string>
+  <string name="touchscreen_c_gesture_title">Kaamera</string>
+  <string name="touchscreen_c_gesture_summary">Joonista \"C\" täht, et aktiveerida kaamera</string>
+  <string name="touchscreen_e_gesture_title">E-mail</string>
+  <string name="touchscreen_e_gesture_summary">Joonista \"E\" täht, et aktiveerida e-maili rakendus</string>
+  <string name="touchscreen_s_gesture_title">Sõnumid</string>
+  <string name="touchscreen_s_gesture_summary">Joonista \"S\" täht, et avada sõnumite rakendus</string>
+  <string name="touchscreen_v_gesture_title">Numbrivalija</string>
+  <string name="touchscreen_v_gesture_summary">Joonista \"V\" täht, et avada numbrivalija rakendus</string>
+  <string name="touchscreen_w_gesture_title">Veebilehitseja</string>
+  <string name="touchscreen_w_gesture_summary">Joonista \"W\" täht, et avada veebilehitseja rakendus</string>
+  <string name="touchscreen_z_gesture_title">Taskulamp</string>
+  <string name="touchscreen_z_gesture_summary">Joonista \"Z\" täht, et aktiveerida taskulamp</string>
   <!-- Ambient Display Options -->
+  <string name="ambient_display_title">Ambient kuva</string>
+  <string name="hand_wave_gesture_title">Käe viibutus</string>
+  <string name="hand_wave_gesture_summary">Kuva teavitusi käe viibutusel</string>
+  <string name="pick_up_gesture_title">Tõsta üles</string>
+  <string name="pick_up_gesture_summary">Kuva teavitusi seadme tõstmisel</string>
+  <string name="pocket_gesture_title">Tasku</string>
+  <string name="pocket_gesture_summary">Kuva teavitusi taskust võtmisel</string>
+  <string name="proximity_wake_enable_title">Läheduse äratus</string>
+  <string name="proximity_wake_enable_summary">Ärata seade käe viibutusele</string>
 </resources>
