@@ -307,9 +307,14 @@ vendor/firmware/01s5k8aay.drvb
 lib/drm/libfwdlockengine.so
 lib/hw/keystore.moorefield.so
 lib/libkeymaster.so
+vendor/lib/drm/libdrmwvmplugin.so
+vendor/lib/libdrmdecrypt.so
+vendor/lib/mediadrm/libplayreadydrmplugin.so
 vendor/lib/mediadrm/libwvdrmengine.so
+vendor/lib/libseppr_hal.so
 vendor/lib/libWVStreamControlAPI_L1.so
 vendor/lib/libwvdrm_L1.so
+vendor/lib/libwvm.so
 
 # EGL
 lib/libpvr2d.so
