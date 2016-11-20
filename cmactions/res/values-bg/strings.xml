@@ -31,7 +31,7 @@
   <string name="touchscreen_z_gesture_title">Фенерче</string>
   <string name="touchscreen_z_gesture_summary">Изпишете буквата \"Z\", за превключване на фенерчето</string>
   <!-- Ambient Display Options -->
-  <string name="ambient_display_title">Атмосферен екран</string>
+  <string name="ambient_display_title">Активен дисплей</string>
   <string name="hand_wave_gesture_title">Махане с ръка</string>
   <string name="hand_wave_gesture_summary">Показва известията при прекарване на ръка над екрана</string>
   <string name="pick_up_gesture_title">Повдигане</string>
