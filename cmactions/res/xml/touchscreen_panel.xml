@@ -53,7 +53,7 @@
 
     <PreferenceCategory
         android:key="ambient_display_key"
-        android:title="@string/ambient_display_title" >
+        android:title="@string/ambient_display_title">
 
         <SwitchPreference
             android:key="gesture_hand_wave"
@@ -76,7 +76,7 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:title="@*cyanogenmod.platform:string/touchscreen_gesture_extras">
+        android:title="@string/proximity_wake_title">
 
         <SwitchPreference
             android:key="proximity_wake_enable"
