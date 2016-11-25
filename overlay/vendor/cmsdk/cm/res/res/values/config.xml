@@ -36,4 +36,8 @@
          battery LEDs would set this config to 11. -->
     <integer name="config_deviceLightCapabilities" translatable="false">11</integer>
 
+    <!-- Indicate whether opening/closing the lid should send an intent for a add-on
+         cover app to handle.
+         The default is false. -->
+    <bool name="config_lidSendsIntent">true</bool>
 </resources>
