@@ -192,9 +192,6 @@ BUILD_WITH_CHAABI_SUPPORT := true
 # SELinux
 BOARD_SEPOLICY_DIRS += device/asus/mofd-common/sepolicy
 
-# Sensors
-BOARD_GLOBAL_CFLAGS += -DCOMPAT_SENSORS_M
-
 # Tap-to-Wake
 TARGET_TAP_TO_WAKE_NODE := "/sys/devices/pci0000:00/0000:00:09.2/i2c-7/7-0038/ftsdclickmode"
 
