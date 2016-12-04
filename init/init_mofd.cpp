@@ -35,6 +35,11 @@
 #define SERIAL_OFFSET 0x00
 #define SERIAL_LENGTH 17
 
+/* Cpufreq */
+#define MAX_CPU_FREQ    "/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq"
+#define LOW_CPU "1833000"
+#define HIGH_CPU "2333000"
+
 /* Zram */
 #define ZRAM_PROP "ro.config.zram"
 #define MEMINFO_FILE "/proc/meminfo"
@@ -175,10 +180,29 @@ static void intel_props() {
 
 }
 
+void set_feq_values()
+{
+    char buf[BUF_SIZE];
+
+    if(read_file2(MAX_CPU_FREQ, buf, sizeof(buf))) {
+	if ( strncmp(buf, LOW_CPU, strlen(LOW_CPU)) == 0 ) {
+            property_set("ro.sys.perf.device.powersave", "1250000");
+            property_set("ro.sys.perf.device.touchboost", "500000");
+            property_set("ro.sys.perf.device.full", "1833000");
+        } else if ( strncmp(buf, HIGH_CPU, strlen(HIGH_CPU)) == 0 ) {
+            property_set("ro.sys.perf.device.powersave", "1500000");
+            property_set("ro.sys.perf.device.touchboost", "1833000");
+            property_set("ro.sys.perf.device.full", "2333000");
+        } else {
+            INFO("%s: Failed to get max cpu speed: %s\n", __func__, buf);
+        }
+    }
+}
+
 void vendor_load_properties()
 {
     get_serial();
     configure_zram();
     intel_props();
-
+    set_feq_values();
 }
