@@ -35,6 +35,7 @@
   <string name="hand_wave_gesture_title">Lambaian tangan</string>
   <string name="hand_wave_gesture_summary">Kedipakan pemberitahuan saat melambaikan tangan</string>
   <string name="pick_up_gesture_title">Ambil</string>
+  <string name="pick_up_gesture_summary">Kedipkan pemberitahuan saat diambil</string>
   <string name="pocket_gesture_title">Saku</string>
   <string name="pocket_gesture_summary">Pemberitahuan berkedip pada saat keluar dari saku</string>
   <string name="proximity_wake_enable_title">Bangunkan saat dekat</string>
