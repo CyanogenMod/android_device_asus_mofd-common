@@ -36,8 +36,6 @@ public class TouchscreenGestureFragment extends PreferenceFragment {
     private static final String KEY_HAPTIC_FEEDBACK = "touchscreen_gesture_haptic_feedback";
     private static final String KEY_PROXIMITY_WAKE = "proximity_wake_enable";
 
-    private Handler mGestureHandler = new Handler();
-
     private SwitchPreference mAmbientDisplayPreference;
     private SwitchPreference mHandwavePreference;
     private SwitchPreference mProximityWakePreference;
@@ -58,11 +56,6 @@ public class TouchscreenGestureFragment extends PreferenceFragment {
         mHapticFeedback = (SwitchPreference) findPreference(KEY_HAPTIC_FEEDBACK);
         mHapticFeedback.setOnPreferenceChangeListener(mHapticPrefListener);
 
-        // Gestures
-        for (String gestureKey : CMActionsSettings.ALL_GESTURE_KEYS) {
-            Preference pref = findPreference(gestureKey);
-            pref.setOnPreferenceChangeListener(mGesturePrefListener);
-        }
     }
 
     @Override
@@ -104,19 +97,4 @@ public class TouchscreenGestureFragment extends PreferenceFragment {
         }
     };
 
-    private Preference.OnPreferenceChangeListener mGesturePrefListener =
-        new Preference.OnPreferenceChangeListener() {
-            @Override
-            public boolean onPreferenceChange(Preference preference, Object newValue) {
-                mGestureHandler.postDelayed(mUpdateGestures, 500);
-                return true;
-            }
-        };
-
-    private final Runnable mUpdateGestures = new Runnable() {
-        @Override
-        public void run() {
-            CMActionsSettings.updateGestureMode(getContext());
-        }
-    };
 }
