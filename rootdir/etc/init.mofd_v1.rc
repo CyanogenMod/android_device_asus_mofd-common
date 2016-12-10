@@ -222,6 +222,7 @@ on post-fs
 
 # Permissions for Touch Gesture Mode
     chown system system /sys/bus/i2c/devices/i2c-7/7-0038/ftsgesturemode
+    chmod 0664 /sys/bus/i2c/devices/i2c-7/7-0038/ftsgesturemode
 
 # Permissions for Touch Cover Mode
     chown system system /sys/bus/i2c/devices/i2c-7/7-0038/ftscovermode
