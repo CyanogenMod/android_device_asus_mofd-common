@@ -299,15 +299,6 @@ on charger
 #    chmod 0664 /sys/bus/pci/devices/0000:00:16.1/control
 #    write /sys/bus/pci/devices/0000:00:16.1/control "0 1 0"
 
-# From init.rc in stock, these redefine service definitions
-
-service media /system/bin/mediaserver
-    class main
-    user media
-    group audio camera inet net_bt net_bt_admin net_bw_acct drmrpc mediadrm radio system
-    ioprio rt 4
-    writepid /dev/cpuset/foreground/tasks /dev/stune/foreground/tasks
-
 on property:persist.asus.instant_camera=1
     write sys/devices/platform/gpio-keys/enabled_wakeup 115
     write sys/devices/platform/gpio-keys/enabled_wakeup 114
